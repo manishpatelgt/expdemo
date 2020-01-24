@@ -5,7 +5,10 @@ import com.expdemo.utils.extensions.safeApiCall
 import java.io.IOException
 import com.expdemo.utils.state.Result
 
-class UserRepository(private val remoteDataSource: UserRemoteDataSource) {
+class UserRepository(
+    private val localDataSource: UserLocalDataSource,
+    private val remoteDataSource: UserRemoteDataSource
+) {
 
     suspend fun getPosts() = safeApiCall(
         call = { callPostApi() },

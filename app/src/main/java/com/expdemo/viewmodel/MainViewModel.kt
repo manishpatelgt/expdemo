@@ -19,10 +19,14 @@ class MainViewModel(private val userRepository: UserRepository) : ViewModel() {
 
     var isLoading = MutableLiveData<Boolean>()
     var apiError = MutableLiveData<String>()
-    private var postList: MutableLiveData<List<Post>>? = null
+    var postList: MutableLiveData<List<Post>> = MutableLiveData()
 
     /** Show a toast message */
     var _showToast = MutableLiveData<String>()
+
+    init {
+        //postList = MutableLiveData()
+    }
 
     fun getPosts() {
         isLoading.value = true

@@ -12,6 +12,8 @@ import com.expdemo.utils.extensions.isNetworkAvailable
 import com.expdemo.viewmodel.MainViewModel
 import com.expdemo.viewmodel.MainViewModelFactory
 import es.dmoral.toasty.Toasty
+import kotlinx.android.synthetic.main.activity_main.*
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,10 +26,10 @@ class MainActivity : AppCompatActivity() {
 
         // Then, satisfy the dependencies of UserRepository
         val remoteDataSource = UserRemoteDataSource()
-        //val localDataSource = UserLocalDataSource()
+        val localDataSource = UserLocalDataSource()
 
         // Now you can create an instance of UserRepository that LoginViewModel needs
-        val userRepository = UserRepository(remoteDataSource)
+        val userRepository = UserRepository(localDataSource, remoteDataSource)
 
         mainViewModel = ViewModelProviders.of(this, MainViewModelFactory(userRepository))
             .get(MainViewModel::class.java)
@@ -43,6 +45,12 @@ class MainActivity : AppCompatActivity() {
         } else {
             mainViewModel.setToastMessage(getString(R.string.no_internet_text))
         }
+
+        /** Setup categories api observer  */
+        mainViewModel.postList?.observe(this, Observer { entries ->
+            Timber.d("Posts: $entries")
+            txt_view.text = entries.toString()
+        })
 
         /** Set observer for a toast message */
         val observerShowToast = Observer<String> {
