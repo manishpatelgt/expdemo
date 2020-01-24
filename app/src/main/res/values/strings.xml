@@ -1,6 +1,9 @@
 <resources>
-    <string name="app_name">ExpDemo</string>
+    <string name="app_name">Manual DI</string>
 
     <string name="no_internet_title">No Internet</string>
     <string name="no_internet_text">Please check your connection\nand try again.</string>
+
+    <string name="without_singleton">WITHOUT SINGLETON</string>
+    <string name="with_singleton">WITH SINGLETON</string>
 </resources>

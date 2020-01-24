@@ -68,6 +68,9 @@ dependencies {
     //Kotlin Coroutines
     implementation coroutinesDependencies.values()
 
+    //Anko
+    implementation ankoDependencies.values()
+
     //Parser
     implementation parserDependencies.values()
 

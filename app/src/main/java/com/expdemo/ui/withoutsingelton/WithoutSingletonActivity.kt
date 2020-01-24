@@ -1,28 +1,34 @@
-package com.expdemo
+package com.expdemo.ui.withoutsingelton
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.expdemo.R
 import com.expdemo.repository.UserLocalDataSource
 import com.expdemo.repository.UserRemoteDataSource
 import com.expdemo.repository.UserRepository
-import com.expdemo.utils.extensions.isNetworkAvailable
 import com.expdemo.viewmodel.MainViewModel
 import com.expdemo.viewmodel.MainViewModelFactory
 import es.dmoral.toasty.Toasty
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_common.*
 import timber.log.Timber
 
-class MainActivity : AppCompatActivity() {
+/** https://developer.android.com/training/dependency-injection/manual#kotlin **/
+
+class WithoutSingletonActivity : AppCompatActivity() {
 
     /** ViewModel */
     private lateinit var mainViewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_common)
+
+        /** Set action bar */
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // Then, satisfy the dependencies of UserRepository
         val remoteDataSource = UserRemoteDataSource()
@@ -67,6 +73,12 @@ class MainActivity : AppCompatActivity() {
         })
 
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
 
     /** Show toast message */
     private fun showToastMessage(toastMessage: String) {

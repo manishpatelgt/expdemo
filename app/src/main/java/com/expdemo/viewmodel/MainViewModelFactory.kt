@@ -14,7 +14,4 @@ class MainViewModelFactory(private val userRepository: UserRepository) :
         throw IllegalArgumentException("Unknown ViewModel class")
     }
 
-    /*override fun create(): MainViewModel {
-        return MainViewModel(userRepository)
-    }*/
 }
