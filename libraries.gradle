@@ -17,10 +17,17 @@ ext {
     def coroutines_core_version = '1.3.3'
     def coroutines_android_version = '1.3.3'
 
+    def lifecycle_version = '2.2.0-alpha01'
+
+    def gson_parser_version = '2.8.5'
+    def klaxon_parser_version = '5.0.1'
+    
     def facebook_stetho_version = '1.5.1'
     def three_ten_abp = '1.2.2'
 
     def timber_version = '4.7.1'
+
+    def toasty = '1.4.2'
 
     //Ktx - https://developer.android.com/kotlin/ktx
     //Kotlin-stdlib - https://kotlinlang.org/docs/reference/using-gradle.html
@@ -53,14 +60,25 @@ ext {
     //Lifecycle: https://developer.android.com/jetpack/androidx/releases/lifecycle
     //Work: https://developer.android.com/jetpack/androidx/releases/work
     //Room: https://developer.android.com/jetpack/androidx/releases/room
-    /*jetpackDependencies = [
-    ]*/
+    jetpackDependencies = [
+            //room         : "androidx.room:room-runtime:$room_version",
+            //room_ktx     : "androidx.room:room-ktx:$room_version",
+            //saved_state            : "androidx.lifecycle:lifecycle-viewmodel-savedstate:$androidx_saved_state",
+            lifecycle              : "androidx.lifecycle:lifecycle-extensions:$lifecycle_version",
+            lifecycle_ktx          : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    ]
 
     coroutinesDependencies = [
             core   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_core_version",
             android: "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_android_version"
     ]
 
+    //Klaxon: https://github.com/cbeust/klaxon
+    parserDependencies = [
+            gson  : "com.google.code.gson:gson:$gson_parser_version",
+            klaxon: "com.beust:klaxon:$klaxon_parser_version"
+    ]
+    
     logDependencies = [
             timber: "com.jakewharton.timber:timber:$timber_version"
     ]
@@ -69,5 +87,9 @@ ext {
             stetho       : "com.facebook.stetho:stetho:$facebook_stetho_version",
             oktthp       : "com.facebook.stetho:stetho-okhttp3:$facebook_stetho_version",
             three_ten_abp: "com.jakewharton.threetenabp:threetenabp:$three_ten_abp"
+    ]
+
+    otherDependencies = [
+            toasty      : "com.github.GrenderG:Toasty:$toasty"
     ]
 }

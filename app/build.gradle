@@ -63,13 +63,19 @@ dependencies {
     kapt "com.squareup.moshi:moshi-kotlin-codegen:1.9.2"
 
     //Jetpack
-    //implementation jetpackDependencies.values()
+    implementation jetpackDependencies.values()
 
     //Kotlin Coroutines
     implementation coroutinesDependencies.values()
 
+    //Parser
+    implementation parserDependencies.values()
+
     //Logs
     implementation logDependencies.values()
+
+    //Other
+    implementation otherDependencies.values()
 
     //Debug
     implementation debugDependencies.values()
