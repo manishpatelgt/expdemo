@@ -29,10 +29,10 @@ class WithSingletonActivity : AppCompatActivity() {
 
         // Gets userRepository from the instance of AppContainer in Application
         val appContainer = (application as App).appContainer
-        //mainViewModel = MainViewModel(appContainer.userRepository)
+        val userRepository = appContainer.userRepository
 
         mainViewModel =
-            ViewModelProviders.of(this, MainViewModelFactory(appContainer.userRepository))
+            ViewModelProviders.of(this, MainViewModelFactory(userRepository))
                 .get(MainViewModel::class.java)
 
         /** Set observers*/
@@ -66,9 +66,7 @@ class WithSingletonActivity : AppCompatActivity() {
                 mainViewModel.setToastMessage(it)
             }
         })
-
     }
-
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
