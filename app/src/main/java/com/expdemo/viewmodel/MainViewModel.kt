@@ -35,6 +35,12 @@ class MainViewModel(private val userRepository: UserRepository) : ViewModel() {
                 is Result.Success -> {
                     isLoading.value = false
                     postList?.value = result.data
+
+                    /** clear table and insert all the records **/
+                    userRepository.deleteAll()
+
+                    /** insert all records in one shot **/
+                    userRepository.insertAll(result.data)
                 }
                 is Result.Error -> {
                     apiError.value = result.exception.message

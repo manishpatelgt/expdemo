@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.expdemo.R
+import com.expdemo.application.App
 import com.expdemo.repository.UserLocalDataSource
 import com.expdemo.repository.UserRemoteDataSource
 import com.expdemo.repository.UserRepository
@@ -78,7 +79,6 @@ class WithoutSingletonActivity : AppCompatActivity() {
         onBackPressed()
         return true
     }
-
 
     /** Show toast message */
     private fun showToastMessage(toastMessage: String) {

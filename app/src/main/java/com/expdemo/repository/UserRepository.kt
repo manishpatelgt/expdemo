@@ -22,4 +22,15 @@ class UserRepository(
         return Result.Error(IOException("Something went wrong. Please try again later!"))
     }
 
+    suspend fun insert(post: Post) {
+        localDataSource.postDao.insert(post)
+    }
+
+    suspend fun insertAll(posts: List<Post>) {
+        localDataSource.postDao.insertAll(posts)
+    }
+
+    suspend fun deleteAll() {
+        localDataSource.postDao.deleteAll()
+    }
 }

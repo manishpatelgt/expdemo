@@ -4,6 +4,6 @@
     <string name="no_internet_title">No Internet</string>
     <string name="no_internet_text">Please check your connection\nand try again.</string>
 
-    <string name="without_singleton">WITHOUT SINGLETON</string>
-    <string name="with_singleton">WITH SINGLETON</string>
+    <string name="without_singleton">With Normal Class</string>
+    <string name="with_singleton">With App-container</string>
 </resources>

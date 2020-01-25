@@ -24,11 +24,11 @@
 
         <activity
             android:name=".ui.withoutsingelton.WithoutSingletonActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/without_singleton"></activity>
 
         <activity
             android:name=".ui.withsingelton.WithSingletonActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/with_singleton"></activity>
 
     </application>
 

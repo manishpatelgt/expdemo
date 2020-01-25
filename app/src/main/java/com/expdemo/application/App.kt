@@ -16,6 +16,11 @@ class App : MultiDexApplication() {
     /** Coroutine scope to delayed initialization*/
     private val applicationScope = CoroutineScope(Dispatchers.Default)
 
+    // Instance of AppContainer that will be used by all the Activities of the app
+    //val appContainer = AppContainer(this)
+
+    lateinit var appContainer: AppContainer
+
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)
         MultiDex.install(this)
@@ -26,6 +31,8 @@ class App : MultiDexApplication() {
 
         // initialise app as a singleton
         sInstance = this
+
+        appContainer = AppContainer()
 
         /**
          * THREETENABP
