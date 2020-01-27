@@ -3,6 +3,7 @@ package com.expdemo.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.expdemo.R
+import com.expdemo.ui.test.CoroutineTestActivity
 import com.expdemo.ui.withoutsingelton.WithoutSingletonActivity
 import com.expdemo.ui.withsingelton.WithSingletonActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -25,6 +26,11 @@ class MainActivity : AppCompatActivity() {
         with_singleton_button.setOnClickListener {
             /** lunch with singleton activity**/
             startActivity<WithSingletonActivity>()
+        }
+
+        coroutine_test_button.setOnClickListener {
+            /** lunch with CoroutineTestActivity**/
+            startActivity<CoroutineTestActivity>()
         }
     }
 

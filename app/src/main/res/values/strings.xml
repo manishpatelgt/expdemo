@@ -6,4 +6,6 @@
 
     <string name="without_singleton">With Normal Class</string>
     <string name="with_singleton">With App-container</string>
+
+    <string name="coroutine_test">Coroutine Testing</string>
 </resources>

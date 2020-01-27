@@ -30,6 +30,11 @@
             android:name=".ui.withsingelton.WithSingletonActivity"
             android:label="@string/with_singleton"></activity>
 
+
+        <activity
+            android:name=".ui.test.CoroutineTestActivity"
+            android:label="@string/coroutine_test"></activity>
+
     </application>
 
 </manifest>
