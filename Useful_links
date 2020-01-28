@@ -1,0 +1,26 @@
+DI (dependency-injection):
+https://developer.android.com/training/dependency-injection/dagger-basics
+
+Kotlin code ktx
+https://developer.android.com/kotlin/ktx
+
+Coroutine clear guidance:
+https://medium.com/mindful-engineering/fast-lane-to-coroutines-bce8388ed82b
+https://developer.android.com/kotlin/coroutines
+
+Created orphan branch for bitbucket
+
+Dagger2:
+https://dagger.dev/
+https://developer.android.com/training/dependency-injection/dagger-basics
+https://github.com/google/dagger
+https://developer.android.com/training/dependency-injection/dagger-android
+
+commands:
+Create empty git repository
+
+C:\Users\Manish Patel\AndroidStudioProjects\Dagger2demo>git init
+Initialized empty Git repository in C:/Users/Manish Patel/AndroidStudioProjects/Dagger2demo/.git/
+
+C:\Users\Manish Patel\AndroidStudioProjects\Dagger2demo>git checkout --orphan dagger2_demo
+Switched to a new branch 'dagger2_demo'
