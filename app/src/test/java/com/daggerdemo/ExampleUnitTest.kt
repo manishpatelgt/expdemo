@@ -1,4 +1,4 @@
-package com.e.daggerdemo
+package com.daggerdemo
 
 import org.junit.Test
 

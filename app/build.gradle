@@ -8,7 +8,7 @@ android {
     compileSdkVersion 29
 
     defaultConfig {
-        applicationId "com.e.daggerdemo"
+        applicationId "com.daggerdemo"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
