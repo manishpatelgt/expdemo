@@ -5,6 +5,7 @@ import android.content.Context
 import androidx.multidex.BuildConfig
 import androidx.multidex.MultiDex
 import androidx.multidex.MultiDexApplication
+import com.daggerdemo.repository.DaggerApplicationGraph
 import com.facebook.stetho.Stetho
 import com.jakewharton.threetenabp.AndroidThreeTen
 import timber.log.Timber
@@ -14,6 +15,8 @@ import timber.log.Timber
  */
 class App : MultiDexApplication() {
 
+    // Reference to the application graph that is used across the whole app
+    val appComponent = DaggerApplicationGraph.create()
 
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)

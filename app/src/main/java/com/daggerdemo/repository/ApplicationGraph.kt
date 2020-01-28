@@ -1,11 +1,13 @@
 package com.daggerdemo.repository
 
 import dagger.Component
+import javax.inject.Singleton
 
 /**
  * Created by Manish Patel on 1/28/2020.
  */
 // @Component makes Dagger create a graph of dependencies
+@Singleton
 @Component
 interface ApplicationGraph {
 

@@ -1,8 +1,6 @@
-package com.expdemo.repository
+package com.daggerdemo.repository
 
 import com.daggerdemo.application.App
-import com.daggerdemo.repository.PostDao
-import com.daggerdemo.repository.PostDatabase
 import javax.inject.Inject
 
 class UserLocalDataSource @Inject constructor() {
