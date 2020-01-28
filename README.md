@@ -1,2 +1,2 @@
-# Dagger2 Demo Code -  Android App
+# Dagger2 Basics Demo Code -  Android App
 
