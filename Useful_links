@@ -10,6 +10,11 @@ https://developer.android.com/kotlin/coroutines
 
 Created orphan branch for bitbucket
 
+Dagger2:
+https://dagger.dev/
+https://developer.android.com/training/dependency-injection/dagger-basics
+https://github.com/google/dagger
+
 commands:
 Create empty git repository
 
