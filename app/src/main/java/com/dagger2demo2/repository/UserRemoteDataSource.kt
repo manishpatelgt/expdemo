@@ -8,5 +8,5 @@ import javax.inject.Inject
  */
 class UserRemoteDataSource @Inject constructor() {
 
-    private val retrofitApiService: RetrofitApiService = TODO()
+    //private val retrofitApiService: RetrofitApiService = TODO()
 }

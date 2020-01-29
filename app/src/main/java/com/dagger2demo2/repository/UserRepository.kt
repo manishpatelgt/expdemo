@@ -9,4 +9,8 @@ import javax.inject.Singleton
 @Singleton
 class UserRepository @Inject constructor(private val localDataSource: UserLocalDataSource,
                                          private val remoteDataSource: UserRemoteDataSource) {
+
+    fun getPosts(){
+
+    }
 }
