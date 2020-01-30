@@ -4,6 +4,8 @@ apply plugin: 'kotlin-kapt' // Why we need ? https://kotlinlang.org/docs/referen
 apply plugin: 'kotlin-android-extensions'
 apply from: '../libraries.gradle'
 
+apply plugin: 'kotlinx-serialization'
+
 android {
     compileSdkVersion 29
 
@@ -77,6 +79,9 @@ dependencies {
 
     //Parser
     implementation parserDependencies.values()
+
+    //Kotlin Serialization
+    implementation kotlinSerializationDependencies.values()
 
     //Logs
     implementation logDependencies.values()
