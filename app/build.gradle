@@ -46,6 +46,7 @@ android {
 
 dependencies {
     def room_version = "2.2.3"
+    def lifecycle_version = "2.2.0"
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
@@ -63,6 +64,8 @@ dependencies {
     //Jetpack
     implementation jetpackDependencies.values()
     kapt "androidx.room:room-compiler:$room_version"
+    // Annotation processor
+    kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
 
     //Kotlin Coroutines
     implementation coroutinesDependencies.values()

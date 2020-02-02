@@ -49,6 +49,13 @@ class WithoutSingletonActivity : AppCompatActivity() {
 
         if (mainViewModel.network) {
             mainViewModel.getPosts()
+            mainViewModel.getPostsWithAwait()
+
+            mainViewModel.getPostsWithLiveData?.observe(this, Observer { entries ->
+                Timber.d("Posts: $entries")
+                txt_view.text = entries.toString()
+            })
+
         } else {
             mainViewModel.setToastMessage(getString(R.string.no_internet_text))
         }

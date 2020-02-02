@@ -7,3 +7,20 @@ https://developer.android.com/kotlin/ktx
 Coroutine clear guidance:
 https://medium.com/mindful-engineering/fast-lane-to-coroutines-bce8388ed82b
 https://developer.android.com/kotlin/coroutines
+
+
+ViewModel + LiveData
+https://www.javacodemonk.com/kotlin-coroutines-with-retrofit-and-livedata-790f6376
+https://medium.com/corouteam/exploring-kotlin-coroutines-and-lifecycle-architectural-components-integration-on-android-c63bb8a9156f
+https://proandroiddev.com/suspend-what-youre-doing-retrofit-has-now-coroutines-support-c65bd09ba067
+
+Created orphan branch for bitbucket
+
+commands:
+Create empty git repository
+
+C:\Users\Manish Patel\AndroidStudioProjects\Dagger2demo>git init
+Initialized empty Git repository in C:/Users/Manish Patel/AndroidStudioProjects/Dagger2demo/.git/
+
+C:\Users\Manish Patel\AndroidStudioProjects\Dagger2demo>git checkout --orphan dagger2_demo
+Switched to a new branch 'dagger2_demo'
