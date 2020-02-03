@@ -3,6 +3,7 @@ package com.expdemo.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.expdemo.R
+import com.expdemo.ui.retrofitdemo.RetrofitDemoActivity
 import com.expdemo.ui.test.CoroutineTestActivity
 import com.expdemo.ui.withoutsingelton.WithoutSingletonActivity
 import com.expdemo.ui.withsingelton.WithSingletonActivity
@@ -31,6 +32,11 @@ class MainActivity : AppCompatActivity() {
         coroutine_test_button.setOnClickListener {
             /** lunch with CoroutineTestActivity**/
             startActivity<CoroutineTestActivity>()
+        }
+
+        retrofit_generic_button.setOnClickListener {
+            /** lunch with RetrofitDemoActivity**/
+            startActivity<RetrofitDemoActivity>()
         }
     }
 

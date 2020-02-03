@@ -56,8 +56,12 @@ dependencies {
     //AndroidX
     implementation androidXDependencies.values()
 
-    //Retrofit
-    implementation retrofitDependencies.values()
+    //Retrofit - 1
+    implementation retrofitWithMoshiDependencies.values()
+
+    //Retrofit - 2
+    implementation retrofitWithGsonDependencies.values()
+
     //Moshi Codegen
     kapt "com.squareup.moshi:moshi-kotlin-codegen:1.9.2"
 

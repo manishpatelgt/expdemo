@@ -8,4 +8,5 @@
     <string name="with_singleton">With App-container</string>
 
     <string name="coroutine_test">Coroutine Testing</string>
+    <string name="retrofit_generic">Retrofit Generic Demo</string>
 </resources>

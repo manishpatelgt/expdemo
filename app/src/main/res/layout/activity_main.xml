@@ -64,4 +64,20 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/with_singleton_button" />
 
+    <!-- 4th button Button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/retrofit_generic_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/green_button_selector"
+        android:fontFamily="@font/circular_black"
+        android:text="@string/retrofit_generic"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dimen_11sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/coroutine_test_button" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
