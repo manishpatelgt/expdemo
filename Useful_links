@@ -24,3 +24,7 @@ Initialized empty Git repository in C:/Users/Manish Patel/AndroidStudioProjects/
 
 C:\Users\Manish Patel\AndroidStudioProjects\Dagger2demo>git checkout --orphan dagger2_demo
 Switched to a new branch 'dagger2_demo'
+
+Builder Pattern Vs. DSL in Kotlin
+https://medium.com/mindorks/builder-pattern-vs-kotlin-dsl-c3ebaca6bc3b
+https://blog.mindorks.com/function-literals-with-receiver-in-kotlin
