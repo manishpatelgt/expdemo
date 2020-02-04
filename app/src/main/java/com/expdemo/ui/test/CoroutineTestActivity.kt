@@ -16,6 +16,8 @@ package com.expdemo.ui.test
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.expdemo.R
+import com.expdemo.models.builderdsltest.Student
+import com.expdemo.models.builderdsltest.StudentDSL.Companion.student
 import kotlinx.android.synthetic.main.activity_common.*
 import kotlinx.coroutines.*
 
@@ -49,6 +51,26 @@ class CoroutineTestActivity : AppCompatActivity() {
         }
 
         awaitDemo()
+    }
+
+    /** https://medium.com/mindorks/builder-pattern-vs-kotlin-dsl-c3ebaca6bc3b **/
+    fun builderPatternAndDSLDemo() {
+
+        /**Builder Patten **/
+        //To create Student object now we can use
+        Student.Builder()
+            .name("Alex")
+            .standard(10)
+            .rollNumber(720)
+            .build()
+
+        /** simple DSL **/
+        //To create Student object now we can use
+        student {
+            name = "Alex"
+            standard = 10
+            rollNumber = 720
+        }
     }
 
     fun awaitDemo() {
