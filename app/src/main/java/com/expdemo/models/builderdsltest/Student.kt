@@ -37,7 +37,7 @@ class Student(
 
         fun standard(standard: Int) = apply { this.standard = standard }
 
-        fun rollNumber(rollno: Int) = apply { this.rollNumber = rollNumber }
+        fun rollNumber(rollno: Int) = apply { this.rollNumber = rollno }
 
         fun build() = Student(this)
     }

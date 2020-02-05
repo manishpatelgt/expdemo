@@ -35,8 +35,10 @@ class MainViewModel : ViewModel() {
         emit(Resource.loading())
         val api = ApiClient.createService(EmployeeApi::class.java)
         val response = api.getPerson()
-        if(response.isSuccessful) {
+        if (response.isSuccessful) {
             emit(Resource.success(response.body()?.data))
+        } else {
+            emit(Resource.error(response.message()))
         }
     }
 

@@ -70,7 +70,7 @@ class RetrofitDemoActivity : AppCompatActivity() {
         mainViewModel.loadData().observe(this, Observer { networkResource ->
             when (networkResource.status) {
                 Status.LOADING -> {
-                    txt_view.text = "loading data from network"
+                    txt_view.text = "Loading data from network"
                 }
                 Status.SUCCESS -> {
                     val person = networkResource.data
@@ -80,7 +80,7 @@ class RetrofitDemoActivity : AppCompatActivity() {
                     }
                 }
                 Status.ERROR -> {
-                    txt_view.text = "error loading data from network"
+                    txt_view.text = "Error loading data from network"
                 }
             }
         })
