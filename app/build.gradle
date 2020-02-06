@@ -1,0 +1,103 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt' // Why we need ? https://kotlinlang.org/docs/reference/kapt.html
+apply from: '../libraries.gradle'
+
+android {
+    compileSdkVersion 29
+
+    defaultConfig {
+        applicationId "com.daggerandroidinjector"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        multiDexEnabled true
+        
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+
+    packagingOptions {
+        exclude 'META-INF/atomicfu.kotlin_module'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+
+    def room_version = "2.2.3"
+    def dagger2_version = "2.25.4"
+    def lifecycle_version = "2.2.0"
+
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    //Kotlin
+    implementation kotlinDependencies.values()
+
+    //AndroidX
+    implementation androidXDependencies.values()
+
+    //Retrofit - 1
+    implementation retrofitWithMoshiDependencies.values()
+
+    //Retrofit - 2
+    implementation retrofitWithGsonDependencies.values()
+
+    //Moshi Codegen
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:1.9.2"
+
+    //Jetpack
+    implementation jetpackDependencies.values()
+    kapt "androidx.room:room-compiler:$room_version"
+    // Annotation processor
+    kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+
+    //Kotlin Coroutines
+    implementation coroutinesDependencies.values()
+
+    //Anko
+    implementation ankoDependencies.values()
+
+    //Parser
+    implementation parserDependencies.values()
+
+    //Dagger2
+    implementation dagger2Dependencies.values()
+    kapt "com.google.dagger:dagger-compiler:$dagger2_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger2_version"
+
+    //Logs
+    implementation logDependencies.values()
+
+    //Other
+    implementation otherDependencies.values()
+
+    //Debug
+    implementation debugDependencies.values()
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+}
