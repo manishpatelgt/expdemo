@@ -9,7 +9,7 @@ import dagger.android.ContributesAndroidInjector
  * Created by Manish Patel on 2/6/2020.
  */
 @Module
-abstract class ActivitiesModule {
+abstract class ActivityBuilder {
     @ContributesAndroidInjector(modules = [MainActivityModule::class])
     abstract fun contributeMainActivityInjector(): MainActivity
 }

@@ -2,6 +2,7 @@ package com.daggerandroidinjector.utils
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import java.io.IOException
 
 /**
  * Created by Manish Patel on 2/6/2020.

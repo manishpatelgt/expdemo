@@ -9,7 +9,7 @@ import dagger.android.ContributesAndroidInjector
  * Created by Manish Patel on 2/6/2020.
  */
 @Module
-abstract class FragmentsModule {
+abstract class FragmentBuilder {
     @ContributesAndroidInjector(modules = [MainFragmentModule::class])
     abstract fun contributeMainFragment(): MainFragment
 }
