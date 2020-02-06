@@ -26,5 +26,8 @@ https://medium.com/@b.chandrasaimohan/dependency-injection-using-dagger2-using-m
 https://android.jlelse.eu/new-android-injector-with-dagger-2-part-3-fe3924df6a89
 https://blog.mindorks.com/the-new-dagger-2-android-injector-cbe7d55afa6a
 
-
+Dagger2 + ViewModel + ViewModelFactory
+https://medium.com/chili-labs/android-viewmodel-injection-with-dagger-f0061d3402ff
+https://android.jlelse.eu/using-dagger2-intomap-api-for-android-viewmodel-injection-cffeb8dd0cdf
+https://stackoverflow.com/questions/44712248/inject-viewmodel-using-dagger-2-kotlin-viewmodel
 
