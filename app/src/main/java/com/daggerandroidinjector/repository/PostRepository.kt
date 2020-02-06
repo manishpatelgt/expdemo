@@ -18,42 +18,55 @@ import javax.inject.Singleton
  */
 @Singleton
 class PostRepository @Inject constructor(
-    private val api: PostApi,
-    private val postDao: PostDao
+        private val api: PostApi,
+        private val postDao: PostDao
 ) {
 
     suspend fun getPosts() = safeApiCall(
-        call = { callPostApi() }
+            call = { callPostApi() }
     )
 
     suspend fun callPostApi(): Result<List<Post>> {
         val response = api.getPosts()
-        if (response.isSuccessful) return Result.Success(response.body()!!)
-        return Result.Error(Exception(response.message()))
+        return if (response.isSuccessful) {
+            Result.Success(response.body()!!)
+        } else {
+            when (response.code()) {
+                404 -> Result.Error(Exception("Webservice Not found"))
+                401 -> Result.Error(Exception("Un-authorised"))
+                500 -> Result.Error(Exception("Server not found"))
+                else -> Result.Error(Exception("couldn't connect to server"))
+            }
+        }
     }
 
     suspend fun callPostApi2(): Result<List<Post>> {
         return try {
             val response = api.getPosts()
-            Timber.e("status code: ${response.code()}")
+            println("status code: ${response.code()}")
             if (response.isSuccessful) {
                 Result.Success(response.body()!!)
             } else {
-                Timber.e("error: ${response.message()}")
-                Result.Error(Exception(response.message()))
+                when (response.code()) {
+                    404 -> Result.Error(Exception("Webservice Not found"))
+                    401 -> Result.Error(Exception("Un-authorised"))
+                    500 -> Result.Error(Exception("Server not found"))
+                    else -> Result.Error(Exception("couldn't connect to server"))
+                }
             }
 
         } catch (httpException: HttpException) {
-           Timber.e("error: ${httpException.message}")
+            println("error: ${httpException.message}")
             Result.Error(
-                Exception(
-                    httpException.response()?.errorBody()?.string() ?: httpException.message(),
-                    httpException
-                )
+                    Exception(
+                            httpException.response()?.errorBody()?.string()
+                                    ?: httpException.message(),
+                            httpException
+                    )
             )
         } catch (t: Throwable) {
             t.printStackTrace()
-            Timber.e("error: ${t.message}")
+            println("error: ${t.message}")
             Result.Error(Exception(t.localizedMessage, t))
         }
     }
