@@ -98,7 +98,8 @@ ext {
     ]
 
     dagger2Dependencies = [
-            dagger2  : "com.google.dagger:dagger-android:$dagger2_version"
+            dagger2        : "com.google.dagger:dagger:$dagger2_version",
+            dagger2_support: "com.google.dagger:dagger-android-support:$dagger2_version"
     ]
 
 
