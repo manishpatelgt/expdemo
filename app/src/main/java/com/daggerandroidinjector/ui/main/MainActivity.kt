@@ -2,6 +2,7 @@ package com.daggerandroidinjector.ui.main
 
 import android.os.Bundle
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.daggerandroidinjector.R
@@ -52,10 +53,15 @@ class MainActivity : DaggerAppCompatActivity() {
 
         model._showToast.observe(this, observerShowToast)
 
-        /** Setup api error observer  */
-        model.apiError.observe(this, Observer<String> {
-            it?.let {
-                model.setToastMessage(it)
+        /** Setup errorMessage observer  */
+        model.errorMessage.observe(this, Observer {
+            model.setToastMessage(it)
+        })
+
+        model.showProgress.observe(this, Observer { showProgress ->
+            Timber.d("showProgress: $showProgress")
+            if (showProgress) {
+                txt_view.text = "Loading..."
             }
         })
     }

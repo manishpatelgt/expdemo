@@ -6,6 +6,8 @@ import com.daggerandroidinjector.utils.safeApiCall
 import java.io.IOException
 import javax.inject.Inject
 import com.daggerandroidinjector.utils.state.Result
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Singleton
 
 /**
@@ -26,6 +28,12 @@ class PostRepository @Inject constructor(
         val response = api.getPosts()
         if (response.isSuccessful) return Result.Success(response.body()!!)
         return Result.Error(IOException("Something went wrong. Please try again later!"))
+    }
+
+    suspend fun signIn(email: String, password: String) {
+        withContext(Dispatchers.IO) {
+            //val tokenResponse = api.getToken(getBasicAuthHeader(email, password))
+        }
     }
 
     suspend fun insert(post: Post) {

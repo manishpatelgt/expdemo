@@ -15,11 +15,19 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 import com.daggerandroidinjector.utils.constants.Constants.API_URL
+import kotlinx.coroutines.Dispatchers
+import kotlin.coroutines.CoroutineContext
+
 /**
  * Created by Manish Patel on 2/6/2020.
  */
 @Module
 class AppModule {
+
+    @Provides
+    fun provideCoroutineContext(): CoroutineContext {
+        return Dispatchers.Main
+    }
 
     @Provides
     fun providePostDb(database: PostDatabase) = database.postDao()
