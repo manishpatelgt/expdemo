@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.daggerandroidinjector.R
 import com.daggerandroidinjector.services.MyService
 import com.daggerandroidinjector.utils.isAtLeastAndroid8
@@ -21,7 +22,7 @@ import kotlin.coroutines.CoroutineContext
 
 /** https://medium.com/@serapbercin001/how-to-use-android-injector-for-activity-and-fragment-objects-through-new-dagger-2-with-kotlin-704eb8a98c43 **/
 
-class MainActivity() : DaggerAppCompatActivity(), CoroutineScope by MainScope() {
+class MainActivity : DaggerAppCompatActivity() {
 
     @Inject
     lateinit var modelFactory: ViewModelProvider.Factory
@@ -71,8 +72,8 @@ class MainActivity() : DaggerAppCompatActivity(), CoroutineScope by MainScope() 
         })
 
         /** start service here **/
-        launch {
-            delay(3000) //3 sec delay
+        lifecycleScope.launch(Dispatchers.IO) {
+            delay(10000) //10 sec delay
             startService()
         }
     }

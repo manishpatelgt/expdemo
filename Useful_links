@@ -4,9 +4,15 @@ https://developer.android.com/training/dependency-injection/dagger-basics
 Kotlin code ktx
 https://developer.android.com/kotlin/ktx
 
+Android Kotlin Coroutine Scope for Activity, Fragment and ViewModel (Architecture Components):
+https://code.luasoftware.com/tutorials/android/android-kotlin-coroutine-scope-for-activity/
+
 Coroutine clear guidance:
 https://medium.com/mindful-engineering/fast-lane-to-coroutines-bce8388ed82b
 https://developer.android.com/kotlin/coroutines
+
+ViewModel
+https://developer.android.com/topic/libraries/architecture/viewmodel
 
 ViewModel + LiveData
 https://www.javacodemonk.com/kotlin-coroutines-with-retrofit-and-livedata-790f6376
