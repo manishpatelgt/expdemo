@@ -59,7 +59,7 @@ class MainActivity : DaggerAppCompatActivity() {
         })
 
         model.showProgress.observe(this, Observer { showProgress ->
-            Timber.d("showProgress: $showProgress")
+            Timber.e("showProgress: $showProgress")
             if (showProgress) {
                 txt_view.text = "Loading..."
             }

@@ -10,6 +10,6 @@ import retrofit2.http.GET
 interface PostApi {
 
     /** Testing API call**/
-    @GET("typicode/demo/posts")
+    @GET("typicode/demo/posts2")
     suspend fun getPosts(): Response<List<Post>>
 }

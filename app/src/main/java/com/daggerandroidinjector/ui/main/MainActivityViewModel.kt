@@ -24,8 +24,7 @@ import kotlin.coroutines.CoroutineContext
 class MainActivityViewModel @Inject constructor(
     private val postRepository: PostRepository,
     context: CoroutineContext
-) :
-    ViewModel() {
+) : ViewModel() {
 
     /** Check network and cache conditions */
     val network = (isNetworkAvailable(App.context))
@@ -64,8 +63,8 @@ class MainActivityViewModel @Inject constructor(
                     postRepository.insertAll(result.data)
                 }
                 is Result.Error -> {
+                    _showProgress.value = false
                     _errorMessage.value = result.exception.message
-                    _showProgress.value = true
                 }
             }
         }
