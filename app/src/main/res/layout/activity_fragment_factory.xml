@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<?xml version="1.0" encoding="utf-8"?>
+<!--
   ~ Copyright 2020 Manish Patel. All rights reserved.
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -32,7 +33,7 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView_1"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_100dp"
+        android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
@@ -52,7 +53,7 @@
         android:id="@+id/fragmentContainerView_2"
         class="com.expdemo.ui.test.fragmentdemo.SecondFragment"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_100dp"
+        android:layout_height="@dimen/dimen_200dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragmentContainerView_1" />
