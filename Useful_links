@@ -8,6 +8,8 @@ Coroutine clear guidance:
 https://medium.com/mindful-engineering/fast-lane-to-coroutines-bce8388ed82b
 https://developer.android.com/kotlin/coroutines
 
+Fragment Factory:
+https://proandroiddev.com/android-fragments-fragmentfactory-ceec3cf7c959
 
 ViewModel + LiveData
 https://www.javacodemonk.com/kotlin-coroutines-with-retrofit-and-livedata-790f6376
@@ -31,3 +33,11 @@ https://blog.mindorks.com/function-literals-with-receiver-in-kotlin
 
 Which libs you can choose ?
 https://blog.karumi.com/our-android-2020-development-stack/amp/?__twitter_impression=true
+
+
+FragmentFactory + Dagger2 + FragmentViewContainer
+https://developer.android.com/jetpack/androidx/releases/fragment
+https://proandroiddev.com/android-fragments-fragmentcontainerview-292f393f9ccf
+https://proandroiddev.com/android-fragments-fragmentfactory-ceec3cf7c959
+https://medium.com/@zawadz88/androidx-navigation-with-dagger-2-fragmentfactory-789b01b43214
+https://medium.com/@ruddns8213/android-fragmentcontainerview-ac73705b384d

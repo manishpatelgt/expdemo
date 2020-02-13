@@ -9,4 +9,6 @@
 
     <string name="coroutine_test">Coroutine Testing</string>
     <string name="retrofit_generic">Retrofit Generic Demo</string>
+
+    <string name="fragment_factory_demo">Fragment Factory Demo</string>
 </resources>

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.expdemo.R
 import com.expdemo.ui.retrofitdemo.RetrofitDemoActivity
 import com.expdemo.ui.test.CoroutineTestActivity
+import com.expdemo.ui.test.fragmentdemo.FragmentFactoryDemoActivity
 import com.expdemo.ui.withoutsingelton.WithoutSingletonActivity
 import com.expdemo.ui.withsingelton.WithSingletonActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -37,6 +38,11 @@ class MainActivity : AppCompatActivity() {
         retrofit_generic_button.setOnClickListener {
             /** lunch with RetrofitDemoActivity**/
             startActivity<RetrofitDemoActivity>()
+        }
+
+        fragment_factory_button.setOnClickListener {
+            /** lunch with FragmentFactoryDemoActivity**/
+            startActivity<FragmentFactoryDemoActivity>()
         }
     }
 
