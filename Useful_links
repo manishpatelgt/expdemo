@@ -37,3 +37,7 @@ https://medium.com/chili-labs/android-viewmodel-injection-with-dagger-f0061d3402
 https://android.jlelse.eu/using-dagger2-intomap-api-for-android-viewmodel-injection-cffeb8dd0cdf
 https://stackoverflow.com/questions/44712248/inject-viewmodel-using-dagger-2-kotlin-viewmodel
 
+FragmentFactory + Dagger2 + FragmentViewContainer
+https://proandroiddev.com/android-fragments-fragmentcontainerview-292f393f9ccf
+https://proandroiddev.com/android-fragments-fragmentfactory-ceec3cf7c959
+https://medium.com/@zawadz88/androidx-navigation-with-dagger-2-fragmentfactory-789b01b43214

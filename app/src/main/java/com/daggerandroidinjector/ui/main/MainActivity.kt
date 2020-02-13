@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.daggerandroidinjector.R
 import com.daggerandroidinjector.services.MyService
+import com.daggerandroidinjector.ui.mainfragments.MainFragment
 import com.daggerandroidinjector.utils.isAtLeastAndroid8
 import com.daggerandroidinjector.utils.viewModelProvider
 import dagger.android.AndroidInjection
@@ -36,6 +37,13 @@ class MainActivity : DaggerAppCompatActivity() {
 
         /** Set observers*/
         setObservers()
+
+        /** attached main fragment here **/
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .add(R.id.frame, MainFragment::class.java, null)
+                .commit()
+        }
     }
 
     private fun setObservers() {

@@ -21,7 +21,7 @@ class MyService : Service() {
     lateinit var postRepository: PostRepository
 
     private val rootJob = Job()
-    private val uiScope = CoroutineScope(Dispatchers.Main + rootJob)
+    private val ioScope = CoroutineScope(Dispatchers.IO + rootJob)
 
     override fun onBind(intent: Intent?): IBinder? {
         return null
@@ -48,7 +48,7 @@ class MyService : Service() {
             startForeground(NotificationHelper.SERVICE_RUNNING_NOTIFICATION, foregroundNotification)
         }
 
-        uiScope.launch {
+        ioScope.launch {
             delay(6000) // 6 sec delay
             callAPI()
         }
@@ -56,7 +56,7 @@ class MyService : Service() {
     }
 
     fun callAPI() {
-        uiScope.launch {
+        ioScope.launch {
             postRepository.callPostApi2()
         }
     }
