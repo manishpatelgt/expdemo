@@ -15,9 +15,9 @@ package com.expdemo.ui.test.fragmentdemo
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.commitNow
+import androidx.fragment.app.commit
+import androidx.fragment.app.replace
 import com.expdemo.R
-import com.expdemo.data.RetrofitFactory
 import kotlinx.android.synthetic.main.activity_common.*
 
 /**
@@ -31,7 +31,7 @@ import kotlinx.android.synthetic.main.activity_common.*
 
 class FragmentFactoryDemoActivity : AppCompatActivity() {
 
-    val customFragmentFactory by lazy{ CustomFragmentFactory() }
+    val customFragmentFactory by lazy { CustomFragmentFactory() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,20 +56,27 @@ class FragmentFactoryDemoActivity : AppCompatActivity() {
             .replace(R.id.fragmentContainerView_1, fragment, null)
             .commit()**/
 
-            val args = Bundle().apply {
+            /*val args = Bundle().apply {
                 putString("UserId", "1000")
             }
 
             val fragment = supportFragmentManager.fragmentFactory.instantiate(
                 classLoader,
                 FirstFragment::class.java.name
-            ).apply {
-                arguments = args
-            }
+            )
+            fragment.arguments = args
 
-            supportFragmentManager.commitNow {
+            supportFragmentManager.commit {
                 replace(R.id.fragmentContainerView_1, fragment)
-            }
+            }*/
+
+            supportFragmentManager.beginTransaction()
+                .replace(
+                    R.id.fragmentContainerView_1,
+                    FirstFragment::class.java,
+                    FirstFragment.newArgBundle("1000")
+                )
+                .commit()
         }
     }
 

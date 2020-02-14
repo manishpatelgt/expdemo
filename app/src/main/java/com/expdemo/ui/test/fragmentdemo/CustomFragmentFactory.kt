@@ -20,14 +20,14 @@ import com.expdemo.data.RetrofitApiService
 /**
  * Created by Manish Patel on 2/13/2020.
  */
-class CustomFragmentFactory() : FragmentFactory() {
+class CustomFragmentFactory : FragmentFactory() {
 
     //val apiService = RetrofitFactory.apiService
-    val arg = "my argument"
+    val userId = "1000"
 
     override fun instantiate(classLoader: ClassLoader, className: String): Fragment {
         when (className) {
-            FirstFragment::class.java.name -> FirstFragment(arg)
+            FirstFragment::class.java.name -> FirstFragment(userId)
             SecondFragment::class.java.name -> SecondFragment()
             else -> super.instantiate(classLoader, className)
         }

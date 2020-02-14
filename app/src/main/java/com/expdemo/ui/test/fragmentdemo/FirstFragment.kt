@@ -28,14 +28,11 @@ import timber.log.Timber
  */
 class FirstFragment constructor(val userId: String) : Fragment() {
 
-    //private val customFragmentFactory = CustomFragmentFactory(RetrofitFactory.apiService)
+    //private val customFragmentFactory = CustomFragmentFactory()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        //childFragmentManager.fragmentFactory = activity.
         super.onCreate(savedInstanceState)
-        //val bundle = arguments
-        //val userId = bundle?.getString("UserId")
-        Timber.e("UserId: $userId")
+        //childFragmentManager.fragmentFactory = customFragmentFactory
     }
 
     override fun onCreateView(
@@ -44,5 +41,18 @@ class FirstFragment constructor(val userId: String) : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_first, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val bundle = arguments
+        val userId = bundle?.getString("UserId")
+        Timber.e("UserId: $userId")
+        println("UserId: $userId")
+    }
+
+    companion object {
+        fun newArgBundle(arg: String) = Bundle().apply {
+            putString("UserId", arg)
+        }
     }
 }
