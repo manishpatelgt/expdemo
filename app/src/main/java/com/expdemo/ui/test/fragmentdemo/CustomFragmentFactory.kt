@@ -15,15 +15,19 @@ package com.expdemo.ui.test.fragmentdemo
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
+import com.expdemo.data.RetrofitApiService
 
 /**
  * Created by Manish Patel on 2/13/2020.
  */
-class CustomFragmentFactory : FragmentFactory() {
+class CustomFragmentFactory() : FragmentFactory() {
+
+    //val apiService = RetrofitFactory.apiService
+    val arg = "my argument"
 
     override fun instantiate(classLoader: ClassLoader, className: String): Fragment {
         when (className) {
-            FirstFragment::class.java.name -> FirstFragment()
+            FirstFragment::class.java.name -> FirstFragment(arg)
             SecondFragment::class.java.name -> SecondFragment()
             else -> super.instantiate(classLoader, className)
         }

@@ -19,11 +19,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.expdemo.R
+import com.expdemo.data.RetrofitApiService
 
 /**
  * Created by Manish Patel on 2/13/2020.
  */
-class SecondFragment : Fragment() {
+class SecondFragment() : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,

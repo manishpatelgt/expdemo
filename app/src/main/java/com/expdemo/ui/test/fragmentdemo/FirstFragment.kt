@@ -19,17 +19,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.expdemo.R
+import com.expdemo.data.RetrofitApiService
+import com.expdemo.data.RetrofitFactory
+import timber.log.Timber
 
 /**
  * Created by Manish Patel on 2/13/2020.
  */
-class FirstFragment : Fragment() {
+class FirstFragment constructor(val userId: String) : Fragment() {
 
-    private val customFragmentFactory = CustomFragmentFactory()
+    //private val customFragmentFactory = CustomFragmentFactory(RetrofitFactory.apiService)
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        childFragmentManager.fragmentFactory = customFragmentFactory
+        //childFragmentManager.fragmentFactory = activity.
         super.onCreate(savedInstanceState)
+        //val bundle = arguments
+        //val userId = bundle?.getString("UserId")
+        Timber.e("UserId: $userId")
     }
 
     override fun onCreateView(
