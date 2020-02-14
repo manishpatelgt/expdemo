@@ -13,30 +13,20 @@
 
 package com.expdemo.ui.test.fragmentdemo
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.expdemo.R
+import androidx.fragment.app.FragmentFactory
 
 /**
  * Created by Manish Patel on 2/13/2020.
  */
-class FirstFragment : Fragment() {
+class CustomFragmentFactory : FragmentFactory() {
 
-    private val customFragmentFactory = CustomFragmentFactory()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        childFragmentManager.fragmentFactory = customFragmentFactory
-        super.onCreate(savedInstanceState)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_first, container, false)
+    override fun instantiate(classLoader: ClassLoader, className: String): Fragment {
+        when (className) {
+            FirstFragment::class.java.name -> FirstFragment()
+            SecondFragment::class.java.name -> SecondFragment()
+            else -> super.instantiate(classLoader, className)
+        }
+        return super.instantiate(classLoader, className)
     }
 }

@@ -15,6 +15,7 @@ package com.expdemo.ui.test.fragmentdemo
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.commitNow
 import com.expdemo.R
 import kotlinx.android.synthetic.main.activity_common.*
 
@@ -29,8 +30,12 @@ import kotlinx.android.synthetic.main.activity_common.*
 
 class FragmentFactoryDemoActivity : AppCompatActivity() {
 
+    private val customFragmentFactory = CustomFragmentFactory()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportFragmentManager.fragmentFactory = customFragmentFactory
+
         setContentView(R.layout.activity_fragment_factory)
 
         /** Set action bar */
@@ -38,9 +43,23 @@ class FragmentFactoryDemoActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
+
+            /** Without using FragmentFactory **/
+            /*supportFragmentManager.beginTransaction()
                 .add(R.id.fragmentContainerView_1, FirstFragment())
-                .commit()
+                .commit()*/
+
+            /** With using FragmentFactory **/
+            /**val fragment = (supportFragmentManager.fragmentFactory as CustomFragmentFactory).instantiate(classLoader, FirstFragment::class.java.name)
+            supportFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainerView_1, fragment, null)
+            .commit()**/
+
+            
+            supportFragmentManager.commitNow {
+                val frag = supportFragmentManager.fragmentFactory.instantiate(classLoader, FirstFragment::class.java.name)
+                replace(R.id.fragmentContainerView_1, frag)
+            }
         }
     }
 
