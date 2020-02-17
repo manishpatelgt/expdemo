@@ -9,6 +9,9 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +24,7 @@ import com.opentok.android.Session;
 import com.opentok.android.Stream;
 import com.opentok.android.Subscriber;
 import com.opentok.android.SubscriberKit;
+import com.tokbox.android.tutorials.basic_video_chat.BaseActivity;
 import com.tokbox.android.tutorials.basic_video_chat.OpenTokConfig;
 import com.tokbox.android.tutorials.basic_video_chat.WebServiceCoordinator;
 import com.tokbox.android.tutorials.basic_video_chat.WebServiceCoordinator.Listener;
@@ -35,25 +39,15 @@ import pub.devrel.easypermissions.EasyPermissions;
 /**
  * Created by Manish Patel on 2/13/2020.
  */
-public class AudioActivity extends AppCompatActivity
+public class AudioActivity extends BaseActivity
         implements EasyPermissions.PermissionCallbacks,
         Listener,
         Session.SessionListener,
         PublisherKit.PublisherListener,
         SubscriberKit.SubscriberListener {
 
-    private static final String LOG_TAG = AudioActivity.class.getSimpleName();
-    private static final int RC_SETTINGS_SCREEN_PERM = 123;
-    private static final int RC_VIDEO_APP_PERM = 124;
-
-    // Suppressing this warning. mWebServiceCoordinator will get GarbageCollected if it is local.
-    @SuppressWarnings("FieldCanBeLocal")
-    private WebServiceCoordinator mWebServiceCoordinator;
-
-    private Session mSession;
-    private Publisher mPublisher;
-    private Subscriber mSubscriber;
     private TextView txt_status;
+    private Button connect_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,8 +66,14 @@ public class AudioActivity extends AppCompatActivity
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
 
         txt_status = (TextView) findViewById(R.id.txt_status);
+        connect_button = (Button) findViewById(R.id.connect_button);
 
-        requestPermissions();
+        connect_button.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requestPermissions();
+            }
+        });
     }
 
     /* Activity lifecycle methods */
@@ -137,7 +137,10 @@ public class AudioActivity extends AppCompatActivity
     private void requestPermissions() {
         String[] perms = {Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO};
         if (EasyPermissions.hasPermissions(this, perms)) {
+            txt_status.setVisibility(View.VISIBLE);
+            connect_button.setVisibility(View.GONE);
             updateText("Please wait....\nfetching session(channel) details");
+
             // if there is no server URL set
             if (OpenTokConfig.CHAT_SERVER_URL == null) {
                 // use hard coded session values

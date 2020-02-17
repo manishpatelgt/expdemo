@@ -13,7 +13,7 @@
 
     <string name="action_camera">Switch Camera</string>
 
-    <string name="connect">Connect</string>
+    <string name="connect">Connect to Channel</string>
 
     <string name="radio_1">Channel owner</string>
     <string name="radio_2">Channel participant</string>

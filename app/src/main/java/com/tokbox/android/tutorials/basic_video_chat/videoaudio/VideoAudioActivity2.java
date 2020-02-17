@@ -31,6 +31,7 @@ import com.opentok.android.Session;
 import com.opentok.android.Stream;
 import com.opentok.android.Subscriber;
 import com.opentok.android.SubscriberKit;
+import com.tokbox.android.tutorials.basic_video_chat.BaseActivity;
 import com.tokbox.android.tutorials.basic_video_chat.OpenTokConfig;
 import com.tokbox.android.tutorials.basic_video_chat.WebServiceCoordinator;
 import com.tokbox.android.tutorials.basic_video_chat.WebServiceCoordinator.Listener;
@@ -45,26 +46,13 @@ import pub.devrel.easypermissions.EasyPermissions;
 /**
  * Created by Manish Patel on 2/17/2020.
  */
-public class VideoAudioActivity2 extends AppCompatActivity
+public class VideoAudioActivity2 extends BaseActivity
         implements EasyPermissions.PermissionCallbacks,
         Listener,
         Session.SessionListener,
         PublisherKit.PublisherListener,
         SubscriberKit.SubscriberListener {
 
-    private static final String LOG_TAG = VideoAudioActivity2.class.getSimpleName();
-    private static final int RC_SETTINGS_SCREEN_PERM = 123;
-    private static final int RC_VIDEO_APP_PERM = 124;
-    private boolean isSpeakButtonLongPressed = false;
-    private boolean isChannelOwner = true;
-
-    // Suppressing this warning. mWebServiceCoordinator will get GarbageCollected if it is local.
-    @SuppressWarnings("FieldCanBeLocal")
-    private WebServiceCoordinator mWebServiceCoordinator;
-
-    private Session mSession;
-    private Publisher mPublisher;
-    private Subscriber mSubscriber;
     private RelativeLayout top_layout;
     private RelativeLayout second_layout;
 
@@ -128,14 +116,12 @@ public class VideoAudioActivity2 extends AppCompatActivity
         // Check which radio button was clicked
         switch (view.getId()) {
             case R.id.radio_channel_owner:
-                if (checked)
-                    // Channel owner selected
-                    isChannelOwner = true;
+                // Channel owner selected
+                isChannelOwner = true;
                 break;
             case R.id.radio_channel_participant:
-                if (checked)
-                    // Channel participant selected
-                    isChannelOwner = false;
+                // Channel participant selected
+                isChannelOwner = false;
                 break;
         }
 
@@ -143,9 +129,14 @@ public class VideoAudioActivity2 extends AppCompatActivity
     }
 
     private void updateButtonState() {
+        Log.e(LOG_TAG, "isChannelOwner: " + isChannelOwner);
         if (isChannelOwner) {
+            mSubscriberViewContainer.setVisibility(View.GONE);
+            mPublisherViewContainer.setVisibility(View.VISIBLE);
             press_button.setVisibility(View.VISIBLE);
         } else {
+            mSubscriberViewContainer.setVisibility(View.VISIBLE);
+            mPublisherViewContainer.setVisibility(View.GONE);
             press_button.setVisibility(View.GONE);
         }
     }
