@@ -16,38 +16,57 @@
 
     <Button
         android:id="@+id/button_1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar"
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"
-        android:text="@string/button_1" />
+        android:background="@drawable/green_button_selector"
+        android:fontFamily="@font/circular_black"
+        android:padding="10dp"
+        android:text="@string/button_1"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
 
     <Button
         android:id="@+id/button_2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/button_1"
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"
-        android:text="@string/button_2" />
+        android:background="@drawable/green_button_selector"
+        android:fontFamily="@font/circular_black"
+        android:padding="10dp"
+        android:text="@string/button_2"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
 
     <Button
-
         android:id="@+id/button_3"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/button_2"
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"
-        android:text="@string/button_3" />
+        android:background="@drawable/green_button_selector"
+        android:fontFamily="@font/circular_black"
+        android:padding="10dp"
+        android:text="@string/button_3"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
 
     <Button
         android:id="@+id/button_4"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/button_3"
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"
-        android:text="@string/button_4" />
+        android:background="@drawable/green_button_selector"
+        android:fontFamily="@font/circular_black"
+        android:padding="10dp"
+        android:text="@string/button_4"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
 </RelativeLayout>

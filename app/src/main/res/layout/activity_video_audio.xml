@@ -17,10 +17,16 @@
 
     <Button
         android:id="@+id/connect_button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar"
         android:layout_centerHorizontal="true"
+        android:textSize="18sp"
+        android:layout_margin="10dp"
+        android:background="@drawable/green_button_selector"
+        android:fontFamily="@font/circular_black"
+        android:padding="10dp"
+        android:textColor="@color/white"
         android:text="@string/connect"
         android:visibility="visible" />
 

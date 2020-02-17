@@ -28,7 +28,7 @@
             android:layout_alignParentLeft="true"
             android:padding="10dp"
             android:text="Select option from below and then press connect buttpn"
-            android:textColor="@android:color/holo_green_dark"
+            android:textColor="@color/circle_background"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -44,24 +44,34 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
+                android:fontFamily="@font/circular_medium"
                 android:onClick="onRadioButtonClicked"
-                android:text="@string/radio_1" />
+                android:text="@string/radio_1"
+                android:textSize="18sp" />
 
             <RadioButton
                 android:id="@+id/radio_channel_participant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/circular_medium"
                 android:onClick="onRadioButtonClicked"
-                android:text="@string/radio_2" />
+                android:text="@string/radio_2"
+                android:textSize="18sp" />
         </RadioGroup>
 
         <Button
             android:id="@+id/connect_button"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/radioGrp"
             android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:background="@drawable/green_button_selector"
+            android:fontFamily="@font/circular_black"
+            android:padding="10dp"
             android:text="@string/connect"
+            android:textColor="@color/white"
+            android:textSize="18sp"
             android:visibility="visible" />
 
     </RelativeLayout>
@@ -87,11 +97,17 @@
 
         <Button
             android:id="@+id/press_button"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txt_status"
             android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:background="@drawable/green_button_selector"
+            android:fontFamily="@font/circular_black"
+            android:padding="10dp"
             android:text="@string/button_press_2"
+            android:textColor="@color/white"
+            android:textSize="18sp"
             android:visibility="gone" />
 
     </RelativeLayout>
