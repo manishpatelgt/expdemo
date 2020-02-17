@@ -56,7 +56,7 @@ class FragmentFactoryDemoActivity : AppCompatActivity() {
             .replace(R.id.fragmentContainerView_1, fragment, null)
             .commit()**/
 
-            /*val args = Bundle().apply {
+            val args = Bundle().apply {
                 putString("UserId", "1000")
             }
 
@@ -68,15 +68,15 @@ class FragmentFactoryDemoActivity : AppCompatActivity() {
 
             supportFragmentManager.commit {
                 replace(R.id.fragmentContainerView_1, fragment)
-            }*/
+            }
 
-            supportFragmentManager.beginTransaction()
+            /*supportFragmentManager.beginTransaction()
                 .replace(
                     R.id.fragmentContainerView_1,
                     FirstFragment::class.java,
                     FirstFragment.newArgBundle("1000")
                 )
-                .commit()
+                .commit()*/
         }
     }
 

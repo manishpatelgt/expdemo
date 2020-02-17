@@ -26,11 +26,10 @@ class CustomFragmentFactory : FragmentFactory() {
     val userId = "1000"
 
     override fun instantiate(classLoader: ClassLoader, className: String): Fragment {
-        when (className) {
+        return when (className) {
             FirstFragment::class.java.name -> FirstFragment(userId)
             SecondFragment::class.java.name -> SecondFragment()
             else -> super.instantiate(classLoader, className)
         }
-        return super.instantiate(classLoader, className)
     }
 }
