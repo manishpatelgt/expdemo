@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    <TextView
+        android:id="@+id/txt_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_alignParentLeft="true"
+        android:padding="10dp"
+        android:text="Please wait....\nfetching session details"
+        android:textColor="@android:color/holo_green_dark"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/txt_status">
+
+        <FrameLayout
+            android:id="@+id/subscriber_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <FrameLayout
+            android:id="@+id/publisher_container"
+            android:layout_width="@dimen/publisher_width"
+            android:layout_height="@dimen/publisher_height"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="@dimen/publisher_right_margin"
+            android:layout_marginRight="@dimen/publisher_end_margin"
+            android:layout_marginBottom="@dimen/publisher_bottom_margin"
+            android:background="@color/publisher_border_color"
+            android:padding="@dimen/publisher_padding" />
+
+    </FrameLayout>
+
+</RelativeLayout>

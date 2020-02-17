@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Topbox SDK Demo</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="title_settings_dialog">Permissions Required</string>
+    <string name="rationale_video_app">This app needs access to your camera and mic to make video calls</string>
+    <string name="rationale_ask_again">This app may not work correctly without the requested permissions. Open the app settings screen to modify app permissions.</string>
+
+    <string name="setting">Settings</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="action_camera">Switch Camera</string>
+
+    <string name="connect">Connect</string>
+
+    <string name="radio_1">Channel owner</string>
+    <string name="radio_2">Channel participant</string>
+
+    <string name="button_1">Video + Audio Bidirectional Demo</string>
+    <string name="button_2">Video + Audio One Direction Demo</string>
+    <string name="button_3">Audio Only Bidirectional Demo</string>
+    <string name="button_4">Audio Only One Direction Demo</string>
+
+    <string name="button_press">Long Press Here to send video</string>
+    <string name="button_press_2">Long Press Here to send audio</string>
+</resources>
