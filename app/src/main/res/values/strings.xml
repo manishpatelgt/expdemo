@@ -18,8 +18,8 @@
     <string name="radio_1">Channel owner</string>
     <string name="radio_2">Channel participant</string>
 
-    <string name="button_1">Video + Audio Bidirectional Demo</string>
-    <string name="button_2">Video + Audio One Direction Demo</string>
+    <string name="button_1">(Video + Audio) Bidirectional Demo</string>
+    <string name="button_2">(Video + Audio) One Direction Demo</string>
     <string name="button_3">Audio Only Bidirectional Demo</string>
     <string name="button_4">Audio Only One Direction Demo</string>
 
