@@ -90,7 +90,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/txt_status"
             android:layout_centerHorizontal="true"
-            android:text="@string/button_press_2"
+            android:text="@string/button_press"
             android:visibility="gone" />
 
     </RelativeLayout>

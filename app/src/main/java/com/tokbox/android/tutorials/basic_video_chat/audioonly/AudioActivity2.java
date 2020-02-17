@@ -10,8 +10,11 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,9 +57,15 @@ public class AudioActivity2 extends AppCompatActivity
     private Session mSession;
     private Publisher mPublisher;
     private Subscriber mSubscriber;
+
     private TextView txt_status;
     private Button press_button;
+    private Button connect_button;
+    private RelativeLayout top_layout;
+    private RelativeLayout second_layout;
+
     private boolean isSpeakButtonLongPressed = false;
+    private boolean isChannelOwner = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,8 +85,18 @@ public class AudioActivity2 extends AppCompatActivity
 
         txt_status = (TextView) findViewById(R.id.txt_status);
         press_button = (Button) findViewById(R.id.press_button);
+        connect_button = (Button) findViewById(R.id.connect_button);
 
-        requestPermissions();
+        top_layout = (RelativeLayout) findViewById(R.id.top_layout);
+        second_layout = (RelativeLayout) findViewById(R.id.second_layout);
+
+        connect_button.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                top_layout.setVisibility(View.GONE);
+                requestPermissions();
+            }
+        });
 
         press_button.setOnTouchListener(speakTouchListener);
         press_button.setOnLongClickListener(new OnLongClickListener() {
@@ -107,6 +126,34 @@ public class AudioActivity2 extends AppCompatActivity
             return false;
         }
     };
+
+    public void onRadioButtonClicked(View view) {
+        boolean checked = ((RadioButton) view).isChecked();
+        // Check which radio button was clicked
+        switch (view.getId()) {
+            case R.id.radio_channel_owner:
+                if (checked)
+                    // Channel owner selected
+                    isChannelOwner = true;
+                break;
+            case R.id.radio_channel_participant:
+                if (checked)
+                    // Channel participant selected
+                    isChannelOwner = false;
+                break;
+        }
+
+        updateButtonState();
+    }
+
+    private void updateButtonState() {
+        if (isChannelOwner) {
+            press_button.setVisibility(View.VISIBLE);
+        } else {
+            press_button.setVisibility(View.GONE);
+        }
+    }
+
     /* Activity lifecycle methods */
 
     @Override
@@ -168,6 +215,8 @@ public class AudioActivity2 extends AppCompatActivity
     private void requestPermissions() {
         String[] perms = {Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO};
         if (EasyPermissions.hasPermissions(this, perms)) {
+            second_layout.setVisibility(View.VISIBLE);
+            press_button.setVisibility(View.GONE);
             updateText("Please wait....\nfetching session(channel) details");
             // if there is no server URL set
             if (OpenTokConfig.CHAT_SERVER_URL == null) {
@@ -232,19 +281,22 @@ public class AudioActivity2 extends AppCompatActivity
 
         Log.d(LOG_TAG, "onConnected: Connected to session:\n" + session.getSessionId());
 
-        press_button.setVisibility(View.VISIBLE);
+        if (isChannelOwner) {
+            press_button.setVisibility(View.VISIBLE);
 
-        // initialize Publisher and set this object to listen to Publisher events
-        //https://tokbox.com/developer/guides/audio-video/android/
-        mPublisher = new Publisher.Builder(this)
-                .name("MP's video")
-                .videoTrack(false)
-                .build();
+            // initialize Publisher and set this object to listen to Publisher events
+            //https://tokbox.com/developer/guides/audio-video/android/
+            mPublisher = new Publisher.Builder(this)
+                    .name("MP's video")
+                    .videoTrack(false)
+                    .build();
 
-        mPublisher.setPublishAudio(false);
-        mPublisher.setPublishVideo(false); // disable video to publish in stream
-        mPublisher.setPublisherListener(this);
-        mSession.publish(mPublisher);
+            mPublisher.setPublishAudio(false);
+            mPublisher.setPublishVideo(false); // disable video to publish in stream
+            mPublisher.setPublisherListener(this);
+            mSession.publish(mPublisher);
+        }
+
     }
 
     @Override
@@ -257,12 +309,13 @@ public class AudioActivity2 extends AppCompatActivity
     public void onStreamReceived(Session session, Stream stream) {
 
         Log.d(LOG_TAG, "onStreamReceived: New Stream Received " + stream.getStreamId() + " in session: " + session.getSessionId());
-
-        if (mSubscriber == null) {
-            mSubscriber = new Subscriber.Builder(this, stream).build();
-            mSubscriber.setSubscribeToVideo(false);  // video off
-            mSubscriber.setSubscriberListener(this);
-            mSession.subscribe(mSubscriber);
+        if (!isChannelOwner) {
+            if (mSubscriber == null) {
+                mSubscriber = new Subscriber.Builder(this, stream).build();
+                mSubscriber.setSubscribeToVideo(false);  // video off
+                mSubscriber.setSubscriberListener(this);
+                mSession.subscribe(mSubscriber);
+            }
         }
     }
 
