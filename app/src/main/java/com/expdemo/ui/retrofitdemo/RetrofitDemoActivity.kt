@@ -63,7 +63,6 @@ class RetrofitDemoActivity : AppCompatActivity() {
 
         mainViewModel._showToast.observe(this, observerShowToast)
 
-
     }
 
     fun getPersonProfileApi() {

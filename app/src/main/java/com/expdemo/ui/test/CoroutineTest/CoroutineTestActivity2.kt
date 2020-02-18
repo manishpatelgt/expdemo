@@ -16,6 +16,8 @@ package com.expdemo.ui.test.CoroutineTest
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.lifecycleScope
 import com.expdemo.R
@@ -31,6 +33,10 @@ https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coro
 https://discuss.kotlinlang.org/t/coroutines-on-activity/14369/7 **/
 
 class CoroutineTestActivity2 : AppCompatActivity() {
+
+    private val mainViewModel: MainViewModel by lazy {
+        ViewModelProvider(this).get(MainViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +54,19 @@ class CoroutineTestActivity2 : AppCompatActivity() {
 
         /** suspend life-cycle aware coroutines **/
         //test3()
-        test4()
+
+        //test4()
+
+        /** Set observers*/
+        setObservers()
+    }
+
+    fun setObservers() {
+        /** Set observer for a livedatae */
+        val observer = Observer<Int> {
+            Log.e(TAG, "Data: $it")
+        }
+        mainViewModel.liveData.observe(this, observer)
     }
 
     override fun onStart() {
