@@ -147,4 +147,9 @@ class CoroutineTestActivity : AppCompatActivity() {
             //val user = login(number,password) // Network call
         }
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
 }
