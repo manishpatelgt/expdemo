@@ -48,6 +48,4 @@ class MainViewModel : ViewModel() {
     fun setToastMessage(message: String) {
         _showToast.value = message
     }
-
-
 }
