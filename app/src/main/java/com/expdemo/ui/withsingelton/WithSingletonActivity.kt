@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.expdemo.R
 import com.expdemo.application.App
+import com.expdemo.models.Post
 import com.expdemo.viewmodel.MainViewModel
 import com.expdemo.viewmodel.MainViewModelFactory
 import es.dmoral.toasty.Toasty
@@ -42,11 +43,11 @@ class WithSingletonActivity : AppCompatActivity() {
     private fun setObservers() {
 
         if (mainViewModel.network) {
-            mainViewModel.getPosts()
-            mainViewModel.getPostsWithAwait()
+            //mainViewModel.getPosts()
+            //mainViewModel.getPostsWithAwait()
 
             mainViewModel.getPostsWithLiveData.observe(this, Observer { entries ->
-                Timber.d("Posts: $entries")
+                Timber.d("Got Posts data: $entries")
                 txt_view.text = entries.toString()
             })
 
@@ -72,6 +73,11 @@ class WithSingletonActivity : AppCompatActivity() {
             it?.let {
                 mainViewModel.setToastMessage(it)
             }
+        })
+
+        /** get list of post **/
+        mainViewModel.getPostFromDB.observe(this, Observer { entries ->
+            Timber.d("Posts: $entries")
         })
     }
 

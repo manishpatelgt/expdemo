@@ -50,9 +50,19 @@ class MainViewModel(private val userRepository: UserRepository) : ViewModel() {
                 userRepository.deleteAll()
                 /** insert all records in one shot **/
                 userRepository.insertAll(result.data)
-                emit(result.data)
+
+                /** single source of truth **/
+                val posts = userRepository.getPostFromDB()
+                emitSource(posts)
+
+                //emit(result.data)
             }
         }
+    }
+
+    val getPostFromDB = liveData(Dispatchers.IO) {
+        val posts = userRepository.getPostFromDB()
+        emitSource(posts)
     }
 
     fun getPosts() {

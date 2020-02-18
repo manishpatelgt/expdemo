@@ -1,10 +1,14 @@
 package com.expdemo.repository
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.expdemo.models.Post
 
 @Dao
 interface PostDao {
+
+    @Query("SELECT * from tbl_Post")
+    fun getAllPosts(): LiveData<List<Post>>
 
     @Insert
     suspend fun insert(post: Post)

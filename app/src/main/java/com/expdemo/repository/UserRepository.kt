@@ -1,16 +1,19 @@
 package com.expdemo.repository
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.expdemo.models.Post
 import com.expdemo.utils.extensions.safeApiCall
 import java.io.IOException
 import com.expdemo.utils.state.Result
+import kotlinx.coroutines.delay
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class UserRepository(
-        private val localDataSource: UserLocalDataSource,
-        private val remoteDataSource: UserRemoteDataSource
+    private val localDataSource: UserLocalDataSource,
+    private val remoteDataSource: UserRemoteDataSource
 ) {
 
     var retrofitApiService = remoteDataSource.retrofitApiService
@@ -38,9 +41,13 @@ class UserRepository(
     }
 
     suspend fun getPosts() = safeApiCall(
-            call = { callPostApi() },
-            errorMessage = "Something went wrong. Please try again later!"
+        call = { callPostApi() },
+        errorMessage = "Something went wrong. Please try again later!"
     )
+
+    suspend fun getPostFromDB(): LiveData<List<Post>> {
+        return localDataSource.postDao.getAllPosts()
+    }
 
     suspend fun callPostApi(): Result<List<Post>> {
         val response = retrofitApiService.getPosts()

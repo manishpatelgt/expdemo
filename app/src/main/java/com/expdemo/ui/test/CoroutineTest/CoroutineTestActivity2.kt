@@ -65,6 +65,7 @@ class CoroutineTestActivity2 : AppCompatActivity() {
     }
 
     fun setObservers() {
+
         /** Set observer for a livedatae */
         val observerInt = Observer<Int> {
             Log.e(TAG, "Int: $it")
