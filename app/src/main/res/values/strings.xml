@@ -7,7 +7,9 @@
     <string name="without_singleton">With Normal Class</string>
     <string name="with_singleton">With App-container</string>
 
-    <string name="coroutine_test">Coroutine Testing</string>
+    <string name="coroutine_test">Normal Coroutine Testing</string>
+    <string name="coroutine_test2">Lifecycle Aware Coroutine Testing</string>
+
     <string name="retrofit_generic">Retrofit Generic Demo</string>
 
     <string name="fragment_factory_demo">Fragment Factory Demo</string>

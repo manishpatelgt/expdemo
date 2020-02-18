@@ -31,8 +31,12 @@
 
 
         <activity
-            android:name=".ui.test.CoroutineTestActivity"
+            android:name=".ui.test.CoroutineTest.CoroutineTestActivity"
             android:label="@string/coroutine_test"></activity>
+
+        <activity
+            android:name=".ui.test.CoroutineTest.CoroutineTestActivity2"
+            android:label="@string/coroutine_test2"></activity>
 
         <activity
             android:name=".ui.retrofitdemo.RetrofitDemoActivity"

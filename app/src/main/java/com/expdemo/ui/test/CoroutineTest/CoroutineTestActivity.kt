@@ -11,7 +11,7 @@
  * limitations under the License.
  */
 
-package com.expdemo.ui.test
+package com.expdemo.ui.test.CoroutineTest
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -25,6 +25,8 @@ import kotlinx.coroutines.*
  * Created by Manish Patel on 1/27/2020.
  */
 /** https://medium.com/mindful-engineering/fast-lane-to-coroutines-bce8388ed82b **/
+
+
 class CoroutineTestActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

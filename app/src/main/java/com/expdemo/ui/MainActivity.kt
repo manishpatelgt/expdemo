@@ -4,7 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.expdemo.R
 import com.expdemo.ui.retrofitdemo.RetrofitDemoActivity
-import com.expdemo.ui.test.CoroutineTestActivity
+import com.expdemo.ui.test.CoroutineTest.CoroutineTestActivity
+import com.expdemo.ui.test.CoroutineTest.CoroutineTestActivity2
 import com.expdemo.ui.test.fragmentdemo.FragmentFactoryDemoActivity
 import com.expdemo.ui.withoutsingelton.WithoutSingletonActivity
 import com.expdemo.ui.withsingelton.WithSingletonActivity
@@ -33,6 +34,11 @@ class MainActivity : AppCompatActivity() {
         coroutine_test_button.setOnClickListener {
             /** lunch with CoroutineTestActivity**/
             startActivity<CoroutineTestActivity>()
+        }
+
+        coroutine_test_2_button.setOnClickListener {
+            /** lunch with CoroutineTestActivity2**/
+            startActivity<CoroutineTestActivity2>()
         }
 
         retrofit_generic_button.setOnClickListener {

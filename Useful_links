@@ -8,6 +8,9 @@ Coroutine clear guidance:
 https://medium.com/mindful-engineering/fast-lane-to-coroutines-bce8388ed82b
 https://developer.android.com/kotlin/coroutines
 
+Lifecycle aware coroutines
+https://android.jlelse.eu/coroutine-in-android-working-with-lifecycle-fc9c1a31e5f3
+
 Fragment Factory:
 https://proandroiddev.com/android-fragments-fragmentfactory-ceec3cf7c959
 
@@ -46,3 +49,6 @@ https://www.techyourchance.com/fragment-factory-android/
 https://proandroiddev.com/painless-dagger-android-kotlin-2c3767a24508
 https://desmondtzq.com/2019/10/25/fragment-factory-dagger/
 https://medium.com/mj-studio/fancy-fragment-fragmentfactory-dagger-1a574aa5a570
+
+MVVM:
+https://medium.com/@success.anil.kk/inducing-mvvm-to-existing-kotlin-code-704433d64e61
