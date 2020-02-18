@@ -65,7 +65,7 @@ public class AudioActivity2 extends BaseActivity
         setContentView(R.layout.activity_audio_2);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(getString(R.string.button_4));
+        toolbar.setTitle(getString(R.string.title_4));
         setSupportActionBar(toolbar);
 
         //Your toolbar is now an action bar and you can use it like you always do, for example:

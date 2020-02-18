@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:padding="10dp"
-            android:text="Select option from below and then press connect buttpn"
+            android:text="Select option from below and then press connect button"
             android:textColor="@color/circle_background"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -89,7 +89,7 @@
             android:layout_alignParentLeft="true"
             android:padding="10dp"
             android:text="Please wait....\nfetching session details"
-            android:textColor="@android:color/holo_green_dark"
+            android:textColor="@color/circle_background"
             android:textSize="20sp"
             android:textStyle="bold"
             android:visibility="visible" />

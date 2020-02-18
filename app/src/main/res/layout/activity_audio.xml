@@ -38,7 +38,7 @@
         android:padding="10dp"
         android:layout_below="@+id/connect_button"
         android:text="Please wait....\nfetching session details"
-        android:textColor="@android:color/holo_green_dark"
+        android:textColor="@color/circle_background"
         android:textSize="20sp"
         android:visibility="gone"
         android:textStyle="bold" />

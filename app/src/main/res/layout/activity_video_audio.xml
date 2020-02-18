@@ -39,7 +39,7 @@
         android:padding="10dp"
         android:visibility="gone"
         android:text="Please wait....\nfetching session details"
-        android:textColor="@android:color/holo_green_dark"
+        android:textColor="@color/circle_background"
         android:textSize="20sp"
         android:textStyle="bold" />
 
