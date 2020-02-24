@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright 2020 Manish Patel. All rights reserved.
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -13,9 +12,9 @@
   -->
 
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <!-- Toolbar -->
@@ -29,33 +28,33 @@
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-    <!-- 1st fragment -->
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView_1"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/txt_count_view"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:text="0"
+        android:textSize="@dimen/dimen_20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintRight_toRightOf="parent" />
 
-    <!-- 2nd fragment loaded with name attribute
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView_2"
-        android:name="com.expdemo.ui.test.fragmentdemo.SecondFragment"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_200dp"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/count_button"
+        android:layout_width="@dimen/dimen_100dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/green_button_selector"
+        android:fontFamily="@font/circular_black"
+        android:text="@string/count_btn"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dimen_11sp"
+        android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentContainerView_1" /> -->
+        app:layout_constraintTop_toBottomOf="@+id/txt_count_view" />
 
-    <!-- 2nd fragment loaded with class attribute -->
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView_2"
-        class="com.expdemo.ui.test.fragmentfactorydemo.SecondFragment"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_200dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentContainerView_1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

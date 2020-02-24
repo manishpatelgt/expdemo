@@ -11,26 +11,25 @@
  * limitations under the License.
  */
 
-package com.expdemo.ui.test.fragmentdemo
+package com.expdemo.ui.test.fragmentfactorydemo
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.expdemo.R
-import com.expdemo.data.RetrofitApiService
+import androidx.fragment.app.FragmentFactory
 
 /**
  * Created by Manish Patel on 2/13/2020.
  */
-class SecondFragment() : Fragment() {
+class CustomFragmentFactory : FragmentFactory() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragmet_second, container, false)
+    //val apiService = RetrofitFactory.apiService
+    val userId = "1000"
+    val repository = Repository(userId)
+
+    override fun instantiate(classLoader: ClassLoader, className: String): Fragment {
+        return when (className) {
+            FirstFragment::class.java.name -> FirstFragment(repository)
+            SecondFragment::class.java.name -> SecondFragment()
+            else -> super.instantiate(classLoader, className)
+        }
     }
 }

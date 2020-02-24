@@ -52,3 +52,9 @@ https://medium.com/mj-studio/fancy-fragment-fragmentfactory-dagger-1a574aa5a570
 
 MVVM:
 https://medium.com/@success.anil.kk/inducing-mvvm-to-existing-kotlin-code-704433d64e61
+
+ViewModel State:
+https://medium.com/androiddevelopers/viewmodels-a-simple-example-ed5ac416317e
+https://medium.com/androiddevelopers/viewmodels-persistence-onsaveinstancestate-restoring-ui-state-and-loaders-fc7cc4a6c090
+https://proandroiddev.com/optimizing-viewmodel-with-lifecycle-2-2-0-a2895b5c01fd
+https://blog.mindorks.com/viewmodel-with-savedstate

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Manual DI</string>
+    <string name="app_name">Manual DI (Demos)</string>
 
     <string name="no_internet_title">No Internet</string>
     <string name="no_internet_text">Please check your connection\nand try again.</string>
@@ -11,6 +11,9 @@
     <string name="coroutine_test2">Lifecycle Aware Coroutine Testing</string>
 
     <string name="retrofit_generic">Retrofit Generic Demo</string>
-
     <string name="fragment_factory_demo">Fragment Factory Demo</string>
+
+    <string name="view_model_state_demo">ViewModel State Demo</string>
+
+    <string name="count_btn">Count up</string>
 </resources>

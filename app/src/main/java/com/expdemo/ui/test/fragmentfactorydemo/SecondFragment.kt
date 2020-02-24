@@ -11,7 +11,7 @@
  * limitations under the License.
  */
 
-package com.expdemo.ui.test.fragmentdemo
+package com.expdemo.ui.test.fragmentfactorydemo
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -19,40 +19,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.expdemo.R
-import com.expdemo.data.RetrofitApiService
-import com.expdemo.data.RetrofitFactory
-import timber.log.Timber
 
 /**
  * Created by Manish Patel on 2/13/2020.
  */
-class FirstFragment constructor(val userId: String) : Fragment() {
-
-    //private val customFragmentFactory = CustomFragmentFactory()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        //childFragmentManager.fragmentFactory = customFragmentFactory
-    }
+class SecondFragment() : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_first, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val bundle = arguments
-        val userId = bundle?.getString("UserId")
-        Timber.e("UserId: $userId")
-        println("UserId: $userId")
-    }
-
-    companion object {
-        fun newArgBundle(arg: String) = Bundle().apply {
-            putString("UserId", arg)
-        }
+        return inflater.inflate(R.layout.fragmet_second, container, false)
     }
 }

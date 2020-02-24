@@ -39,11 +39,15 @@
             android:label="@string/coroutine_test2"></activity>
 
         <activity
+            android:name=".ui.test.viewmodelstatedemo.ViewModelStateDemoActivity"
+            android:label="@string/view_model_state_demo"></activity>
+
+        <activity
             android:name=".ui.retrofitdemo.RetrofitDemoActivity"
             android:label="@string/retrofit_generic"></activity>
 
         <activity
-            android:name=".ui.test.fragmentdemo.FragmentFactoryDemoActivity"
+            android:name=".ui.test.fragmentfactorydemo.FragmentFactoryDemoActivity"
             android:label="@string/fragment_factory_demo"></activity>
 
     </application>

@@ -60,6 +60,7 @@ class MainViewModel(private val userRepository: UserRepository) : ViewModel() {
         }
     }
 
+    /** get posts from database **/
     val getPostFromDB = liveData(Dispatchers.IO) {
         val posts = userRepository.getPostFromDB()
         emitSource(posts)

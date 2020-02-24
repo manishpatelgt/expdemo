@@ -6,7 +6,8 @@ import com.expdemo.R
 import com.expdemo.ui.retrofitdemo.RetrofitDemoActivity
 import com.expdemo.ui.test.CoroutineTest.CoroutineTestActivity
 import com.expdemo.ui.test.CoroutineTest.CoroutineTestActivity2
-import com.expdemo.ui.test.fragmentdemo.FragmentFactoryDemoActivity
+import com.expdemo.ui.test.fragmentfactorydemo.FragmentFactoryDemoActivity
+import com.expdemo.ui.test.viewmodelstatedemo.ViewModelStateDemoActivity
 import com.expdemo.ui.withoutsingelton.WithoutSingletonActivity
 import com.expdemo.ui.withsingelton.WithSingletonActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -49,6 +50,11 @@ class MainActivity : AppCompatActivity() {
         fragment_factory_button.setOnClickListener {
             /** lunch with FragmentFactoryDemoActivity**/
             startActivity<FragmentFactoryDemoActivity>()
+        }
+
+        view_model_state_button.setOnClickListener {
+            /** lunch with ViewModelStateDemoActivity**/
+            startActivity<ViewModelStateDemoActivity>()
         }
     }
 

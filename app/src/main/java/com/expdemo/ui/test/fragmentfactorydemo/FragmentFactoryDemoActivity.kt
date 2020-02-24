@@ -11,13 +11,11 @@
  * limitations under the License.
  */
 
-package com.expdemo.ui.test.fragmentdemo
+package com.expdemo.ui.test.fragmentfactorydemo
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.commit
 import androidx.fragment.app.commitNow
-import androidx.fragment.app.replace
 import com.expdemo.R
 import kotlinx.android.synthetic.main.activity_common.*
 
