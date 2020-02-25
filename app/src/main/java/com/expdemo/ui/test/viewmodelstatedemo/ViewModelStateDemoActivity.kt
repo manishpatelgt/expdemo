@@ -16,6 +16,7 @@ package com.expdemo.ui.test.viewmodelstatedemo
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.SavedStateViewModelFactory
 import androidx.lifecycle.ViewModelProvider
 import com.expdemo.R
@@ -44,7 +45,6 @@ class ViewModelStateDemoActivity : AppCompatActivity() {
         ViewModelProvider(this, SavedStateViewModelFactory(application, this)).get(MainViewModel::class.java)
     }*/
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_model_state_demo)
@@ -60,10 +60,26 @@ class ViewModelStateDemoActivity : AppCompatActivity() {
             mainViewModel.setSavedStateHandle()
             updateText()
         }
+
+        submit_button.setOnClickListener {
+            //save userName
+            mainViewModel.setUserName(edit_username.text.toString())
+        }
+
+        //get last saved username  value and display
+        val userNameObserver = Observer<String> { userName ->
+            updateUserText(userName)
+        }
+
+        mainViewModel.getUserName().observe(this, userNameObserver)
     }
 
     fun updateText() {
         txt_count_view.text = "" + mainViewModel.count
+    }
+
+    fun updateUserText(userName: String){
+        txt_username.text = "Last UserName: $userName"
     }
 
     override fun onSupportNavigateUp(): Boolean {

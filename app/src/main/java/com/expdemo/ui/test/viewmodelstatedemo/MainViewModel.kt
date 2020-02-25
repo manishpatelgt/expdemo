@@ -13,6 +13,7 @@
 
 package com.expdemo.ui.test.viewmodelstatedemo
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.expdemo.utils.constants.Constants
@@ -46,6 +47,14 @@ class MainViewModel(private val state: SavedStateHandle) : ViewModel() {
         val count: Int? = savedStateHandle.get(Constants.COUNT_STATE)
         Timber.e("get count: $count")
         return savedStateHandle.get(Constants.COUNT_STATE) ?: 0
+    }
+
+    fun getUserName(): LiveData<String> {
+        return savedStateHandle.getLiveData(Constants.USER_NAME)
+    }
+
+    fun setUserName(userName: String) {
+        savedStateHandle.set(Constants.USER_NAME, userName)
     }
 
     override fun onCleared() {
