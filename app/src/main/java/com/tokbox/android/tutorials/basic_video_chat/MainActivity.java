@@ -18,6 +18,8 @@ import com.tokbox.android.tutorials.basicvideochat.R;
 /**
  * Created by Manish Patel on 2/13/2020.
  */
+/** https://tokbox.com/developer/guides/audio-video/android/ **/
+
 public class MainActivity extends AppCompatActivity implements OnClickListener {
 
     Button button_1, button_2, button_3, button_4;
