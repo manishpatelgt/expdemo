@@ -14,7 +14,7 @@
 package com.expdemo.ui.vb
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import androidx.activity.viewModels
 import com.expdemo.databinding.ViewDemoBinding
 
 /**
@@ -25,21 +25,20 @@ import com.expdemo.databinding.ViewDemoBinding
  * https://medium.com/@.me./get-rid-of-fragment-activity-boilerplate-code-using-kotlin-1b103763baf8?_branch_match_id=560684694922163992
  */
 
-class ViewBindingDemoActivity : AppCompatActivity() {
-
-    private lateinit var binding: ViewDemoBinding
+class ViewBindingDemoActivity : BaseActivity<MainViewModel,ViewDemoBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ViewDemoBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
+        setContentView(mViewBinding.root)
 
         /** Set action bar */
-        setSupportActionBar(binding.toolbar)
+        setSupportActionBar(mViewBinding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
     }
+
+    override fun getViewBinding(): ViewDemoBinding = ViewDemoBinding.inflate(layoutInflater)
+
+    override val mViewModel: MainViewModel by viewModels()
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
