@@ -9,6 +9,7 @@ import com.expdemo.ui.test.CoroutineTest.CoroutineTestActivity
 import com.expdemo.ui.test.CoroutineTest.CoroutineTestActivity2
 import com.expdemo.ui.test.fragmentfactorydemo.FragmentFactoryDemoActivity
 import com.expdemo.ui.test.viewmodelstatedemo.ViewModelStateDemoActivity
+import com.expdemo.ui.vb.ViewBindingDemoActivity
 import com.expdemo.ui.withoutsingelton.WithoutSingletonActivity
 import com.expdemo.ui.withsingelton.WithSingletonActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -61,6 +62,11 @@ class MainActivity : AppCompatActivity() {
         jetpack_paging_button.setOnClickListener {
             /** lunch with PagingActivity**/
             startActivity<PagingActivity>()
+        }
+
+        view_binding_button.setOnClickListener {
+            /** lunch with ViewBindingDemoActivity**/
+            startActivity<ViewBindingDemoActivity>()
         }
     }
 

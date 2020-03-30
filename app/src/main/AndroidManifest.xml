@@ -54,6 +54,10 @@
             android:name=".ui.jetpackpaging.PagingActivity"
             android:label="@string/jetpack_paging_demo"></activity>
 
+        <activity
+            android:name=".ui.vb.ViewBindingDemoActivity"
+            android:label="@string/view_biding_demo"></activity>
+
     </application>
 
 </manifest>
