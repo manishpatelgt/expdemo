@@ -14,6 +14,7 @@
     <string name="fragment_factory_demo">Fragment Factory Demo</string>
 
     <string name="view_model_state_demo">ViewModel State Demo</string>
+    <string name="jetpack_paging_demo">Jetpack Paging Demo</string>
 
     <string name="count_btn">Count up</string>
     <string name="submit_btn">Submit</string>

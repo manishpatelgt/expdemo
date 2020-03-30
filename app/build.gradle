@@ -47,6 +47,7 @@ android {
 dependencies {
     def room_version = "2.2.3"
     def lifecycle_version = "2.2.0"
+    def glide_version = "4.9.0"
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
@@ -85,6 +86,7 @@ dependencies {
 
     //Other
     implementation otherDependencies.values()
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
 
     //Debug
     implementation debugDependencies.values()

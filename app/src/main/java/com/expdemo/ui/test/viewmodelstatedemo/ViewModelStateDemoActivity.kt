@@ -14,6 +14,7 @@
 package com.expdemo.ui.test.viewmodelstatedemo
 
 import android.os.Bundle
+import android.os.Debug
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -52,6 +53,9 @@ class ViewModelStateDemoActivity : AppCompatActivity() {
         /** Set action bar */
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        /** stop the trace **/
+        Debug.stopMethodTracing()
 
         updateText()
 

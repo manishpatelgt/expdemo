@@ -3,6 +3,7 @@ package com.expdemo.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.expdemo.R
+import com.expdemo.ui.jetpackpaging.PagingActivity
 import com.expdemo.ui.retrofitdemo.RetrofitDemoActivity
 import com.expdemo.ui.test.CoroutineTest.CoroutineTestActivity
 import com.expdemo.ui.test.CoroutineTest.CoroutineTestActivity2
@@ -56,7 +57,11 @@ class MainActivity : AppCompatActivity() {
             /** lunch with ViewModelStateDemoActivity**/
             startActivity<ViewModelStateDemoActivity>()
         }
-    }
 
+        jetpack_paging_button.setOnClickListener {
+            /** lunch with PagingActivity**/
+            startActivity<PagingActivity>()
+        }
+    }
 
 }

@@ -50,6 +50,10 @@
             android:name=".ui.test.fragmentfactorydemo.FragmentFactoryDemoActivity"
             android:label="@string/fragment_factory_demo"></activity>
 
+        <activity
+            android:name=".ui.jetpackpaging.PagingActivity"
+            android:label="@string/jetpack_paging_demo"></activity>
+
     </application>
 
 </manifest>

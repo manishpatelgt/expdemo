@@ -2,6 +2,8 @@ package com.expdemo.application
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.ContextWrapper
+import android.os.Debug
 import androidx.multidex.BuildConfig
 import androidx.multidex.MultiDex
 import androidx.multidex.MultiDexApplication
@@ -10,6 +12,9 @@ import com.jakewharton.threetenabp.AndroidThreeTen
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import timber.log.Timber
+import java.io.File
+import java.text.SimpleDateFormat
+import java.util.*
 
 class App : MultiDexApplication() {
 
@@ -31,6 +36,15 @@ class App : MultiDexApplication() {
 
         // initialise app as a singleton
         sInstance = this
+
+        val dateFormat = SimpleDateFormat("dd_MM_yyyy_hh_mm_ss")
+        val logName = "gofast-${dateFormat.format(Date())}.trace"
+        val wrapper = ContextWrapper(context)
+        var file = wrapper.getDir("files", Context.MODE_PRIVATE)
+        var outputFile = File(file, logName)
+
+        /** start the trace **/
+        Debug.startMethodTracingSampling(outputFile.name, 1030, 100)
 
         appContainer = AppContainer()
 
