@@ -30,15 +30,30 @@ class MainViewModel : ViewModel() {
 
     /** Check network and cache conditions */
     val network = (isNetworkAvailable(App.context))
+    val responseHandler by lazy { ResponseHandler() }
+    val api = ApiClient.createService(EmployeeApi::class.java)
 
     fun loadData() = liveData(Dispatchers.IO) {
         emit(Resource.loading())
-        val api = ApiClient.createService(EmployeeApi::class.java)
         val response = api.getPerson()
         if (response.isSuccessful) {
             emit(Resource.success(response.body()?.data))
         } else {
             emit(Resource.error(response.message()))
+        }
+    }
+
+    val loadData2 = liveData(Dispatchers.IO) {
+        emit(Resource.loading())
+        emit(getData())
+    }
+
+    suspend fun getData(): Resource<Person> {
+        return try {
+            val response = api.getPerson()
+            responseHandler.handleSuccess(response.body()?.data)
+        } catch (e: Exception) {
+            responseHandler.handleException(e)
         }
     }
 

@@ -18,9 +18,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.expdemo.R
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.activity_common.*
+import kotlinx.coroutines.delay
 
 /**
  * Created by Manish Patel on 2/3/2020.
@@ -52,6 +54,10 @@ class RetrofitDemoActivity : AppCompatActivity() {
 
         if (mainViewModel.network) {
             getPersonProfileApi()
+            lifecycleScope.launchWhenStarted() {
+                delay(5000)
+                getPersonProfileApi2()
+            }
         } else {
             mainViewModel.setToastMessage(getString(R.string.no_internet_text))
         }
@@ -66,7 +72,29 @@ class RetrofitDemoActivity : AppCompatActivity() {
     }
 
     fun getPersonProfileApi() {
+        /** 1st approch **/
         mainViewModel.loadData().observe(this, Observer { networkResource ->
+            when (networkResource.status) {
+                Status.LOADING -> {
+                    txt_view.text = "Loading data from network"
+                }
+                Status.SUCCESS -> {
+                    val person = networkResource.data
+                    person?.let {
+                        txt_view.text =
+                            person.firstName + " " + person.lastName + "\n" + person.email
+                    }
+                }
+                Status.ERROR -> {
+                    txt_view.text = "Error loading data from network"
+                }
+            }
+        })
+    }
+
+    fun getPersonProfileApi2() {
+        /** 2nd approch **/
+        mainViewModel.loadData2.observe(this, Observer { networkResource ->
             when (networkResource.status) {
                 Status.LOADING -> {
                     txt_view.text = "Loading data from network"

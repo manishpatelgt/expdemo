@@ -3,7 +3,6 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-
     <dimen name="dimen_welcome_btn_corner_start">80</dimen>
     <dimen name="dimen_welcome_btn_corner_end">0</dimen>
     <dimen name="dimen_5sp">5sp</dimen>
