@@ -15,6 +15,7 @@ package com.expdemo.ui.vb
 
 import android.os.Bundle
 import androidx.activity.viewModels
+import com.expdemo.R
 import com.expdemo.databinding.ViewDemoBinding
 
 /**
@@ -25,7 +26,7 @@ import com.expdemo.databinding.ViewDemoBinding
  * https://medium.com/@.me./get-rid-of-fragment-activity-boilerplate-code-using-kotlin-1b103763baf8?_branch_match_id=560684694922163992
  */
 
-class ViewBindingDemoActivity : BaseActivity<MainViewModel,ViewDemoBinding>() {
+class ViewBindingDemoActivity : BaseActivity<MainViewModel, ViewDemoBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +35,19 @@ class ViewBindingDemoActivity : BaseActivity<MainViewModel,ViewDemoBinding>() {
         /** Set action bar */
         setSupportActionBar(mViewBinding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        if (savedInstanceState == null) {
+
+            /** Load fragment -1 **/
+            supportFragmentManager.beginTransaction()
+                .add(R.id.fragmentContainerView_1, FirstFragment())
+                .commit()
+
+            /** Load fragment -2 **/
+            supportFragmentManager.beginTransaction()
+                .add(R.id.fragmentContainerView_2, SecondFragment())
+                .commit()
+        }
     }
 
     override fun getViewBinding(): ViewDemoBinding = ViewDemoBinding.inflate(layoutInflater)

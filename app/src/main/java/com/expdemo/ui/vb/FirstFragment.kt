@@ -11,7 +11,7 @@
  * limitations under the License.
  */
 
-package com.expdemo.ui.test.fragmentfactorydemo
+package com.expdemo.ui.vb
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -19,17 +19,38 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.expdemo.R
+import com.expdemo.databinding.FragmentFirstBinding
 
 /**
- * Created by Manish Patel on 2/13/2020.
+ * Created by Manish Patel on 3/31/2020.
  */
-class SecondFragment() : Fragment() {
+/** https://developer.android.com/topic/libraries/view-binding
+ *
+ */
+class FirstFragment : Fragment() {
+
+    private var _binding: FragmentFirstBinding? = null
+
+    // This property is only valid between onCreateView and onDestroyView.
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_second, container, false)
+        //return inflater.inflate(R.layout.my_fragment, container, false)
+        _binding = FragmentFirstBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val bundle = arguments
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

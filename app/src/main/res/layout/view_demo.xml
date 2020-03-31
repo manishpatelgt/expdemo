@@ -37,9 +37,26 @@
         android:layout_margin="10dp"
         android:textSize="@dimen/dimen_14sp"
         android:text="Welcome to the world of View Binding"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <!-- 1st fragment -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_view" />
+
+    <!-- 2nd fragment -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentContainerView_1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
