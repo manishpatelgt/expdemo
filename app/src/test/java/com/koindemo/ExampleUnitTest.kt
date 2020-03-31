@@ -1,4 +1,4 @@
-package com.e.koindemo
+package com.koindemo
 
 import org.junit.Test
 
