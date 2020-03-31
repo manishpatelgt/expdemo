@@ -20,6 +20,11 @@ import com.shreyaspatil.MaterialDialog.MaterialDialog
 /**
  * Created by Manish Patel on 3/31/2020.
  */
+/**
+ * https://proandroiddev.com/koin-in-feature-modules-project-6329f069f943
+ * https://medium.com/@harmittaa/setting-up-koin-2-0-1-for-android-ebf11de01816
+ * https://medium.com/@harmittaa/retrofit-2-6-0-with-koin-and-coroutines-network-error-handling-a5b98b5e5ca0
+ */
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mViewBinding: ActivityMainBinding
