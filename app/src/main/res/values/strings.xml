@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">KoinDemo</string>
+
+    <string name="text_no_connectivity">No Connection</string>
+    <string name="text_connectivity">Back Online</string>
 </resources>

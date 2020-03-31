@@ -24,6 +24,7 @@ ext {
 
     def timber_version = '4.7.1'
     def toasty = '1.4.2'
+    def material_dialog='2.1'
 
     //Ktx - https://developer.android.com/kotlin/ktx
     //Kotlin-stdlib - https://kotlinlang.org/docs/reference/using-gradle.html
@@ -70,7 +71,7 @@ ext {
     ]
 
     coroutinesDependencies = [
-                core   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_core_version",
+            core   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_core_version",
             android: "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_android_version"
     ]
 
@@ -89,6 +90,7 @@ ext {
     ]
 
     otherDependencies = [
-            toasty: "com.github.GrenderG:Toasty:$toasty"
+            toasty: "com.github.GrenderG:Toasty:$toasty",
+            material_dialog: "com.shreyaspatil:MaterialDialog:$material_dialog"
     ]
 }
