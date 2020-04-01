@@ -43,7 +43,7 @@ class PostRepository constructor(
         postDao.deleteAll()
     }
 
-    suspend fun getPostFromDB(): LiveData<List<Post>> {
+    fun getPostFromDB(): LiveData<List<Post>> {
         return postDao.getAllPosts()
     }
 }

@@ -16,7 +16,6 @@ import com.koindemo.utils.extensions.getCustomColor
 import com.koindemo.utils.extensions.hide
 import com.koindemo.utils.extensions.show
 import com.shreyaspatil.MaterialDialog.MaterialDialog
-import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
@@ -49,9 +48,18 @@ class MainActivity : AppCompatActivity() {
 
     private fun setObservers() {
 
+        mViewModel.getPosts()
+
+        /** Setup posts api observer  */
+        mViewModel.postList?.observe(this, Observer { entries ->
+            Timber.d("Posts: $entries")
+            mViewBinding.txtView.text = entries.toString()
+        })
+
+
         mViewModel.getPostsWithLiveData.observe(this, Observer { entries ->
             Timber.d("Got Posts data: $entries")
-            txt_view.text = entries.toString()
+            mViewBinding.txtView.text = entries.toString()
         })
 
         /**

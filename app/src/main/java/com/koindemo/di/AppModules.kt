@@ -41,7 +41,13 @@ val networkModule = module {
 
     /** WEB SERVICE - REST API */
     single {
-        createWebService<PostApi>()
+        //createWebService<PostApi>()
+        Retrofit.Builder()
+            .baseUrl(Constants.API_URL)
+            .client(provideOkHttpClient(provideLoggingInterceptor(), Constants.CONNECT, Constants.READ, Constants.WRITE))
+            .addConverterFactory(Json.asConverterFactory("application/json".toMediaTypeOrNull()!!))
+            .build()
+            .create(PostApi::class.java)
     }
 
     /**
