@@ -53,7 +53,7 @@ class RetrofitDemoActivity : AppCompatActivity() {
     fun setObservers() {
 
         if (mainViewModel.network) {
-            getPersonProfileApi()
+            //getPersonProfileApi()
             lifecycleScope.launchWhenStarted() {
                 delay(5000)
                 getPersonProfileApi2()

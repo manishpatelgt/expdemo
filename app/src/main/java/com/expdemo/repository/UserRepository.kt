@@ -82,7 +82,7 @@ class UserRepository(
             else -> "Something went wrong"
         }
     }
-    
+
     suspend fun insert(post: Post) {
         localDataSource.postDao.insert(post)
     }

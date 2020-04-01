@@ -21,7 +21,8 @@ suspend fun <T : Any> safeApiCall(call: suspend () -> Result<T>, errorMessage: S
                 Result.GenericError(null, null)
             }
         }*/
-        Result.Error(IOException(throwable.localizedMessage, throwable))
+        Result.Error(throwable.message.toString())
+        //Result.Error(IOException(throwable.localizedMessage, throwable))
     }
 
 val <T> T.exhaustive: T get() = this

@@ -81,7 +81,7 @@ class MainViewModel(private val userRepository: UserRepository) : ViewModel() {
                     userRepository.insertAll(result.data)
                 }
                 is Result.Error -> {
-                    apiError.value = result.exception.message
+                    apiError.value = result.message
                     isLoading.value = false
                 }
             }
