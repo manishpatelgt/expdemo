@@ -10,6 +10,8 @@ import com.koindemo.utils.constants.Constants
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.serialization.json.Json
+import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaType
 import org.koin.android.viewmodel.dsl.viewModel
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
@@ -83,7 +85,7 @@ fun provideRetrofit(): Retrofit {
         .baseUrl(Constants.API_URL)
         .client(provideOkHttpClient(provideLoggingInterceptor(), Constants.CONNECT, Constants.READ, Constants.WRITE))
             .addConverterFactory(MoshiConverterFactory.create(provideMoshiBuilder()))
-        //.addConverterFactory(Json.asConverterFactory("application/json".toMediaTypeOrNull()!!))
+        //.addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
         .build()
 }
 

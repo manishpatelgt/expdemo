@@ -34,6 +34,7 @@ class MainViewModel constructor(private val postRepository: PostRepository) : Vi
                 //emit(result.data)
             }
             is Result.Error -> {
+                Timber.e("Error: ${result.message.toString()}")
                 //emitSource(result.message.toString())
             }
         }
@@ -54,6 +55,7 @@ class MainViewModel constructor(private val postRepository: PostRepository) : Vi
                     postRepository.insertAll(result.data!!)
                 }
                 is Result.Error -> {
+                    Timber.e("Error: ${result.message.toString()}")
                 }
             }
         }

@@ -2,15 +2,20 @@ package com.koindemo.ui
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.app.ActivityOptionsCompat
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.koindemo.R
 import com.koindemo.databinding.ActivityMainBinding
+import com.koindemo.model.Post
 import com.koindemo.utils.NetworkUtils
 import com.koindemo.utils.extensions.getCustomColor
 import com.koindemo.utils.extensions.hide
@@ -27,9 +32,11 @@ import timber.log.Timber
  * https://medium.com/@harmittaa/setting-up-koin-2-0-1-for-android-ebf11de01816
  * https://medium.com/@harmittaa/retrofit-2-6-0-with-koin-and-coroutines-network-error-handling-a5b98b5e5ca0
  */
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), PostListAdapter.OnItemClickListener {
 
     private lateinit var mViewBinding: ActivityMainBinding
+
+    private lateinit var mAdapter: PostListAdapter
 
     // lazy inject MyViewModel
     val mViewModel : MainViewModel by viewModel()
@@ -42,24 +49,33 @@ class MainActivity : AppCompatActivity() {
         val view = mViewBinding.root
         setContentView(view)
 
+        mAdapter = PostListAdapter(this)
+
+        // Initialize RecyclerView
+        mViewBinding.postsRecyclerView.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            setHasFixedSize(true)
+            adapter = mAdapter
+        }
+
         /** set observer **/
         setObservers()
     }
 
     private fun setObservers() {
 
-        mViewModel.getPosts()
+        //mViewModel.getPosts()
 
         /** Setup posts api observer  */
         mViewModel.postList?.observe(this, Observer { entries ->
             Timber.d("Posts: $entries")
-            mViewBinding.txtView.text = entries.toString()
+            mAdapter.setPosts(entries)
         })
 
 
         mViewModel.getPostsWithLiveData.observe(this, Observer { entries ->
             Timber.d("Got Posts data: $entries")
-            mViewBinding.txtView.text = entries.toString()
+            mAdapter.setPosts(entries)
         })
 
         /**
@@ -91,6 +107,10 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    override fun onItemClicked(post: Post) {
+        Timber.e("Clicked: ${post.id}")
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

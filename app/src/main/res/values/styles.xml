@@ -38,4 +38,11 @@
     <style name="AppTheme.Splash" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
+
+    <style name="PostsRecyclerStyle">
+        <item name="android:clipToPadding">false</item>
+        <item name="android:scrollbars">vertical</item>
+        <item name="android:paddingTop">@dimen/dimen_5dp</item>
+    </style>
+
 </resources>

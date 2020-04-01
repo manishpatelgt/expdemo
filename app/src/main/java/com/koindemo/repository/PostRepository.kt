@@ -27,6 +27,7 @@ class PostRepository constructor(
             if (response.isSuccessful) return Result.Success(response.body()!!)
             return Result.Error("Something went wrong. Please try again later!")
         } catch (e: Exception) {
+            e.printStackTrace()
             handleException(e)
         }
     }
