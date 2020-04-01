@@ -24,7 +24,9 @@ ext {
 
     def timber_version = '4.7.1'
     def toasty = '1.4.2'
-    def material_dialog='2.1'
+    def material_dialog = '2.1'
+
+    def koin_version = '2.1.5'
 
     //Ktx - https://developer.android.com/kotlin/ktx
     //Kotlin-stdlib - https://kotlinlang.org/docs/reference/using-gradle.html
@@ -75,6 +77,17 @@ ext {
             android: "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_android_version"
     ]
 
+    // Koin for Android
+    // Koin Android Scope features
+    // Koin Android ViewModel features
+    // Koin Android Experimental features
+    koinDependencies = [
+            android    : "org.koin:koin-android:$koin_version",
+            scope      : "org.koin:koin-android-scope:$koin_version",
+            viewmodel  : "org.koin:koin-android-viewmodel:$koin_version",
+            android_ext: "org.koin:koin-android-ext:$koin_version"
+    ]
+
     //Klaxon: https://github.com/cbeust/klaxon
     parserDependencies = [
             klaxon: "com.beust:klaxon:$klaxon_parser_version"
@@ -90,7 +103,7 @@ ext {
     ]
 
     otherDependencies = [
-            toasty: "com.github.GrenderG:Toasty:$toasty",
+            toasty         : "com.github.GrenderG:Toasty:$toasty",
             material_dialog: "com.shreyaspatil:MaterialDialog:$material_dialog"
     ]
 }

@@ -16,6 +16,9 @@ import com.koindemo.utils.extensions.getCustomColor
 import com.koindemo.utils.extensions.hide
 import com.koindemo.utils.extensions.show
 import com.shreyaspatil.MaterialDialog.MaterialDialog
+import kotlinx.android.synthetic.main.activity_main.*
+import org.koin.android.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 /**
  * Created by Manish Patel on 3/31/2020.
@@ -28,6 +31,9 @@ import com.shreyaspatil.MaterialDialog.MaterialDialog
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mViewBinding: ActivityMainBinding
+
+    // lazy inject MyViewModel
+    val mViewModel : MainViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)  // Set AppTheme before setting content view.
@@ -42,6 +48,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setObservers() {
+
+        mViewModel.getPostsWithLiveData.observe(this, Observer { entries ->
+            Timber.d("Got Posts data: $entries")
+            txt_view.text = entries.toString()
+        })
 
         /**
          * Observe network changes i.e. Internet Connectivity

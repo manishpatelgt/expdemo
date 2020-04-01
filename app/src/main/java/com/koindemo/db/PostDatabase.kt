@@ -8,7 +8,8 @@ import com.koindemo.model.Post
 
 @Database(entities = [Post::class], version = 1)
 abstract class PostDatabase : RoomDatabase() {
-    abstract fun postDao(): PostDao
+
+    abstract fun getPostDao(): PostDao
 
     companion object {
         // Singleton prevents multiple instances of database opening at the

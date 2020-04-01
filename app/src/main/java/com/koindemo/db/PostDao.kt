@@ -1,5 +1,6 @@
 package com.koindemo.db
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.koindemo.model.Post
 
@@ -8,6 +9,9 @@ import com.koindemo.model.Post
  */
 @Dao
 interface PostDao {
+
+    @Query("SELECT * from tbl_Post")
+    fun getAllPosts(): LiveData<List<Post>>
 
     @Insert
     suspend fun insert(post: Post)

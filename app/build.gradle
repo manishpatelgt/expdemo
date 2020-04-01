@@ -62,6 +62,9 @@ dependencies {
     //Retrofit - 1
     implementation retrofitWithMoshiDependencies.values()
 
+    //Koin
+    implementation koinDependencies.values()
+
     //Jetpack
     implementation jetpackDependencies.values()
     kapt "androidx.room:room-compiler:$room_version"

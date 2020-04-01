@@ -6,4 +6,7 @@ package com.koindemo.utils.constants
 object Constants {
 
     const val API_URL = "https://my-json-server.typicode.com/"
+    const val CONNECT = 30.toLong()
+    const val READ = 30.toLong()
+    const val WRITE = 30.toLong()
 }
