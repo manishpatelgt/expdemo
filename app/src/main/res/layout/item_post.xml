@@ -39,5 +39,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         android:transitionName="photo"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        android:src="@drawable/dish" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,8 +24,7 @@ class PostListAdapter(private val onItemClickListener: OnItemClickListener) :
 
     override fun getItemCount() = mPostList.size
 
-    override fun onBindViewHolder(holder: PostViewHolder, position: Int) =
-        holder.bind(mPostList[position], onItemClickListener)
+    override fun onBindViewHolder(holder: PostViewHolder, position: Int) = holder.bind(mPostList[position], onItemClickListener)
 
     private fun createPostViewHolder(parent: ViewGroup) = PostViewHolder(ItemPostBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 

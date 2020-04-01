@@ -110,7 +110,7 @@ class MainActivity : AppCompatActivity(), PostListAdapter.OnItemClickListener {
     }
 
     override fun onItemClicked(post: Post) {
-        Timber.e("Clicked: ${post.id}")
+       println("Clicked: ${post.id}")
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
