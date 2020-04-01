@@ -12,6 +12,9 @@ ext {
     def retrofit_logging_version = '4.4.1'
     def retrofit_kotlinx_converter_version = '0.5.0'
 
+    def moshi_version = '1.9.2'
+    def moshi_converter_version = '2.7.2'
+
     def room_version = "2.2.5"
     def lifecycle_version = '2.2.0'
 
@@ -48,9 +51,11 @@ ext {
     //Moshi - https://github.com/square/moshi
     //Retrofit - https://github.com/square/retrofit
     retrofitWithMoshiDependencies = [
-            retrofit: "com.squareup.retrofit2:retrofit:$retrofit_version",
-            logging : "com.squareup.okhttp3:logging-interceptor:$retrofit_logging_version",
-            kotlinx : "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:$retrofit_kotlinx_converter_version"
+            retrofit       : "com.squareup.retrofit2:retrofit:$retrofit_version",
+            logging        : "com.squareup.okhttp3:logging-interceptor:$retrofit_logging_version",
+            kotlinx        : "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:$retrofit_kotlinx_converter_version",
+            moshi          : "com.squareup.moshi:moshi-kotlin:$moshi_version",
+            moshi_converter: "com.squareup.retrofit2:converter-moshi:$moshi_converter_version"
     ]
 
     //Lifecycle: https://developer.android.com/jetpack/androidx/releases/lifecycle

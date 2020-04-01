@@ -7,6 +7,8 @@ import com.koindemo.db.PostDatabase
 import com.koindemo.repository.PostRepository
 import com.koindemo.ui.MainViewModel
 import com.koindemo.utils.constants.Constants
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.serialization.json.Json
 import org.koin.android.viewmodel.dsl.viewModel
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -15,6 +17,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
 /**
@@ -41,13 +44,7 @@ val networkModule = module {
 
     /** WEB SERVICE - REST API */
     single {
-        //createWebService<PostApi>()
-        Retrofit.Builder()
-            .baseUrl(Constants.API_URL)
-            .client(provideOkHttpClient(provideLoggingInterceptor(), Constants.CONNECT, Constants.READ, Constants.WRITE))
-            .addConverterFactory(Json.asConverterFactory("application/json".toMediaTypeOrNull()!!))
-            .build()
-            .create(PostApi::class.java)
+        createWebService<PostApi>()
     }
 
     /**
@@ -85,8 +82,16 @@ fun provideRetrofit(): Retrofit {
     return Retrofit.Builder()
         .baseUrl(Constants.API_URL)
         .client(provideOkHttpClient(provideLoggingInterceptor(), Constants.CONNECT, Constants.READ, Constants.WRITE))
-        .addConverterFactory(Json.asConverterFactory("application/json".toMediaTypeOrNull()!!))
+            .addConverterFactory(MoshiConverterFactory.create(provideMoshiBuilder()))
+        //.addConverterFactory(Json.asConverterFactory("application/json".toMediaTypeOrNull()!!))
         .build()
+}
+
+/** MOSHI ----------------------------------------------------------------------------------------------------------- */
+fun provideMoshiBuilder(): Moshi {
+    return Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build()
 }
 
 /** OKHTTP ---------------------------------------------------------------------------------------------------------- */

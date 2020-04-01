@@ -13,9 +13,9 @@ data class Post(
 
     @PrimaryKey
     @ColumnInfo(name = FieldConstants.ID)
-    val id: String,
+    val id: String?= null,
 
     @ColumnInfo(name = FieldConstants.TITLE)
-    val title: String
+    var title: String? =null
 
 )

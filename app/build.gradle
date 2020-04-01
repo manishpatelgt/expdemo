@@ -61,6 +61,7 @@ dependencies {
 
     //Retrofit - 1
     implementation retrofitWithMoshiDependencies.values()
+    kapt 'com.squareup.moshi:moshi-kotlin-codegen:1.9.2'
 
     //Koin
     implementation koinDependencies.values()
