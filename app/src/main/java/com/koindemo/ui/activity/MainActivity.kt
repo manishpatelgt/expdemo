@@ -1,4 +1,4 @@
-package com.koindemo.ui
+package com.koindemo.ui.activity
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -7,20 +7,25 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.app.ActivityOptionsCompat
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.koindemo.R
 import com.koindemo.databinding.ActivityMainBinding
 import com.koindemo.model.Post
+import com.koindemo.services.MyService
+import com.koindemo.ui.adapter.PostListAdapter
 import com.koindemo.utils.NetworkUtils
 import com.koindemo.utils.extensions.getCustomColor
 import com.koindemo.utils.extensions.hide
+import com.koindemo.utils.extensions.isAtLeastAndroid8
 import com.koindemo.utils.extensions.show
 import com.shreyaspatil.MaterialDialog.MaterialDialog
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
@@ -60,6 +65,20 @@ class MainActivity : AppCompatActivity(), PostListAdapter.OnItemClickListener {
 
         /** set observer **/
         setObservers()
+
+        /** start service here **/
+        lifecycleScope.launch(Dispatchers.IO) {
+            delay(10000) //10 sec delay
+            startService()
+        }
+    }
+
+    fun startService() {
+        if (isAtLeastAndroid8()) {
+            startForegroundService(Intent(applicationContext, MyService::class.java))
+        } else {
+            startService(Intent(applicationContext, MyService::class.java))
+        }
     }
 
     private fun setObservers() {
@@ -153,6 +172,12 @@ class MainActivity : AppCompatActivity(), PostListAdapter.OnItemClickListener {
             }
             .build()
             .show()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        stopService(Intent(applicationContext, MyService::class.java))
+        Timber.e("Main Activity onDestroy()")
     }
 
     companion object {

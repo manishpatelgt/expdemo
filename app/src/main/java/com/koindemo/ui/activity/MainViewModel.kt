@@ -1,4 +1,4 @@
-package com.koindemo.ui
+package com.koindemo.ui.activity
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

@@ -1,19 +1,14 @@
 package com.koindemo.di
 
 import com.facebook.stetho.okhttp3.StethoInterceptor
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.koindemo.api.PostApi
 import com.koindemo.db.PostDatabase
 import com.koindemo.repository.PostRepository
-import com.koindemo.ui.MainViewModel
+import com.koindemo.ui.activity.MainViewModel
 import com.koindemo.utils.constants.Constants
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import kotlinx.serialization.json.Json
-import okhttp3.MediaType
-import okhttp3.MediaType.Companion.toMediaType
 import org.koin.android.viewmodel.dsl.viewModel
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidApplication

@@ -7,6 +7,7 @@ import com.koindemo.model.Post
 import com.koindemo.utils.state.Result
 import com.koindemo.utils.extensions.handleException
 import com.koindemo.utils.extensions.safeApiCall
+import retrofit2.HttpException
 
 /**
  * Created by Manish Patel on 3/31/2020.
@@ -29,6 +30,31 @@ class PostRepository constructor(
         } catch (e: Exception) {
             e.printStackTrace()
             handleException(e)
+        }
+    }
+
+    suspend fun callPostApi2(): Result<List<Post>> {
+        return try {
+            val response = postApi.getPosts()
+            println("status code: ${response.code()}")
+            if (response.isSuccessful) {
+                Result.Success(response.body()!!)
+            } else {
+                when (response.code()) {
+                    404 -> Result.Error("Webservice Not found")
+                    401 -> Result.Error("Un-authorised")
+                    500 -> Result.Error("Server not found")
+                    else -> Result.Error("couldn't connect to server")
+                }
+            }
+
+        } catch (httpException: HttpException) {
+            println("error: ${httpException.message}")
+            Result.Error(httpException.response()?.errorBody()?.string() ?: httpException.message())
+        } catch (t: Throwable) {
+            t.printStackTrace()
+            println("error: ${t.message}")
+            Result.Error(t.localizedMessage)
         }
     }
 

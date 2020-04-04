@@ -1,4 +1,4 @@
-package com.koindemo.ui
+package com.koindemo.ui.adapter
 
 import androidx.recyclerview.widget.RecyclerView
 import com.koindemo.databinding.ItemPostBinding

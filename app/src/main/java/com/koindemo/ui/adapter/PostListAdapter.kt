@@ -1,8 +1,7 @@
-package com.koindemo.ui
+package com.koindemo.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -26,7 +25,12 @@ class PostListAdapter(private val onItemClickListener: OnItemClickListener) :
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) = holder.bind(mPostList[position], onItemClickListener)
 
-    private fun createPostViewHolder(parent: ViewGroup) = PostViewHolder(ItemPostBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+    private fun createPostViewHolder(parent: ViewGroup) =
+        PostViewHolder(
+            ItemPostBinding.inflate(
+                LayoutInflater.from(parent.context), parent, false
+            )
+        )
 
     fun setPosts(postList: List<Post>) {
         clearAllPosts()
