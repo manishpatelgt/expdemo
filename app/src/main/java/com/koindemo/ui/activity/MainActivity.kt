@@ -17,6 +17,7 @@ import com.koindemo.databinding.ActivityMainBinding
 import com.koindemo.model.Post
 import com.koindemo.services.MyService
 import com.koindemo.ui.adapter.PostListAdapter
+import com.koindemo.ui.fragments.MainFragment
 import com.koindemo.utils.NetworkUtils
 import com.koindemo.utils.extensions.getCustomColor
 import com.koindemo.utils.extensions.hide
@@ -27,6 +28,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.android.ext.android.inject
 import timber.log.Timber
 
 /**
@@ -45,6 +47,8 @@ class MainActivity : AppCompatActivity(), PostListAdapter.OnItemClickListener {
 
     // lazy inject MyViewModel
     val mViewModel : MainViewModel by viewModel()
+
+    private val mainFragment: MainFragment by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)  // Set AppTheme before setting content view.
@@ -65,6 +69,14 @@ class MainActivity : AppCompatActivity(), PostListAdapter.OnItemClickListener {
 
         /** set observer **/
         setObservers()
+
+        if (savedInstanceState == null) {
+
+            /** Load fragment **/
+            supportFragmentManager.beginTransaction()
+                .add(mViewBinding.fragmentContainerView.id, mainFragment)
+                .commit()
+        }
 
         /** start service here **/
         lifecycleScope.launch(Dispatchers.IO) {

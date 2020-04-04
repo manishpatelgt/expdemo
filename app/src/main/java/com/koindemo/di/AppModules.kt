@@ -5,6 +5,8 @@ import com.koindemo.api.PostApi
 import com.koindemo.db.PostDatabase
 import com.koindemo.repository.PostRepository
 import com.koindemo.ui.activity.MainViewModel
+import com.koindemo.ui.fragments.MainFragment
+import com.koindemo.ui.fragments.MainFragmentViewModel
 import com.koindemo.utils.constants.Constants
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -58,12 +60,23 @@ val viewModelModule = module {
     viewModel {
         MainViewModel(get())
     }
+
+    viewModel {
+        MainFragmentViewModel()
+    }
 }
 
+/** FRAMGNETS MODULES ------------------------------------------------------------------------------------------------- */
+val fragmentModule = module {
+    /** MainFragment */
+    factory {
+        MainFragment()
+    }
 
+}
 /** 3.KOIN APP MODULES * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-val appModule = listOf(networkModule, databaseModule, viewModelModule)
+val appModule = listOf(networkModule, databaseModule, viewModelModule, fragmentModule)
 
 
 /** 4.FUNCTIONS * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -78,8 +91,15 @@ inline fun <reified T> createWebService(): T {
 fun provideRetrofit(): Retrofit {
     return Retrofit.Builder()
         .baseUrl(Constants.API_URL)
-        .client(provideOkHttpClient(provideLoggingInterceptor(), Constants.CONNECT, Constants.READ, Constants.WRITE))
-            .addConverterFactory(MoshiConverterFactory.create(provideMoshiBuilder()))
+        .client(
+            provideOkHttpClient(
+                provideLoggingInterceptor(),
+                Constants.CONNECT,
+                Constants.READ,
+                Constants.WRITE
+            )
+        )
+        .addConverterFactory(MoshiConverterFactory.create(provideMoshiBuilder()))
         //.addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
         .build()
 }
@@ -87,8 +107,8 @@ fun provideRetrofit(): Retrofit {
 /** MOSHI ----------------------------------------------------------------------------------------------------------- */
 fun provideMoshiBuilder(): Moshi {
     return Moshi.Builder()
-            .add(KotlinJsonAdapterFactory())
-            .build()
+        .add(KotlinJsonAdapterFactory())
+        .build()
 }
 
 /** OKHTTP ---------------------------------------------------------------------------------------------------------- */
