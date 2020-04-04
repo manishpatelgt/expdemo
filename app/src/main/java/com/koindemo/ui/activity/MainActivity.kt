@@ -27,6 +27,7 @@ import com.shreyaspatil.MaterialDialog.MaterialDialog
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.get
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.android.ext.android.inject
 import timber.log.Timber
@@ -46,9 +47,11 @@ class MainActivity : AppCompatActivity(), PostListAdapter.OnItemClickListener {
     private lateinit var mAdapter: PostListAdapter
 
     // lazy inject MyViewModel
-    val mViewModel : MainViewModel by viewModel()
+    val mViewModel: MainViewModel by viewModel()
 
-    private val mainFragment: MainFragment by inject()
+    //private val mainFragment: MainFragment by inject() // Property Injection
+
+    private val mainFragment: MainFragment = get() // Direct Instance Request
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)  // Set AppTheme before setting content view.
@@ -141,7 +144,7 @@ class MainActivity : AppCompatActivity(), PostListAdapter.OnItemClickListener {
     }
 
     override fun onItemClicked(post: Post) {
-       println("Clicked: ${post.id}")
+        println("Clicked: ${post.id}")
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
