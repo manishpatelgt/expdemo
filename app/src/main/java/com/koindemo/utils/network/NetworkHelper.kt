@@ -1,4 +1,4 @@
-package com.koindemo.utils
+package com.koindemo.utils.network
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -12,7 +12,7 @@ import androidx.lifecycle.MutableLiveData
 /**
  * Network Utility to detect availability or unavailability of Internet connection
  */
-object NetworkUtils {
+object NetworkHelper {
 
     private val networkLiveData: MutableLiveData<Boolean> = MutableLiveData()
 

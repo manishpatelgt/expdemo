@@ -2,6 +2,8 @@ package com.koindemo.ui.activity
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
+import android.app.ProgressDialog.show
+import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
@@ -13,16 +15,18 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.koindemo.R
+import com.koindemo.data.PreferencesHelper
 import com.koindemo.databinding.ActivityMainBinding
 import com.koindemo.model.Post
 import com.koindemo.services.MyService
 import com.koindemo.ui.adapter.PostListAdapter
 import com.koindemo.ui.fragments.MainFragment
-import com.koindemo.utils.NetworkUtils
+import com.koindemo.utils.network.NetworkHelper
 import com.koindemo.utils.extensions.getCustomColor
 import com.koindemo.utils.extensions.hide
 import com.koindemo.utils.extensions.isAtLeastAndroid8
 import com.koindemo.utils.extensions.show
+import com.koindemo.utils.hardware.HardwareHelper
 import com.shreyaspatil.MaterialDialog.MaterialDialog
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -52,6 +56,10 @@ class MainActivity : AppCompatActivity(), PostListAdapter.OnItemClickListener {
     //private val mainFragment: MainFragment by inject() // Property Injection
 
     private val mainFragment: MainFragment = get() // Direct Instance Request
+
+    private val preferencesHelper: PreferencesHelper by inject() // Property Injection
+
+    private val context: Context by inject() // Property Injection
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)  // Set AppTheme before setting content view.
@@ -86,6 +94,10 @@ class MainActivity : AppCompatActivity(), PostListAdapter.OnItemClickListener {
             delay(10000) //10 sec delay
             startService()
         }
+
+        /** set/get Handheld ID **/
+        preferencesHelper.handheldID = HardwareHelper.getDeviceUUID(context)
+        println("HHID: ${preferencesHelper.handheldID}")
     }
 
     fun startService() {
@@ -115,7 +127,7 @@ class MainActivity : AppCompatActivity(), PostListAdapter.OnItemClickListener {
         /**
          * Observe network changes i.e. Internet Connectivity
          */
-        NetworkUtils.getNetworkLiveData(applicationContext).observe(this, Observer { isConnected ->
+        NetworkHelper.getNetworkLiveData(applicationContext).observe(this, Observer { isConnected ->
             println("STATE CHANGED = $isConnected")
             if (!isConnected) {
                 mViewBinding.textViewNetworkStatus.text = getString(R.string.text_no_connectivity)

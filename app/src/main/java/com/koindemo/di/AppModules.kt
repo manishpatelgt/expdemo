@@ -2,6 +2,7 @@ package com.koindemo.di
 
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.koindemo.api.PostApi
+import com.koindemo.data.PreferencesHelper
 import com.koindemo.db.PostDatabase
 import com.koindemo.repository.PostRepository
 import com.koindemo.ui.activity.MainViewModel
@@ -14,6 +15,7 @@ import org.koin.android.viewmodel.dsl.viewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidApplication
+import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -72,11 +74,26 @@ val fragmentModule = module {
     factory {
         MainFragment()
     }
-
 }
+
+/** Preferences MODULES ------------------------------------------------------------------------------------------------- */
+val preferencesModule = module {
+    single {
+        PreferencesHelper(androidApplication())
+    }
+}
+
+/** Application Context MODULES ------------------------------------------------------------------------------------------------- */
+val applicationModule = module {
+    single {
+        androidApplication()
+    }
+}
+
+
 /** 3.KOIN APP MODULES * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-val appModule = listOf(networkModule, databaseModule, viewModelModule, fragmentModule)
+val appModule = listOf(networkModule, databaseModule, viewModelModule, fragmentModule, preferencesModule, applicationModule)
 
 
 /** 4.FUNCTIONS * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
