@@ -1,0 +1,13 @@
+https://www.raywenderlich.com/7032631-jetpack-compose-tutorial-for-android-getting-started
+
+https://github.com/vinaygaba/Learn-Jetpack-Compose-By-Example
+
+Created orphan branch for bitbucket
+Commands:
+Create empty git repository
+
+C:\Users\Manish Patel\AndroidStudioProjects\JetpackComposeDemo>git init
+Initialized empty Git repository in C:/Users/Manish Patel/AndroidStudioProjects/JetpackComposeDemo/.git/
+
+C:\Users\Manish Patel\AndroidStudioProjects\JetpackComposeDemo>git checkout --orphan jetpack_compose_demo
+Switched to a new branch 'jetpack_compose_demo'
