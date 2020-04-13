@@ -10,12 +10,12 @@ import androidx.ui.core.dp
 import androidx.ui.core.setContent
 import androidx.ui.core.sp
 import androidx.ui.foundation.DrawImage
+import androidx.ui.foundation.VerticalScroller
 import androidx.ui.foundation.shape.corner.RoundedCornerShape
 import androidx.ui.graphics.Color
-import androidx.ui.layout.Column
-import androidx.ui.layout.Container
-import androidx.ui.layout.Padding
+import androidx.ui.layout.*
 import androidx.ui.material.MaterialTheme
+import androidx.ui.material.TopAppBar
 import androidx.ui.material.surface.Surface
 import androidx.ui.res.imageResource
 import androidx.ui.text.TextStyle
@@ -27,7 +27,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MaterialTheme {
-                Greeting()
+                FlexColumn {
+                    inflexible {
+                        TopAppBar(title = {
+                            Text("Jetpack Compose Demo")
+                        })
+                    }
+                    flexible(flex = 1f) {
+                        RecipeList(defaultRecipes)
+                    }
+                }
             }
         }
     }
@@ -46,21 +55,35 @@ fun Greeting() {
 fun RecipeCard(recipe: Recipe) {
     Surface(shape = RoundedCornerShape(8.dp), elevation = 8.dp) {
         val image = +imageResource(recipe.imageResource)
-        Column {
+
+        Column(modifier = Spacing(0.dp)) {
+
             Container(expanded = true, height = 144.dp) {
                 DrawImage(image = image)
             }
 
             Padding(top = 5.dp, left = 5.dp, right = 5.dp, bottom = 5.dp) {
-                Text(recipe.title, style = TextStyle(color = Color.Green,fontSize = 20.sp))
+                Text(recipe.title, style = TextStyle(color = Color.Blue, fontSize = 25.sp))
             }
 
-            Padding(top = 0.dp, left = 10.dp, right = 10.dp) {
-                for (ingredient in recipe.ingredients) {
-                    Text("• $ingredient")
+            for (ingredient in recipe.ingredients) {
+                Padding(top = 5.dp, left = 5.dp, right = 5.dp, bottom = 5.dp) {
+                    Text("• $ingredient",  style = TextStyle(fontSize = 15.sp))
                 }
             }
+        }
+    }
+}
 
+@Composable
+fun RecipeList(recipes: List<Recipe>) {
+    VerticalScroller {
+        Column {
+            for (recipe in recipes) {
+                Padding(16.dp) {
+                    RecipeCard(recipe)
+                }
+            }
         }
     }
 }
