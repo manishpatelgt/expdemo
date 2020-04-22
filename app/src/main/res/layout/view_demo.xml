@@ -59,4 +59,13 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragmentContainerView_1" />
 
+    <!-- 3rd fragment -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentContainerView_2" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

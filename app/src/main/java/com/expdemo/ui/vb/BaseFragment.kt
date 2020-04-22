@@ -14,25 +14,32 @@
 package com.expdemo.ui.vb
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
 
 /**
- * Created by Manish Patel on 3/30/2020.
+ * Created by Manish Patel on 4/22/2020.
  */
-abstract class BaseActivity<VM : ViewModel, VB : ViewBinding> : AppCompatActivity() {
+abstract class BaseFragment<VM : ViewModel, T : ViewDataBinding>  : Fragment() {
 
     protected abstract val mViewModel: VM
-    protected lateinit var mViewBinding: VB
+    protected lateinit var mViewBinding: T
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        mViewBinding = getViewBinding()
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        mViewBinding = DataBindingUtil.inflate(inflater, getFragmentView(), container, false)
+        return mViewBinding.root
     }
 
-    /**
-     * It returns [VB] which is assigned to [mViewBinding] and used in [onCreate]
-     */
-    abstract fun getViewBinding(): VB
+
+    abstract fun getFragmentView(): Int
 }

@@ -39,7 +39,6 @@ class FirstFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        //return inflater.inflate(R.layout.my_fragment, container, false)
         _binding = FragmentFirstBinding.inflate(inflater, container, false)
         val view = binding.root
         return view

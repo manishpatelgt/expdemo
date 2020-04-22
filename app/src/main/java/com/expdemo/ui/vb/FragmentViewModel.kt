@@ -13,26 +13,10 @@
 
 package com.expdemo.ui.vb
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
-import androidx.viewbinding.ViewBinding
 
 /**
- * Created by Manish Patel on 3/30/2020.
+ * Created by Manish Patel on 4/22/2020.
  */
-abstract class BaseActivity<VM : ViewModel, VB : ViewBinding> : AppCompatActivity() {
-
-    protected abstract val mViewModel: VM
-    protected lateinit var mViewBinding: VB
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        mViewBinding = getViewBinding()
-    }
-
-    /**
-     * It returns [VB] which is assigned to [mViewBinding] and used in [onCreate]
-     */
-    abstract fun getViewBinding(): VB
+class FragmentViewModel : ViewModel() {
 }

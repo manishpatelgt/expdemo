@@ -47,6 +47,11 @@ class ViewBindingDemoActivity : BaseActivity<MainViewModel, ViewDemoBinding>() {
             supportFragmentManager.beginTransaction()
                 .add(R.id.fragmentContainerView_2, SecondFragment())
                 .commit()
+
+            /** Load fragment - 3 **/
+            supportFragmentManager.beginTransaction()
+                .add(R.id.fragmentContainerView_3, ThirdFragment())
+                .commit()
         }
     }
 

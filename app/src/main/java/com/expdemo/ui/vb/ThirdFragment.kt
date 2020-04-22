@@ -14,25 +14,22 @@
 package com.expdemo.ui.vb
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModel
-import androidx.viewbinding.ViewBinding
+import android.view.View
+import androidx.fragment.app.viewModels
+import com.expdemo.R
+import com.expdemo.databinding.FragmentThirdBinding
 
 /**
- * Created by Manish Patel on 3/30/2020.
+ * Created by Manish Patel on 4/22/2020.
  */
-abstract class BaseActivity<VM : ViewModel, VB : ViewBinding> : AppCompatActivity() {
+class ThirdFragment : BaseFragment<FragmentViewModel, FragmentThirdBinding>() {
 
-    protected abstract val mViewModel: VM
-    protected lateinit var mViewBinding: VB
+    override fun getFragmentView() = R.layout.fragment_third
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        mViewBinding = getViewBinding()
+    override val mViewModel: FragmentViewModel by viewModels()
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        mViewBinding.txtView.text = "Best way just 2-3 lines of code and hell yes"
     }
-
-    /**
-     * It returns [VB] which is assigned to [mViewBinding] and used in [onCreate]
-     */
-    abstract fun getViewBinding(): VB
 }
