@@ -37,7 +37,6 @@ https://blog.mindorks.com/function-literals-with-receiver-in-kotlin
 Which libs you can choose ?
 https://blog.karumi.com/our-android-2020-development-stack/amp/?__twitter_impression=true
 
-
 FragmentFactory + Dagger2 + FragmentViewContainer
 https://developer.android.com/jetpack/androidx/releases/fragment
 https://proandroiddev.com/android-fragments-fragmentcontainerview-292f393f9ccf
@@ -64,3 +63,6 @@ https://developer.android.com/topic/libraries/architecture/saving-states
 
 Jetpack Pagination
 https://codelabs.developers.google.com/codelabs/android-paging/index.html?index=..%2F..%2Findex#0
+
+Udacity Demo
+https://github.com/udacity/andfun-kotlin-mars-real-estate/tree/Step.05-Solution-Displaying-a-Grid-of-Internet-Images

@@ -41,7 +41,7 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
     buildTypes {
@@ -53,7 +53,7 @@ android {
 }
 
 dependencies {
-    def room_version = "2.2.3"
+    def room_version = "2.2.5"
     def lifecycle_version = "2.2.0"
     def glide_version = "4.9.0"
 

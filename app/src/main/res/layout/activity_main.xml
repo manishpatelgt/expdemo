@@ -160,4 +160,20 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/jetpack_paging_button" />
 
+    <!-- 10th button Button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/mars_demo_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/green_button_selector"
+        android:fontFamily="@font/circular_black"
+        android:text="@string/mars_demo"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dimen_11sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_binding_button" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

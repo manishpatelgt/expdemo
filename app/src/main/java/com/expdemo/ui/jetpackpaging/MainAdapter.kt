@@ -58,13 +58,12 @@ class MainAdapter(onImageListener: OnImageListener): PagedListAdapter<UnsplashIm
                 oldItem.id == newItem.id
 
             override fun areContentsTheSame(oldItem: UnsplashImageDetails, newItem: UnsplashImageDetails): Boolean =
-                oldItem.equals(newItem)
+                oldItem == newItem
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val imageView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.recyclerview_item, parent, false) as ImageView
+        val imageView = LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_item, parent, false) as ImageView
         ctx = parent.context
         return MyViewHolder(imageView,mOnImageListener)
     }

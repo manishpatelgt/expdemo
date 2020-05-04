@@ -58,6 +58,10 @@
             android:name=".ui.vb.ViewBindingDemoActivity"
             android:label="@string/view_biding_demo"></activity>
 
+        <activity
+            android:name=".ui.udacitydemo.MarsPhotoListDemo"
+            android:label="@string/mars_demo"></activity>
+
     </application>
 
 </manifest>

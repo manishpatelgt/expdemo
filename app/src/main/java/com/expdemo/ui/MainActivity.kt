@@ -9,6 +9,7 @@ import com.expdemo.ui.test.CoroutineTest.CoroutineTestActivity
 import com.expdemo.ui.test.CoroutineTest.CoroutineTestActivity2
 import com.expdemo.ui.test.fragmentfactorydemo.FragmentFactoryDemoActivity
 import com.expdemo.ui.test.viewmodelstatedemo.ViewModelStateDemoActivity
+import com.expdemo.ui.udacitydemo.MarsPhotoListDemo
 import com.expdemo.ui.vb.ViewBindingDemoActivity
 import com.expdemo.ui.withoutsingelton.WithoutSingletonActivity
 import com.expdemo.ui.withsingelton.WithSingletonActivity
@@ -67,6 +68,11 @@ class MainActivity : AppCompatActivity() {
         view_binding_button.setOnClickListener {
             /** lunch with ViewBindingDemoActivity**/
             startActivity<ViewBindingDemoActivity>()
+        }
+
+        mars_demo_button.setOnClickListener {
+            /** lunch with MarsPhotoListDemo**/
+            startActivity<MarsPhotoListDemo>()
         }
     }
 
