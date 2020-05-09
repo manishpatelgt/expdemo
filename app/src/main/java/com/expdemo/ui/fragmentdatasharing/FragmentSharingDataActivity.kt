@@ -22,6 +22,8 @@ import com.expdemo.utils.constants.Constants
 /**
  * Created by Manish Patel on 5/9/2020.
  */
+/** reference from https://proandroiddev.com/android-fragments-fragment-result-805a6b2522ea **/
+
 class FragmentSharingDataActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFragmentDataSharingBinding

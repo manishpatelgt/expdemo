@@ -61,6 +61,7 @@
         <item name="android:textSize">@dimen/dimen_20sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/white</item>
+        <item name="android:padding">@dimen/dimen_10dp</item>
         <item name="android:fontFamily">@font/circular_black</item>
         <item name="android:background">@drawable/green_button_selector</item>
         <item name="android:layout_margin">@dimen/dimen_10dp</item>

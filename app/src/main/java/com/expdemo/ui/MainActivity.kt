@@ -13,6 +13,7 @@ import com.expdemo.ui.coroutinetest.CoroutineTestActivity
 import com.expdemo.ui.coroutinetest.CoroutineTestActivity2
 import com.expdemo.ui.fragmentdatasharing.FragmentSharingDataActivity
 import com.expdemo.ui.fragmentfactorydemo.FragmentFactoryDemoActivity
+import com.expdemo.ui.settingspanel.SettingsPanelActivity
 import com.expdemo.ui.viewmodelstatedemo.ViewModelStateDemoActivity
 import com.expdemo.ui.udacitydemo.MarsPhotoListDemo
 import com.expdemo.ui.vb.ViewBindingDemoActivity
@@ -81,6 +82,10 @@ class MainActivity : AppCompatActivity() {
                 MainViewModel.Screen.FRAGMENTSHARINGDATADEMO -> {
                     /** lunch with FragmentSharingDataActivity**/
                     startActivity<FragmentSharingDataActivity>()
+                }
+                MainViewModel.Screen.SETTINGSPANEL -> {
+                    /** lunch with SettingsPanelActivity**/
+                    startActivity<SettingsPanelActivity>()
                 }
             }
         })

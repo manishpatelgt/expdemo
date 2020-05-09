@@ -62,11 +62,14 @@
             android:name=".ui.fragmentdatasharing.FragmentSharingDataActivity"
             android:label="@string/fragment_to_fragment_data_sharing"></activity>
 
+        <activity
+            android:name=".ui.settingspanel.SettingsPanelActivity"
+            android:label="@string/settings_panel_demo"></activity>
 
         <activity
             android:name=".ui.udacitydemo.MarsPhotoListDemo"
-            android:theme="@style/MyTheme"
-            android:label="@string/mars_demo"></activity>
+            android:label="@string/mars_demo"
+            android:theme="@style/MyTheme"></activity>
 
         <meta-data
             android:name="preloaded_fonts"

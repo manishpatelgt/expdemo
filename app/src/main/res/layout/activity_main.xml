@@ -171,6 +171,18 @@
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/button_10" />
 
+                <!-- 12th button Button -->
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_12"
+                    style="@style/GenericButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{(view) -> viewModel.setButtonScreen(view)}"
+                    android:text="@string/settings_panel_demo"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/button_11" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
 

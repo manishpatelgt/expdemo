@@ -36,6 +36,7 @@ class MainViewModel : ViewModel() {
         VIEWBIDINGDEMO,
         MARSLISTDEMO,
         FRAGMENTSHARINGDATADEMO,
+        SETTINGSPANEL,
         UNKNOWN
     }
 
@@ -59,6 +60,7 @@ class MainViewModel : ViewModel() {
             R.id.button_9 -> _screen.value = Screen.VIEWBIDINGDEMO
             R.id.button_10 -> _screen.value = Screen.MARSLISTDEMO
             R.id.button_11 -> _screen.value = Screen.FRAGMENTSHARINGDATADEMO
+            R.id.button_12 -> _screen.value = Screen.SETTINGSPANEL
         }
     }
 

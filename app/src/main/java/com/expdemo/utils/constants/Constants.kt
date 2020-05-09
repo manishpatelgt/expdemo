@@ -14,4 +14,6 @@ object Constants {
     const val DATA_FROM = "Data_From"
 
     const val REQUEST_KEY = "parent-request-key"
+
+    const val ANY_WEBSITE_URL = "https://www.google.co.in/"
 }

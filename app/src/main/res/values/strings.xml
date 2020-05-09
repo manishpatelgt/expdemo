@@ -18,7 +18,8 @@
 
     <string name="view_biding_demo">View Binding Demo</string>
     <string name="mars_demo">Mars Demo</string>
-    <string name="fragment_to_fragment_data_sharing">FtoF Data Sharing Demo(Older)</string>
+    <string name="fragment_to_fragment_data_sharing">FtoF Data Sharing Demo(Older + Newer)</string>
+    <string name="settings_panel_demo">Settings Panel Demo</string>
 
     <string name="count_btn">Count up</string>
     <string name="submit_btn">Submit</string>
