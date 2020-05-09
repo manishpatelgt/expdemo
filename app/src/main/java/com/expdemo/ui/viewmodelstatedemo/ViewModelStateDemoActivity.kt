@@ -11,15 +11,13 @@
  * limitations under the License.
  */
 
-package com.expdemo.ui.test.viewmodelstatedemo
+package com.expdemo.ui.viewmodelstatedemo
 
 import android.os.Bundle
 import android.os.Debug
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.SavedStateViewModelFactory
-import androidx.lifecycle.ViewModelProvider
 import com.expdemo.R
 import kotlinx.android.synthetic.main.activity_view_model_state_demo.*
 

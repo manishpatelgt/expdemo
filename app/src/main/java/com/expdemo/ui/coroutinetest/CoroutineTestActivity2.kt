@@ -11,20 +11,18 @@
  * limitations under the License.
  */
 
-package com.expdemo.ui.test.CoroutineTest
+package com.expdemo.ui.coroutinetest
 
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.lifecycleScope
 import com.expdemo.R
 import kotlinx.android.synthetic.main.activity_common.*
 import kotlinx.coroutines.*
-import timber.log.Timber
 
 /**
  * Created by Manish Patel on 2/18/2020.

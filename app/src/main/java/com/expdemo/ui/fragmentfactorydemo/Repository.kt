@@ -11,7 +11,7 @@
  * limitations under the License.
  */
 
-package com.expdemo.ui.test.fragmentfactorydemo
+package com.expdemo.ui.fragmentfactorydemo
 
 import timber.log.Timber
 

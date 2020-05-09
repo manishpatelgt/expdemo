@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright 2020 Manish Patel. All rights reserved.
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -37,25 +36,5 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
-    <!-- 2nd fragment loaded with name attribute
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView_2"
-        android:name="com.expdemo.ui.test.fragmentdemo.SecondFragment"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_200dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentContainerView_1" /> -->
-
-    <!-- 2nd fragment loaded with class attribute -->
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView_2"
-        class="com.expdemo.ui.fragmentfactorydemo.SecondFragment"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_200dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentContainerView_1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

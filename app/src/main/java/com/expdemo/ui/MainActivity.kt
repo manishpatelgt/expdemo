@@ -1,79 +1,89 @@
 package com.expdemo.ui
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import com.expdemo.R
+import com.expdemo.databinding.ActivityMainBinding
 import com.expdemo.ui.jetpackpaging.PagingActivity
 import com.expdemo.ui.retrofitdemo.RetrofitDemoActivity
-import com.expdemo.ui.test.CoroutineTest.CoroutineTestActivity
-import com.expdemo.ui.test.CoroutineTest.CoroutineTestActivity2
-import com.expdemo.ui.test.fragmentfactorydemo.FragmentFactoryDemoActivity
-import com.expdemo.ui.test.viewmodelstatedemo.ViewModelStateDemoActivity
+import com.expdemo.ui.coroutinetest.CoroutineTestActivity
+import com.expdemo.ui.coroutinetest.CoroutineTestActivity2
+import com.expdemo.ui.fragmentdatasharing.FragmentSharingDataActivity
+import com.expdemo.ui.fragmentfactorydemo.FragmentFactoryDemoActivity
+import com.expdemo.ui.viewmodelstatedemo.ViewModelStateDemoActivity
 import com.expdemo.ui.udacitydemo.MarsPhotoListDemo
 import com.expdemo.ui.vb.ViewBindingDemoActivity
 import com.expdemo.ui.withoutsingelton.WithoutSingletonActivity
 import com.expdemo.ui.withsingelton.WithSingletonActivity
-import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
+    val mViewModel by viewModels<MainViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.apply {
+            lifecycleOwner = lifecycleOwner
+            viewModel = mViewModel
+        }
 
         /** Set action bar */
-        setSupportActionBar(toolbar)
+        setSupportActionBar(binding.toolbar)
 
-        without_singleton_button.setOnClickListener {
-            /** lunch without singleton activity**/
-            startActivity<WithoutSingletonActivity>()
-        }
-
-        with_singleton_button.setOnClickListener {
-            /** lunch with singleton activity**/
-            startActivity<WithSingletonActivity>()
-        }
-
-        coroutine_test_button.setOnClickListener {
-            /** lunch with CoroutineTestActivity**/
-            startActivity<CoroutineTestActivity>()
-        }
-
-        coroutine_test_2_button.setOnClickListener {
-            /** lunch with CoroutineTestActivity2**/
-            startActivity<CoroutineTestActivity2>()
-        }
-
-        retrofit_generic_button.setOnClickListener {
-            /** lunch with RetrofitDemoActivity**/
-            startActivity<RetrofitDemoActivity>()
-        }
-
-        fragment_factory_button.setOnClickListener {
-            /** lunch with FragmentFactoryDemoActivity**/
-            startActivity<FragmentFactoryDemoActivity>()
-        }
-
-        view_model_state_button.setOnClickListener {
-            /** lunch with ViewModelStateDemoActivity**/
-            startActivity<ViewModelStateDemoActivity>()
-        }
-
-        jetpack_paging_button.setOnClickListener {
-            /** lunch with PagingActivity**/
-            startActivity<PagingActivity>()
-        }
-
-        view_binding_button.setOnClickListener {
-            /** lunch with ViewBindingDemoActivity**/
-            startActivity<ViewBindingDemoActivity>()
-        }
-
-        mars_demo_button.setOnClickListener {
-            /** lunch with MarsPhotoListDemo**/
-            startActivity<MarsPhotoListDemo>()
-        }
+        mViewModel.screen.observe(this, Observer {
+            when (it) {
+                MainViewModel.Screen.WITHOUTSINGLETONDEMO -> {
+                    /** lunch without singleton activity**/
+                    startActivity<WithoutSingletonActivity>()
+                }
+                MainViewModel.Screen.WITHSINGLETONDEMO -> {
+                    /** lunch with singleton activity**/
+                    startActivity<WithSingletonActivity>()
+                }
+                MainViewModel.Screen.COROUTINE1DEMO -> {
+                    /** lunch with CoroutineTestActivity**/
+                    startActivity<CoroutineTestActivity>()
+                }
+                MainViewModel.Screen.COROUTINE2DEMO -> {
+                    /** lunch with CoroutineTestActivity2**/
+                    startActivity<CoroutineTestActivity2>()
+                }
+                MainViewModel.Screen.RETROFITDEMO -> {
+                    /** lunch with RetrofitDemoActivity**/
+                    startActivity<RetrofitDemoActivity>()
+                }
+                MainViewModel.Screen.FRAGMENTFACTORYDEMO -> {
+                    /** lunch with FragmentFactoryDemoActivity**/
+                    startActivity<FragmentFactoryDemoActivity>()
+                }
+                MainViewModel.Screen.VIEWMODELSTATEDEMO -> {
+                    /** lunch with ViewModelStateDemoActivity**/
+                    startActivity<ViewModelStateDemoActivity>()
+                }
+                MainViewModel.Screen.JETPACKPAGINGDEMO -> {
+                    /** lunch with PagingActivity**/
+                    startActivity<PagingActivity>()
+                }
+                MainViewModel.Screen.VIEWBIDINGDEMO -> {
+                    /** lunch with ViewBindingDemoActivity**/
+                    startActivity<ViewBindingDemoActivity>()
+                }
+                MainViewModel.Screen.MARSLISTDEMO -> {
+                    /** lunch with MarsPhotoListDemo**/
+                    startActivity<MarsPhotoListDemo>()
+                }
+                MainViewModel.Screen.FRAGMENTSHARINGDATADEMO -> {
+                    /** lunch with FragmentSharingDataActivity**/
+                    startActivity<FragmentSharingDataActivity>()
+                }
+            }
+        })
     }
 
 }

@@ -11,7 +11,7 @@
  * limitations under the License.
  */
 
-package com.expdemo.ui.test.viewmodelstatedemo
+package com.expdemo.ui.viewmodelstatedemo
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle

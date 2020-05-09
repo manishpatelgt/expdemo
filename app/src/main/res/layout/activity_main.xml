@@ -1,179 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Toolbar -->
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.expdemo.ui.MainViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimaryDark"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:popupTheme="@style/AppTheme.PopupOverlay" />
+        android:layout_height="match_parent">
 
-    <!-- 1st button Button -->
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/without_singleton_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@drawable/green_button_selector"
-        android:fontFamily="@font/circular_black"
-        android:text="@string/without_singleton"
-        android:textColor="@color/white"
-        android:textSize="@dimen/dimen_11sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"  />
+        <!-- Toolbar -->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimaryDark"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-    <!-- 2nd button Button -->
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/with_singleton_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@drawable/green_button_selector"
-        android:fontFamily="@font/circular_black"
-        android:text="@string/with_singleton"
-        android:textColor="@color/white"
-        android:textSize="@dimen/dimen_11sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/without_singleton_button" />
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            android:padding="@dimen/dimen_10dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-    <!-- 3rd button Button -->
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/coroutine_test_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@drawable/green_button_selector"
-        android:fontFamily="@font/circular_black"
-        android:text="@string/coroutine_test"
-        android:textColor="@color/white"
-        android:textSize="@dimen/dimen_11sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/with_singleton_button" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_marginBottom="@dimen/dimen_50dp"
+                android:layout_height="wrap_content">
 
-    <!-- 4th button Button -->
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/retrofit_generic_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@drawable/green_button_selector"
-        android:fontFamily="@font/circular_black"
-        android:text="@string/retrofit_generic"
-        android:textColor="@color/white"
-        android:textSize="@dimen/dimen_11sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/coroutine_test_button" />
+                <!-- 1st button Button -->
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_1"
+                    style="@style/GenericButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{(view) -> viewModel.setButtonScreen(view)}"
+                    android:text="@string/without_singleton"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- 5th button Button -->
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/fragment_factory_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@drawable/green_button_selector"
-        android:fontFamily="@font/circular_black"
-        android:text="@string/fragment_factory_demo"
-        android:textColor="@color/white"
-        android:textSize="@dimen/dimen_11sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/retrofit_generic_button" />
+                <!-- 2nd button Button -->
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_2"
+                    style="@style/GenericButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{(view) -> viewModel.setButtonScreen(view)}"
+                    android:text="@string/with_singleton"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/button_1" />
 
-    <!-- 6th button Button -->
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/coroutine_test_2_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@drawable/green_button_selector"
-        android:fontFamily="@font/circular_black"
-        android:text="@string/coroutine_test2"
-        android:textColor="@color/white"
-        android:textSize="@dimen/dimen_11sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_factory_button" />
+                <!-- 3rd button Button -->
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_3"
+                    style="@style/GenericButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{(view) -> viewModel.setButtonScreen(view)}"
+                    android:text="@string/coroutine_test"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/button_2" />
 
-    <!-- 7th button Button -->
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/view_model_state_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@drawable/green_button_selector"
-        android:fontFamily="@font/circular_black"
-        android:text="@string/view_model_state_demo"
-        android:textColor="@color/white"
-        android:textSize="@dimen/dimen_11sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/coroutine_test_2_button" />
+                <!-- 4th button Button -->
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_4"
+                    style="@style/GenericButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{(view) -> viewModel.setButtonScreen(view)}"
+                    android:text="@string/retrofit_generic"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/button_3" />
 
-    <!-- 8th button Button -->
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/jetpack_paging_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@drawable/green_button_selector"
-        android:fontFamily="@font/circular_black"
-        android:text="@string/jetpack_paging_demo"
-        android:textColor="@color/white"
-        android:textSize="@dimen/dimen_11sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_model_state_button" />
+                <!-- 5th button Button -->
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_5"
+                    style="@style/GenericButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{(view) -> viewModel.setButtonScreen(view)}"
+                    android:text="@string/fragment_factory_demo"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/button_4" />
 
-    <!-- 9th button Button -->
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/view_binding_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@drawable/green_button_selector"
-        android:fontFamily="@font/circular_black"
-        android:text="@string/view_biding_demo"
-        android:textColor="@color/white"
-        android:textSize="@dimen/dimen_11sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/jetpack_paging_button" />
+                <!-- 6th button Button -->
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_6"
+                    style="@style/GenericButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{(view) -> viewModel.setButtonScreen(view)}"
+                    android:text="@string/coroutine_test2"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/button_5" />
 
-    <!-- 10th button Button -->
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/mars_demo_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@drawable/green_button_selector"
-        android:fontFamily="@font/circular_black"
-        android:text="@string/mars_demo"
-        android:textColor="@color/white"
-        android:textSize="@dimen/dimen_11sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_binding_button" />
+                <!-- 7th button Button -->
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_7"
+                    style="@style/GenericButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{(view) -> viewModel.setButtonScreen(view)}"
+                    android:text="@string/view_model_state_demo"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/button_6" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <!-- 8th button Button -->
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_8"
+                    style="@style/GenericButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{(view) -> viewModel.setButtonScreen(view)}"
+                    android:text="@string/jetpack_paging_demo"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/button_7" />
+
+                <!-- 9th button Button -->
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_9"
+                    style="@style/GenericButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{(view) -> viewModel.setButtonScreen(view)}"
+                    android:text="@string/view_biding_demo"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/button_8" />
+
+                <!-- 10th button Button -->
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_10"
+                    style="@style/GenericButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{(view) -> viewModel.setButtonScreen(view)}"
+                    android:text="@string/mars_demo"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/button_9" />
+
+                <!-- 11th button Button -->
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_11"
+                    style="@style/GenericButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{(view) -> viewModel.setButtonScreen(view)}"
+                    android:text="@string/fragment_to_fragment_data_sharing"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/button_10" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

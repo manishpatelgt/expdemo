@@ -11,7 +11,7 @@
  * limitations under the License.
  */
 
-package com.expdemo.ui.test.CoroutineTest
+package com.expdemo.ui.coroutinetest
 
 import androidx.lifecycle.*
 import kotlinx.coroutines.delay
@@ -21,7 +21,8 @@ import kotlinx.coroutines.delay
  */
 class MainViewModel : ViewModel() {
 
-    val mainRepository = MainRepository() // normally this would come from DI
+    val mainRepository =
+        MainRepository() // normally this would come from DI
 
     val intLiveData: LiveData<Int> = liveData {
         if (latestValue == null) {

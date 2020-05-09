@@ -42,4 +42,5 @@ class MarsViewModel : ViewModel() {
             _status.value = MarsApiStatus.ERROR
         }
     }
+
 }

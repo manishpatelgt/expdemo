@@ -37,14 +37,61 @@
             app:layout_constraintTop_toTopOf="parent"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
+        <TextView
+            android:id="@+id/text_View"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_20dp"
+            android:fontFamily="@font/headland_one"
+            android:text="Yes I m checking different font styles"
+            android:textAlignment="center"
+            android:textSize="@dimen/dimen_24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_20dp"
+            android:text="I am title"
+            android:textAlignment="center"
+            android:textAppearance="?attr/textAppearanceHeadline1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_View" />
+
+        <TextView
+            android:id="@+id/text_subtitle"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_20dp"
+            android:text="I am sub-title"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_title" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/demo_button"
+            android:textAppearance="?attr/textAppearanceButton"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_50dp"
+            android:layout_margin="@dimen/dimen_10dp"
+            android:text="Material Button"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_subtitle" />
+
         <ImageView
             android:id="@+id/status_image"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/demo_button"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:marsApiStatus="@{viewModel.status}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

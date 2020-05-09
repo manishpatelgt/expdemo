@@ -7,4 +7,9 @@ object Constants {
     /** Saved state * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
     const val COUNT_STATE = "Count"
     const val USER_NAME = "UserName"
+
+    const val REQ_CODE_SECOND_FRAGMENT = 1000
+
+    const val USER_ID = "Count"
+    const val DATA_FROM = "Data_From"
 }

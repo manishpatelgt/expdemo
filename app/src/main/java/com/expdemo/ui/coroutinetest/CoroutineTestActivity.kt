@@ -11,7 +11,7 @@
  * limitations under the License.
  */
 
-package com.expdemo.ui.test.CoroutineTest
+package com.expdemo.ui.coroutinetest
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

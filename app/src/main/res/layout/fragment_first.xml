@@ -29,5 +29,15 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button"
+        style="@style/GenericButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Open Dialog"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_view" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

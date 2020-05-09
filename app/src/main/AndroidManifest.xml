@@ -31,15 +31,15 @@
 
 
         <activity
-            android:name=".ui.test.CoroutineTest.CoroutineTestActivity"
+            android:name=".ui.coroutinetest.CoroutineTestActivity"
             android:label="@string/coroutine_test"></activity>
 
         <activity
-            android:name=".ui.test.CoroutineTest.CoroutineTestActivity2"
+            android:name=".ui.coroutinetest.CoroutineTestActivity2"
             android:label="@string/coroutine_test2"></activity>
 
         <activity
-            android:name=".ui.test.viewmodelstatedemo.ViewModelStateDemoActivity"
+            android:name=".ui.viewmodelstatedemo.ViewModelStateDemoActivity"
             android:label="@string/view_model_state_demo"></activity>
 
         <activity
@@ -47,7 +47,7 @@
             android:label="@string/retrofit_generic"></activity>
 
         <activity
-            android:name=".ui.test.fragmentfactorydemo.FragmentFactoryDemoActivity"
+            android:name=".ui.fragmentfactorydemo.FragmentFactoryDemoActivity"
             android:label="@string/fragment_factory_demo"></activity>
 
         <activity
@@ -59,8 +59,18 @@
             android:label="@string/view_biding_demo"></activity>
 
         <activity
+            android:name=".ui.fragmentdatasharing.FragmentSharingDataActivity"
+            android:label="@string/fragment_to_fragment_data_sharing"></activity>
+
+
+        <activity
             android:name=".ui.udacitydemo.MarsPhotoListDemo"
+            android:theme="@style/MyTheme"
             android:label="@string/mars_demo"></activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
     </application>
 
