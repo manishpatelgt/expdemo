@@ -12,4 +12,6 @@ object Constants {
 
     const val USER_ID = "Count"
     const val DATA_FROM = "Data_From"
+
+    const val REQUEST_KEY = "parent-request-key"
 }

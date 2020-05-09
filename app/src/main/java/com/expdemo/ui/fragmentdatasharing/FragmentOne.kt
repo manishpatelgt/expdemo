@@ -13,13 +13,17 @@
 
 package com.expdemo.ui.fragmentdatasharing
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.util.Preconditions
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentResultListener
 import com.expdemo.databinding.FragmentFirstBinding
 import com.expdemo.utils.constants.Constants
 import timber.log.Timber
@@ -33,6 +37,11 @@ class FragmentOne : Fragment() {
 
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setUpResultListener()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,9 +68,26 @@ class FragmentOne : Fragment() {
                 FragmentOne@ this,
                 Constants.REQ_CODE_SECOND_FRAGMENT
             )
-            myDialogFragment.show(requireActivity().supportFragmentManager, "Dialog")
+            myDialogFragment.show(parentFragmentManager, "Dialog")
         }
+    }
 
+    private fun setUpResultListener() {
+        /** new way **/
+        parentFragmentManager.setFragmentResultListener(
+            Constants.REQUEST_KEY,
+            this,
+            FragmentResultListener { requestKey, result ->
+                onFragmentResult(requestKey, result)
+            })
+    }
+
+    @SuppressLint("RestrictedApi")
+    private fun onFragmentResult(requestKey: String, result: Bundle) {
+        Preconditions.checkState(Constants.REQUEST_KEY == requestKey)
+
+        val dialogFragmentData = result.getString(Constants.DATA_FROM)
+        Timber.e("dialogFragmentData: $dialogFragmentData")
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {

@@ -51,9 +51,9 @@ class MainViewModel : ViewModel() {
             R.id.button_1 -> _screen.value = Screen.WITHOUTSINGLETONDEMO
             R.id.button_2 -> _screen.value = Screen.WITHSINGLETONDEMO
             R.id.button_3 -> _screen.value = Screen.COROUTINE1DEMO
-            R.id.button_4 -> _screen.value = Screen.COROUTINE2DEMO
-            R.id.button_5 -> _screen.value = Screen.RETROFITDEMO
-            R.id.button_6 -> _screen.value = Screen.FRAGMENTFACTORYDEMO
+            R.id.button_4 -> _screen.value = Screen.RETROFITDEMO
+            R.id.button_5 -> _screen.value = Screen.FRAGMENTFACTORYDEMO
+            R.id.button_6 -> _screen.value = Screen.COROUTINE2DEMO
             R.id.button_7 -> _screen.value = Screen.VIEWMODELSTATEDEMO
             R.id.button_8 -> _screen.value = Screen.JETPACKPAGINGDEMO
             R.id.button_9 -> _screen.value = Screen.VIEWBIDINGDEMO

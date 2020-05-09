@@ -48,4 +48,8 @@ class FragmentSharingDataActivity : AppCompatActivity() {
             .commit()
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
 }

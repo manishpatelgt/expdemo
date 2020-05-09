@@ -19,6 +19,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
 import com.expdemo.databinding.FragmentSecondBinding
 import com.expdemo.utils.constants.Constants
@@ -45,11 +46,19 @@ class MyDialogFragment : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.button.setOnClickListener {
+
+            /** older way **/
             val intent = Intent()
             intent.putExtra(Constants.DATA_FROM, "Manish")
             targetFragment!!.onActivityResult(
                 Constants.REQ_CODE_SECOND_FRAGMENT,
                 Activity.RESULT_OK, intent
+            )
+
+            /**new way **/
+            parentFragmentManager.setFragmentResult(
+                Constants.REQUEST_KEY,
+                bundleOf(Constants.DATA_FROM to "Manish 2")
             )
 
             dismissAllowingStateLoss()
