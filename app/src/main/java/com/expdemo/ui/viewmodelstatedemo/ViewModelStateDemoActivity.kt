@@ -53,7 +53,7 @@ class ViewModelStateDemoActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         /** stop the trace **/
-        Debug.stopMethodTracing()
+        //Debug.stopMethodTracing()
 
         updateText()
 

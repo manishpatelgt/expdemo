@@ -44,7 +44,7 @@ class App : MultiDexApplication() {
         var outputFile = File(file, logName)
 
         /** start the trace **/
-        Debug.startMethodTracingSampling(outputFile.name, 1030, 100)
+        //Debug.startMethodTracingSampling(outputFile.name, 1030, 100)
 
         appContainer = AppContainer()
 
