@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="publisher_border_color">#FFFFFF</color>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="white">#ffffff</color>
+
+    <color name="black">#000000</color>
+    <color name="blackbase">#343434</color>
+    <color name="blanchedalmond">#FFEBCD</color>
+
+    <color name="whitegrey">#FFF2F2F2</color>
+    <color name="whitesmoke">#F5F5F5</color>
+
+    <color name="grey">#808080</color>
+    <color name="grey20">#333333</color>
+    <color name="grey29">#4A4A4A</color>
+    <color name="grey50">#7F7F7F</color>
+    <color name="grey53">#878787</color>
+    <color name="grey66">#A8A8A8</color>
+    <color name="grey68">#ADADAD</color>
+    <color name="grey82">#D1D1D1</color>
+    <color name="grey98">#FAFAFA</color>
+    <color name="grey99">#FCFCFC</color>
+
+
+    <color name="redcolor">#D0021B</color>
+    <color name="transparent">#00000000</color>
+    <color name="light_gray">#AA808080</color>
+    <color name="buttongreencolor2">#0FD19F</color>
+    <color name="textcolor3">#4a4a4a</color>
+    <color name="textcolor4">#4a90e2</color>
+    <color name="textcolor5">#9b9b9b</color>
+    <color name="textcolor6">#33333d</color>
+    <color name="textcolor7">#373f42</color>
+    <color name="textcolor8">#2a3033</color>
+    <color name="textcolor9">#7b8a9d</color>
+    <color name="circle_background">#008780</color>
+    <color name="circle_background2">#3E837E</color>
+    <color name="circle_background3">#63CEA2</color>
+
+    <color name="screenBackground">#F1F3F2</color>
+    <color name="buttonNormal">#E2E8E6</color>
+    <color name="buttonSelected">#0FD19F</color>
+</resources>
