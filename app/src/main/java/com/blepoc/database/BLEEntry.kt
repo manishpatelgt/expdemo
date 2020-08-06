@@ -10,17 +10,24 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "tblDeviceLog")
 data class BLEEntry(
 
-    @PrimaryKey(autoGenerate = false)
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "ID")
-    var id: String = "",
-
-    @ColumnInfo(name = "InsertDateTime")
-    var insertDateTime: String = "",
+    var id: Int = 0,
 
     @ColumnInfo(name = "Mac")
-    var mac: String = "",
+    var mac: String? = null,
 
     @ColumnInfo(name = "Name")
-    var name: String = ""
+    var name: String? = "",
 
-)
+    @ColumnInfo(name = "InsertDateTime")
+    var insertDateTime: String? = null,
+
+    @ColumnInfo(name = "TimeStamp")
+    var timeStamp: Long = 0,
+
+    @ColumnInfo(name = "IsAlert")
+    var isAlert: Boolean = false
+
+) {
+}

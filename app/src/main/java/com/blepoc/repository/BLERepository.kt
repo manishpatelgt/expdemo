@@ -20,7 +20,11 @@ class BLERepository private constructor(context: Context) {
         bleStore = database.bleDao()
     }
 
-    suspend fun insertLocation(bleEntry: BLEEntry) {
-        bleStore.insert(bleEntry)
-    }
+    suspend fun getDevice(mac: String) = bleStore.getDevice(mac)
+
+    suspend fun updateAlertFlag(mac: String) = bleStore.updateAlertFlag(mac)
+
+    suspend fun clearLogs() = bleStore.clearLogs()
+
+    suspend fun insertDevice(bleEntry: BLEEntry) = bleStore.insert(bleEntry)
 }

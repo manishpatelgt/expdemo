@@ -1,6 +1,7 @@
 package com.blepoc.ble
 
 import android.Manifest
+import android.app.PendingIntent
 import android.app.Service
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothClass
@@ -12,7 +13,11 @@ import android.content.IntentFilter
 import android.os.Handler
 import android.os.IBinder
 import android.util.Log
+import com.blepoc.App
 import com.blepoc.App.Companion.context
+import com.blepoc.database.BLEEntry
+import com.blepoc.receivers.NotificationDismissReceiver
+import com.blepoc.repository.BLERepository
 import com.blepoc.utility.Utils
 import com.blepoc.utility.isAtLeastAndroid8
 import com.blepoc.utility.notifications.NotificationHelper
@@ -22,6 +27,9 @@ import com.polidea.rxandroidble2.scan.ScanResult
 import com.polidea.rxandroidble2.scan.ScanSettings
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 /**
  * Created by Manish Patel on 8/4/2020.
@@ -32,8 +40,12 @@ class BLESScanService : Service() {
     private var scanDisposable: Disposable? = null
     private lateinit var notificationHelper: NotificationHelper
     private val scanHandler = Handler()
+    private val removeHandler = Handler()
     private var is_bluetooth_on = true
     private lateinit var bluetoothAdapter: BluetoothAdapter
+    private lateinit var bleRepository: BLERepository
+
+    private val ioScope = CoroutineScope(Dispatchers.IO)
 
     override fun onBind(intent: Intent): IBinder? {
         return null
@@ -42,6 +54,7 @@ class BLESScanService : Service() {
     override fun onCreate() {
         super.onCreate()
         Log.e(TAG, "BLEService onCreate")
+        bleRepository = App.bleRepository
         notificationHelper = NotificationHelper(this)
         createNotification()
         rxBleClient = RxBleClient.create(this)
@@ -113,6 +126,10 @@ class BLESScanService : Service() {
                     )
                     //stop scanning
                     stopScanning()
+                    /** clear all the records **/
+                    ioScope.launch {
+                        bleRepository.clearLogs()
+                    }
                 }
             }
         }
@@ -190,8 +207,44 @@ class BLESScanService : Service() {
         val mac = rxBleDevice.macAddress
         Log.e(TAG, "Mac: $mac")
 
-        val name = rxBleDevice.name
-        Log.e(TAG, "Name: $name")
+        val Name = rxBleDevice.name
+        Log.e(TAG, "Name: $Name")
+
+        /** check for device is exist or not **/
+        ioScope.launch {
+            val bleEntry = bleRepository.getDevice(mac.replace(":", ""))
+            if (bleEntry != null) {
+                Log.e(TAG, "Device found")
+
+                val olderTimeStamp = bleEntry.timeStamp
+                val currentTimeStamp = Utils.getCurrentTimeStamp()
+
+                val totalMinutes = Utils.getDifferenceInMinutes(currentTimeStamp, olderTimeStamp)
+                Log.e(TAG, "Total Minutes: $totalMinutes")
+                if (totalMinutes >= 1) {
+                    if (!bleEntry.isAlert) {
+                        val title = "Social Distancing Alert"
+                        val message = "${bleEntry.name} is near to you since last 15 min"
+                        notificationHelper.showAlertNotification(title, message)
+                        bleRepository.updateAlertFlag(mac.replace(":", ""))
+                    }
+                }
+
+            } else {
+                Log.e(TAG, "Device not found")
+                if (!Name.isNullOrEmpty()) {
+                    val idt = Utils.getCurrentDateTimeString()
+                    val timeStamp = Utils.getCurrentTimeStamp()
+                    val bleEntry = BLEEntry(
+                        mac = mac.replace(":", ""),
+                        name = Name,
+                        insertDateTime = idt,
+                        timeStamp = timeStamp
+                    )
+                    bleRepository.insertDevice(bleEntry)
+                }
+            }
+        }
 
         /*val type = rxBleDevice.bluetoothDevice.type
         Log.e(TAG, "Type: $type")*/

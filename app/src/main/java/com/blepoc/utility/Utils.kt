@@ -8,6 +8,10 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.blepoc.App.Companion.context
 import com.blepoc.BuildConfig
+import java.sql.Timestamp
+import java.text.SimpleDateFormat
+import java.util.*
+import java.util.concurrent.TimeUnit
 
 /**
  * Created by Manish Patel on 8/4/2020.
@@ -52,5 +56,24 @@ object Utils {
             else -> return "Rationale Message NOT Found!"
         }
     }
+
+    val calendar: Calendar = Calendar.getInstance()
+
+    fun getCurrentTimeStamp(): Long {
+        val stamp = Timestamp(System.currentTimeMillis())
+        return stamp.time
+    }
+
+    fun getDifferenceInMinutes(startTime: Long, endTime: Long): Long {
+        val timeDiff = startTime - endTime
+        return TimeUnit.MILLISECONDS.toMinutes(timeDiff)
+    }
+
+    fun getCurrentDateTimeString(): String {
+        return simpleDateFormat.format(calendar.timeInMillis)
+    }
+
+    val TIMESTAMP_LONG_DATE_TIME_24_HOUR = "dd/MM/yyyy HH:mm:ss"
+    var simpleDateFormat = SimpleDateFormat(TIMESTAMP_LONG_DATE_TIME_24_HOUR)
 
 }

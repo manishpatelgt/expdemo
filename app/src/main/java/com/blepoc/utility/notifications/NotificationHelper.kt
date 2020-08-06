@@ -8,9 +8,11 @@ import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
 import android.graphics.Color
+import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.blepoc.R
 import com.blepoc.activities.MainActivity
+import com.blepoc.receivers.NotificationDismissReceiver
 import com.blepoc.utility.isAtLeastAndroid8
 import com.blepoc.utility.notificationManager
 
@@ -22,6 +24,23 @@ class NotificationHelper(val context: Context) : ContextWrapper(context) {
     init {
         // Notifications channels must be registered on Android 8.0 and higher, otherwise notifications will never show up to the user.
         createForegroundServicesChannel()
+        createUserNotificationChannel()
+    }
+
+    private fun createUserNotificationChannel() {
+        if (isAtLeastAndroid8() && manager.getNotificationChannel(USER_MESSAGES_CHANNEL_ID) == null) {
+            val userNotifications =
+                NotificationChannel(
+                    USER_MESSAGES_CHANNEL_ID,
+                    USER_MESSAGES_CHANNEL_NAME,
+                    NotificationManager.IMPORTANCE_HIGH
+                )
+            userNotifications.description = USER_MESSAGES_CHANNEL_DESCRIPTION
+            userNotifications.lightColor = Color.GREEN
+            userNotifications.setShowBadge(true)
+            userNotifications.lockscreenVisibility = Notification.VISIBILITY_PUBLIC
+            manager.createNotificationChannel(userNotifications)
+        }
     }
 
     private fun createForegroundServicesChannel() {
@@ -49,6 +68,50 @@ class NotificationHelper(val context: Context) : ContextWrapper(context) {
             SERVICE_RUNNING_NOTIFICATION,
             updatedNotification
         )
+    }
+
+    fun clearNotification() {
+        if (manager != null) {
+            manager.cancel(1)
+        }
+    }
+
+    fun showAlertNotification(
+        title: String,
+        message: String,
+        priority: Int = NotificationCompat.PRIORITY_HIGH
+    ) {
+        val builder = NotificationCompat.Builder(this)
+
+        val intentNotification = Intent(this, NotificationDismissReceiver::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(
+            this, 0, intentNotification, PendingIntent.FLAG_UPDATE_CURRENT
+        )
+
+        if (isAtLeastAndroid8()) {
+            builder.setChannelId(USER_MESSAGES_CHANNEL_ID)
+        }
+
+        builder
+            .setSmallIcon(R.drawable.ic_notifications_black_24dp)
+            .setContentTitle(title)
+            .setContentText(message)
+            .setWhen(System.currentTimeMillis())
+
+        builder
+            .setDefaults(Notification.DEFAULT_LIGHTS or Notification.DEFAULT_VIBRATE)
+            .setOnlyAlertOnce(false)
+            .setAutoCancel(true)
+
+        if (pendingIntent != null) {
+            builder.setContentIntent(pendingIntent)
+        }
+
+        builder
+            .setPriority(priority)
+            .setCategory(NotificationCompat.CATEGORY_STATUS)
+
+        manager.notify(1, builder.build())
     }
 
     fun getForegroundServiceNotification(
@@ -85,9 +148,13 @@ class NotificationHelper(val context: Context) : ContextWrapper(context) {
 
     companion object {
         private const val SERVICE_RUNNING_CHANNEL_ID = "ForegroundServicesChannel"
-        private const val SERVICE_RUNNING_CHANNEL_NAME = "Frisbee Foreground Services Running"
+        private const val SERVICE_RUNNING_CHANNEL_NAME = "BLEPoc Foreground Services Running"
         private const val SERVICE_RUNNING_CHANNEL_DESCRIPTION =
-            "Frisbee Running as a Foreground Service"
+            "BLEPoc Running as a Foreground Service"
+
+        private const val USER_MESSAGES_CHANNEL_ID = "UserMessagesChannel"
+        private const val USER_MESSAGES_CHANNEL_NAME = "User messages from BLEPoc"
+        private const val USER_MESSAGES_CHANNEL_DESCRIPTION = "User messages"
 
         const val SERVICE_RUNNING_NOTIFICATION = 1202
     }
