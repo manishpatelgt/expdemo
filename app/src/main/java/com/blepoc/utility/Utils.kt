@@ -29,6 +29,7 @@ object Utils {
     const val BLE_MESSAGE = "Please turn ON Bluetooth"
 
     var SCAN_CHECK_INTERVAL_TIME = 20 * 1000.toLong()
+    var ALERT_MINUTES = 5
 
     fun checkPermission(permission: String) =
         ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED

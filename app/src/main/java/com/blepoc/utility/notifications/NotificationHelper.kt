@@ -83,10 +83,10 @@ class NotificationHelper(val context: Context) : ContextWrapper(context) {
     ) {
         val builder = NotificationCompat.Builder(this)
 
-        val intentNotification = Intent(this, NotificationDismissReceiver::class.java)
+        /*val intentNotification = Intent(this, NotificationDismissReceiver::class.java)
         val pendingIntent = PendingIntent.getBroadcast(
             this, 0, intentNotification, PendingIntent.FLAG_UPDATE_CURRENT
-        )
+        )*/
 
         if (isAtLeastAndroid8()) {
             builder.setChannelId(USER_MESSAGES_CHANNEL_ID)
@@ -103,15 +103,16 @@ class NotificationHelper(val context: Context) : ContextWrapper(context) {
             .setOnlyAlertOnce(false)
             .setAutoCancel(true)
 
-        if (pendingIntent != null) {
+        /*if (pendingIntent != null) {
             builder.setContentIntent(pendingIntent)
-        }
+        }*/
 
         builder
             .setPriority(priority)
             .setCategory(NotificationCompat.CATEGORY_STATUS)
 
-        manager.notify(1, builder.build())
+        val id = (0..1000).random()
+        manager.notify(id, builder.build())
     }
 
     fun getForegroundServiceNotification(

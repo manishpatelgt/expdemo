@@ -221,7 +221,7 @@ class BLESScanService : Service() {
 
                 val totalMinutes = Utils.getDifferenceInMinutes(currentTimeStamp, olderTimeStamp)
                 Log.e(TAG, "Total Minutes: $totalMinutes")
-                if (totalMinutes >= 1) {
+                if (totalMinutes >= Utils.ALERT_MINUTES) {
                     if (!bleEntry.isAlert) {
                         val title = "Social Distancing Alert"
                         val message = "${bleEntry.name} is near to you since last 15 min"
