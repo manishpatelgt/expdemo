@@ -136,7 +136,8 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             if (!mBluetoothAdapter.isEnabled) {
                 //Call intent for Bluetooth
                 val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
-                startActivityForResult(enableBtIntent,
+                startActivityForResult(
+                    enableBtIntent,
                     REQ_BT_ENABLE
                 )
             }

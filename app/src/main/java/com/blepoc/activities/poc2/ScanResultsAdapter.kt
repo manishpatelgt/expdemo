@@ -71,6 +71,7 @@ internal class ScanResultsAdapter(
                     }
                 }
             }
+
     }
 
     fun clearScanResults() {

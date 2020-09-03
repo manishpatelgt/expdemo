@@ -21,10 +21,11 @@ import com.blepoc.utility.bluetoothManager
 import com.blepoc.utility.isAtLeastAndroid8
 import com.blepoc.utility.notifications.NotificationHelper
 
-
 /**
  * Created by Manish Patel on 8/6/2020.
  */
+//https://code.tutsplus.com/tutorials/how-to-advertise-android-as-a-bluetooth-le-peripheral--cms-25426
+
 class AdvertiserService : Service() {
 
     private lateinit var bluetoothAdapter: BluetoothAdapter
@@ -35,8 +36,8 @@ class AdvertiserService : Service() {
     private var mAdvertiseCallback: AdvertiseCallback? = null
     private val mHandler = Handler()
 
-    override fun onBind(intent: Intent?): IBinder? {
-        TODO("Not yet implemented")
+    override fun onBind(intent: Intent): IBinder? {
+        return null
     }
 
     override fun onCreate() {
@@ -48,9 +49,9 @@ class AdvertiserService : Service() {
         startAdvertising()
         //setTimeout()
 
-        val filter = IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED)
+        /*val filter = IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED)
         this.registerReceiver(mBluetoothReceiver, filter)
-        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
+        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()*/
 
         super.onCreate()
     }
@@ -219,6 +220,7 @@ class AdvertiserService : Service() {
         stopSelf()
         running = false;
         stopAdvertising();
+        //unregisterReceiver(mBluetoothReceiver)
         mHandler.removeCallbacks(timeoutRunnable)
         stopForeground(true)
         super.onDestroy()

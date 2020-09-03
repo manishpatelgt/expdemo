@@ -14,6 +14,7 @@ import com.blepoc.App
 import com.blepoc.App.Companion.context
 import com.blepoc.R
 import com.blepoc.activities.BaseActivity
+import com.blepoc.ble.AdvertiserService
 import com.blepoc.ble.BLESScanService
 import com.blepoc.databinding.ActivityMain2Binding
 import com.blepoc.utility.Utils
@@ -39,6 +40,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
     private val ioScope = CoroutineScope(Dispatchers.IO)
     private var bleRepository = App.bleRepository
+    private lateinit var mBluetoothAdapter: BluetoothAdapter
 
     private lateinit var binding: ActivityMain2Binding
     private val rxBleClient = App.rxBleClient
@@ -55,6 +57,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     }
 
     fun setupUI() {
+        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
         configureResultList()
         binding.scanBtn.setOnClickListener(this)
     }
@@ -102,6 +105,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                 val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
                 startActivityForResult(enableBtIntent, REQ_BT_ENABLE)
             } else {
+                mBluetoothAdapter.name = Utils.MODEL
                 startScanning()
             }
         } else {
@@ -117,6 +121,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQ_BT_ENABLE) {
             if (resultCode == RESULT_OK) {
+                mBluetoothAdapter.name = Utils.MODEL
                 startScanning()
             }
             if (resultCode == RESULT_CANCELED) {
@@ -132,17 +137,28 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         } else {
             askForPermissions()
         }
+        startAdvertising()
         updateButtonUIState()
     }
 
     private fun startScanning() {
+        Log.e(TAG, "My mac: " + mBluetoothAdapter.address)
         scanBleDevices()
             .observeOn(AndroidSchedulers.mainThread())
             .doFinally { dispose() }
             .subscribe({ resultsAdapter.addScanResult(it) }, { onScanFailure(it) })
             .let { scanDisposable = it }
-
         updateButtonUIState()
+    }
+
+    private fun startAdvertising() {
+        //Check for service already running or not
+        if (Utils.serviceIsRunning(context, AdvertiserService::class.java.name)) {
+            //Stop service
+            App.getInstance().stopAdvertiserService()
+        } else {
+            App.getInstance().startAdvertiserService()
+        }
     }
 
     private fun scanBleDevices(): Observable<ScanResult> {
@@ -192,7 +208,8 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
     override fun onPause() {
         super.onPause()
-        stopScanning()
+        //stopScanning()
+        //startAdvertising()
         unregisterReceiver(mBluetoothReceiver)
     }
 
@@ -211,12 +228,19 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                 Log.e(BLESScanService.TAG, "BLE State: $bluetoothState")
                 if (bluetoothState == BluetoothAdapter.STATE_ON) {
                     Log.e(TAG, "Bluetooth turned ON")
+                    mBluetoothAdapter.name = Utils.MODEL
                 } else if (bluetoothState == BluetoothAdapter.STATE_OFF) {
                     Log.e(TAG, "Bluetooth turned OFF")
                     clearLogs()
                 }
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        stopScanning()
+        startAdvertising()
     }
 
     fun clearLogs() {

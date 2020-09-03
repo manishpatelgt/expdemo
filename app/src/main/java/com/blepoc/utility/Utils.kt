@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.ActivityManager
 import android.content.Context
 import android.content.pm.PackageManager
+import android.os.Build
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.blepoc.App.Companion.context
@@ -22,6 +23,8 @@ object Utils {
     val APPLICATION_PACKAGE = BuildConfig.APPLICATION_ID
     val APPLICATION_PATH = "/data/data/$APPLICATION_PACKAGE"
     val APPLICATION_DATABASE_NAME = "ble.db"
+
+    var MODEL = Build.MODEL
 
     val NOTIFICATION_TITLE = "Service Running"
     val NOTIFICATION_MESSAGE = "Executing background operations"
