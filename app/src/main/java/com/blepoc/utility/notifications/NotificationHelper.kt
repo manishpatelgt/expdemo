@@ -8,11 +8,9 @@ import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
 import android.graphics.Color
-import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.blepoc.R
-import com.blepoc.activities.MainActivity
-import com.blepoc.receivers.NotificationDismissReceiver
+import com.blepoc.activities.poc1.MainActivity
 import com.blepoc.utility.isAtLeastAndroid8
 import com.blepoc.utility.notificationManager
 
@@ -112,7 +110,7 @@ class NotificationHelper(val context: Context) : ContextWrapper(context) {
             .setCategory(NotificationCompat.CATEGORY_STATUS)
 
         val id = (0..1000).random()
-        manager.notify(id, builder.build())
+        manager.notify(1, builder.build())
     }
 
     fun getForegroundServiceNotification(

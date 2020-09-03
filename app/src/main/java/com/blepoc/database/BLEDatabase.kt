@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
  */
 private val ioScope = CoroutineScope(Dispatchers.IO)
 
-@Database(entities = [BLEEntry::class], version = 101)
+@Database(entities = [BLEEntry::class], version = 102)
 abstract class BLEDatabase : RoomDatabase() {
 
     abstract fun bleDao(): BLEStore

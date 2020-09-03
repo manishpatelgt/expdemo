@@ -1,4 +1,4 @@
-package com.blepoc.activities
+package com.blepoc.activities.poc1
 
 import android.Manifest
 import android.bluetooth.BluetoothAdapter
@@ -8,6 +8,8 @@ import android.view.View
 import com.blepoc.App
 import com.blepoc.App.Companion.context
 import com.blepoc.R
+import com.blepoc.activities.BaseActivity
+import com.blepoc.activities.HomeActivity
 import com.blepoc.ble.AdvertiserService
 import com.blepoc.ble.BLESScanService
 import com.blepoc.databinding.ActivityMainBinding
@@ -31,26 +33,41 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     fun setupUI() {
         binding.scanServiceBtn.setOnClickListener(this)
         binding.advertiseServiceBtn.setOnClickListener(this)
+        binding.serviceBtn.setOnClickListener(this)
+
         updateUI()
         askForPermissions()
     }
 
     fun updateUI() {
         if (Utils.serviceIsRunning(context, BLESScanService::class.java.name)) {
-            binding.scanServiceBtn.text = getString(R.string.stop_service)
+            binding.scanServiceBtn.text = getString(R.string.stop_scanning_service)
+            binding.serviceBtn.text = getString(R.string.stop_service)
         } else {
-            binding.scanServiceBtn.text = getString(R.string.start_service)
+            binding.scanServiceBtn.text = getString(R.string.start_scanning_service)
+            binding.serviceBtn.text = getString(R.string.start_service)
         }
 
-        if (Utils.serviceIsRunning(context, AdvertiserService::class.java.name)) {
+        /*if (Utils.serviceIsRunning(context, AdvertiserService::class.java.name)) {
             binding.advertiseServiceBtn.text = getString(R.string.stop_advertise_service)
         } else {
             binding.advertiseServiceBtn.text = getString(R.string.start_advertise_service)
-        }
+        }*/
     }
 
     override fun onClick(v: View?) {
         when (v?.id) {
+            R.id.service_btn -> {
+
+                //Check for service already running or not
+                if (Utils.serviceIsRunning(context, BLESScanService::class.java.name)) {
+                    //Stop service
+                    App.getInstance().stopBLEService()
+                } else {
+                    App.getInstance().startBLEService()
+                }
+                updateUI()
+            }
             R.id.advertise_service_btn -> {
                 //Check for service already running or not
                 if (Utils.serviceIsRunning(context, AdvertiserService::class.java.name)) {
@@ -119,7 +136,9 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             if (!mBluetoothAdapter.isEnabled) {
                 //Call intent for Bluetooth
                 val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
-                startActivityForResult(enableBtIntent, REQ_BT_ENABLE)
+                startActivityForResult(enableBtIntent,
+                    REQ_BT_ENABLE
+                )
             }
         } else {
             Utils.showToast(getString(R.string.bluetooth_error_message))
@@ -163,5 +182,6 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
     companion object {
         private const val REQ_BT_ENABLE = 100
+        fun getIntent() = Intent(context, MainActivity::class.java)
     }
 }

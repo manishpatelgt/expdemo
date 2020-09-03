@@ -3,11 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activities.poc1.MainActivity">
+    android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/scan_service_btn"
+        android:id="@+id/poc1_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -15,16 +14,16 @@
         android:background="@drawable/green_button_selector"
         android:fontFamily="@font/circular_black"
         android:padding="10dp"
-        android:visibility="gone"
-        android:text="@string/start_scanning_service"
+        android:text="@string/poc1_btn"
         android:textColor="@color/white"
         android:textSize="18sp"
+        android:visibility="visible"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/advertise_service_btn"
+        android:id="@+id/poc2_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -32,27 +31,10 @@
         android:background="@drawable/green_button_selector"
         android:fontFamily="@font/circular_black"
         android:padding="10dp"
-        android:visibility="gone"
-        android:text="@string/start_advertise_service"
+        android:text="@string/poc2_btn"
         android:textColor="@color/white"
         android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@+id/scan_service_btn"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-
-    <Button
-        android:id="@+id/service_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="10dp"
-        android:background="@drawable/green_button_selector"
-        android:fontFamily="@font/circular_black"
-        android:padding="10dp"
-        android:text="@string/start_service"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@+id/scan_service_btn"
+        app:layout_constraintTop_toBottomOf="@+id/poc1_btn"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 

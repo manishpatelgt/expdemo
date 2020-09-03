@@ -10,6 +10,9 @@ import com.blepoc.repository.BLERepository
 import com.blepoc.utility.Utils
 import com.blepoc.utility.isAtLeastAndroid8
 import com.facebook.stetho.Stetho
+import com.polidea.rxandroidble2.LogConstants
+import com.polidea.rxandroidble2.LogOptions
+import com.polidea.rxandroidble2.RxBleClient
 
 /**
  * Created by Manish Patel on 8/4/2020.
@@ -27,6 +30,16 @@ class App : Application() {
         /** Manual DI for now**/
         database = BLEDatabase.getInstance(applicationContext)
         bleRepository = BLERepository.getInstance(applicationContext)
+
+        rxBleClient = RxBleClient.create(this)
+        RxBleClient.updateLogOptions(
+            LogOptions.Builder()
+                .setLogLevel(LogConstants.INFO)
+                .setMacAddressLogSetting(LogConstants.MAC_ADDRESS_FULL)
+                .setUuidsLogSetting(LogConstants.UUIDS_FULL)
+                .setShouldLogAttributeValues(true)
+                .build()
+        )
     }
 
     fun startAdvertiserService() {
@@ -91,6 +104,9 @@ class App : Application() {
             }
             return sInstance
         }
+
+        lateinit var rxBleClient: RxBleClient
+            private set
 
     }
 
