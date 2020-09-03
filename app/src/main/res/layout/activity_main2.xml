@@ -32,6 +32,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scan_btn"
         tools:itemCount="5"
-        tools:listitem="@android:layout/two_line_list_item" />
+        tools:listitem="@layout/ble_list_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

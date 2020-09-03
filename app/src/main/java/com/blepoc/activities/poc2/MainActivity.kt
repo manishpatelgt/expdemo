@@ -2,13 +2,19 @@ package com.blepoc.activities.poc2
 
 import android.Manifest
 import android.bluetooth.BluetoothAdapter
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
+import android.os.Handler
+import android.util.Log
 import android.view.View
 import com.blepoc.App
 import com.blepoc.App.Companion.context
 import com.blepoc.R
 import com.blepoc.activities.BaseActivity
+import com.blepoc.ble.BLESScanService
 import com.blepoc.databinding.ActivityMain2Binding
 import com.blepoc.utility.Utils
 import com.blepoc.utility.isAtLeastAndroid6
@@ -22,11 +28,17 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_main2.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 /**
  * Created by Manish Patel on 9/3/2020.
  */
 class MainActivity : BaseActivity(), View.OnClickListener {
+
+    private val ioScope = CoroutineScope(Dispatchers.IO)
+    private var bleRepository = App.bleRepository
 
     private lateinit var binding: ActivityMain2Binding
     private val rxBleClient = App.rxBleClient
@@ -116,6 +128,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     private fun onScanToggleClick() {
         if (isScanning) {
             scanDisposable?.dispose()
+            clearLogs()
         } else {
             askForPermissions()
         }
@@ -171,9 +184,16 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     }
 
 
-    public override fun onPause() {
+    override fun onResume() {
+        super.onResume()
+        val filter = IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED)
+        registerReceiver(mBluetoothReceiver, filter)
+    }
+
+    override fun onPause() {
         super.onPause()
         stopScanning()
+        unregisterReceiver(mBluetoothReceiver)
     }
 
     override fun onClick(v: View?) {
@@ -184,7 +204,30 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         }
     }
 
+    private val mBluetoothReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            if (BluetoothAdapter.ACTION_STATE_CHANGED == intent.action) {
+                val bluetoothState = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, -1)
+                Log.e(BLESScanService.TAG, "BLE State: $bluetoothState")
+                if (bluetoothState == BluetoothAdapter.STATE_ON) {
+                    Log.e(TAG, "Bluetooth turned ON")
+                } else if (bluetoothState == BluetoothAdapter.STATE_OFF) {
+                    Log.e(TAG, "Bluetooth turned OFF")
+                    clearLogs()
+                }
+            }
+        }
+    }
+
+    fun clearLogs() {
+        /** clear all the records **/
+        ioScope.launch {
+            bleRepository.clearLogs()
+        }
+    }
+
     companion object {
+        val TAG = MainActivity::class.java.simpleName
         private const val REQ_BT_ENABLE = 100
         fun getIntent() = Intent(context, MainActivity::class.java)
     }

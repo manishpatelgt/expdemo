@@ -70,6 +70,16 @@ object Utils {
         return TimeUnit.MILLISECONDS.toMinutes(timeDiff)
     }
 
+    fun getHumanTimeDifference(startTime: Long, endTime: Long): String? {
+        val timeDiff = endTime - startTime
+        return String.format(
+            "%d min %02d sec",
+            TimeUnit.MILLISECONDS.toMinutes(timeDiff),
+            TimeUnit.MILLISECONDS.toSeconds(timeDiff) - TimeUnit.MINUTES.toSeconds(
+                TimeUnit.MILLISECONDS.toMinutes(timeDiff)
+            )
+        )
+    }
     fun getCurrentDateTimeString(): String {
         return simpleDateFormat.format(calendar.timeInMillis)
     }
