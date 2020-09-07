@@ -19,6 +19,8 @@ import java.util.concurrent.TimeUnit
  */
 object Utils {
 
+    val APP_NAME = "EF App"
+
     /** local sqlite database wise fields **/
     val APPLICATION_PACKAGE = BuildConfig.APPLICATION_ID
     val APPLICATION_PATH = "/data/data/$APPLICATION_PACKAGE"
@@ -83,6 +85,7 @@ object Utils {
             )
         )
     }
+
     fun getCurrentDateTimeString(): String {
         return simpleDateFormat.format(calendar.timeInMillis)
     }

@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.blepoc.App
 import com.blepoc.R
+import com.blepoc.ble.AdvertiserService
 import com.blepoc.ble.BLESScanService
 import com.blepoc.database.BLEEntry
 import com.blepoc.repository.BLERepository
@@ -48,6 +49,10 @@ internal class ScanResultsAdapter(
             }
             ?: run {
 
+                val result = bleScanResult.scanRecord.getServiceData(AdvertiserService.Service_UUID)
+                val from = result?.toString(Charsets.UTF_8)
+                Log.e(TAG, "from: $from")
+
                 val rxBleDevice = bleScanResult.bleDevice
                 val mac = rxBleDevice.macAddress
                 val name = rxBleDevice.name
@@ -67,7 +72,12 @@ internal class ScanResultsAdapter(
                             timeStamp = timeStamp
                         )
                         ioScope.launch { bleRepository.insertDevice(bleEntry) }
-                        notifyDataSetChanged()
+                        //notifyDataSetChanged()
+                        if (data.size == 0) {
+                            notifyDataSetChanged()
+                        } else {
+                            notifyItemInserted(data.size - 1)
+                        }
                     }
                 }
             }

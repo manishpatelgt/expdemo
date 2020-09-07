@@ -44,6 +44,8 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityMain2Binding
     private val rxBleClient = App.rxBleClient
+    val handler = Handler()
+
     private var scanDisposable: Disposable? = null
     private val resultsAdapter = ScanResultsAdapter { }
     private val isScanning: Boolean
@@ -64,7 +66,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
     private fun configureResultList() {
         with(scan_results) {
-            setHasFixedSize(true)
+            //setHasFixedSize(true)
             itemAnimator = null
             adapter = resultsAdapter
         }
@@ -106,6 +108,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                 startActivityForResult(enableBtIntent, REQ_BT_ENABLE)
             } else {
                 mBluetoothAdapter.name = Utils.MODEL
+                startAdvertising()
                 startScanning()
             }
         } else {
@@ -122,6 +125,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         if (requestCode == REQ_BT_ENABLE) {
             if (resultCode == RESULT_OK) {
                 mBluetoothAdapter.name = Utils.MODEL
+                startAdvertising()
                 startScanning()
             }
             if (resultCode == RESULT_CANCELED) {
@@ -132,12 +136,12 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
     private fun onScanToggleClick() {
         if (isScanning) {
+            startAdvertising()
             scanDisposable?.dispose()
             clearLogs()
         } else {
             askForPermissions()
         }
-        startAdvertising()
         updateButtonUIState()
     }
 

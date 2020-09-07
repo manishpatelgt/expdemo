@@ -147,7 +147,8 @@ class AdvertiserService : Service() {
          * onStartFailure() method of an AdvertiseCallback implementation.
          */
         val dataBuilder = AdvertiseData.Builder()
-        dataBuilder.addServiceUuid(Service_UUID)
+        //dataBuilder.addServiceUuid(Service_UUID)
+        dataBuilder.addServiceData(Service_UUID, Utils.APP_NAME.toByteArray())
         dataBuilder.setIncludeDeviceName(true)
 
         /* For example - this will cause advertising to fail (exceeds size limit) */
