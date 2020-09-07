@@ -51,7 +51,7 @@ internal class ScanResultsAdapter(
 
                 val result = bleScanResult.scanRecord.getServiceData(AdvertiserService.Service_UUID)
                 val from = result?.toString(Charsets.UTF_8)
-                Log.e(TAG, "from: $from")
+                Log.e(TAG, "From: $from")
 
                 val rxBleDevice = bleScanResult.bleDevice
                 val mac = rxBleDevice.macAddress
@@ -59,7 +59,7 @@ internal class ScanResultsAdapter(
 
                 // new device => add to data list
                 with(data) {
-                    if (!name.isNullOrEmpty()) {
+                    if (!name.isNullOrEmpty() && from == Utils.APP_NAME) {
                         Log.e(TAG, "mac: $mac")
                         Log.e(TAG, "name: $name")
                         add(bleScanResult)
@@ -72,7 +72,6 @@ internal class ScanResultsAdapter(
                             timeStamp = timeStamp
                         )
                         ioScope.launch { bleRepository.insertDevice(bleEntry) }
-                        //notifyDataSetChanged()
                         if (data.size == 0) {
                             notifyDataSetChanged()
                         } else {
