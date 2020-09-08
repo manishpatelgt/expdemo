@@ -104,9 +104,7 @@ internal class ScanResultsAdapter(
                 if (bleEntry != null) {
                     Log.e(TAG, "mac: $mac")
                     Log.e(TAG, "name: $name")
-
                     Log.e(TAG, "Device found")
-
                     val olderTimeStamp = bleEntry.timeStamp
                     val currentTimeStamp = Utils.getCurrentTimeStamp()
 
