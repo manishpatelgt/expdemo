@@ -20,11 +20,16 @@ class BLERepository private constructor(context: Context) {
         bleStore = database.bleDao()
     }
 
-    suspend fun getDevice(mac: String) = bleStore.getDevice(mac)
+    suspend fun getDevice(deviceId: String) = bleStore.getDevice(deviceId)
+
+    suspend fun updateLastVisibleTimestamp(lastVisibletimeStamp: Long, deviceId: String) =
+        bleStore.updateLastVisibleTimestamp(lastVisibletimeStamp, deviceId)
 
     suspend fun updateAlertFlag(mac: String) = bleStore.updateAlertFlag(mac)
 
     suspend fun clearLogs() = bleStore.clearLogs()
 
     suspend fun insertDevice(bleEntry: BLEEntry) = bleStore.insert(bleEntry)
+
+    suspend fun removeDevice(deviceId: String) = bleStore.removeDevice(deviceId)
 }

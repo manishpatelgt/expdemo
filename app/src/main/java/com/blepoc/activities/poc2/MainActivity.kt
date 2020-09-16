@@ -32,6 +32,7 @@ import kotlinx.android.synthetic.main.activity_main2.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * Created by Manish Patel on 9/3/2020.
@@ -59,6 +60,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     }
 
     fun setupUI() {
+        binding.txtDeviceId.text = "DeviceId: ${Utils.getDeviceId()}"
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
         configureResultList()
         binding.scanBtn.setOnClickListener(this)
@@ -136,7 +138,8 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
     private fun onScanToggleClick() {
         if (isScanning) {
-            startAdvertising()
+            //Stop service
+            App.getInstance().stopAdvertiserService()
             scanDisposable?.dispose()
             clearLogs()
         } else {
@@ -203,20 +206,6 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         }
     }
 
-
-    override fun onResume() {
-        super.onResume()
-        val filter = IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED)
-        registerReceiver(mBluetoothReceiver, filter)
-    }
-
-    override fun onPause() {
-        super.onPause()
-        //stopScanning()
-        //startAdvertising()
-        unregisterReceiver(mBluetoothReceiver)
-    }
-
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.scan_btn -> {
@@ -241,18 +230,70 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        stopScanning()
-        startAdvertising()
-    }
-
     fun clearLogs() {
         /** clear all the records **/
         ioScope.launch {
             bleRepository.clearLogs()
         }
     }
+
+    val deviceOfflineCheck = object : Runnable {
+        override fun run() {
+            checkOffline()
+            handler.postDelayed(this, Utils.DEVICE_OFFLINE_CHECK_INTERVAL_TIME)
+        }
+    }
+
+    fun checkOffline() {
+        val data = resultsAdapter.data
+        if (data.isNotEmpty()) {
+            data.forEachIndexed { index, scanResult ->
+                val result = scanResult.scanRecord.getServiceData(AdvertiserService.Service_UUID)
+                val from = result?.toString(Charsets.UTF_8).toString()
+                val deviceId = from.replace("_EF", "")
+
+                ioScope.launch {
+                    val bleEntry = bleRepository.getDevice(deviceId)
+                    if (bleEntry != null) {
+                        val lastVisibleTimeStamp = bleEntry.lastVisibleTimeStamp
+                        val currentTimeStamp = Utils.getCurrentTimeStamp()
+                        val totalTime =
+                            Utils.getDifferenceInMinutes(currentTimeStamp, lastVisibleTimeStamp)
+                        Log.e(TAG, "Not visible time difference: $totalTime")
+                        if (totalTime >= 1) {
+                            bleRepository.removeDevice(deviceId)
+                            withContext(Dispatchers.Main) {
+                                resultsAdapter.removeAt(index)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val filter = IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED)
+        registerReceiver(mBluetoothReceiver, filter)
+        handler.post(deviceOfflineCheck)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        //stopScanning()
+        //startAdvertising()
+        unregisterReceiver(mBluetoothReceiver)
+        handler.removeCallbacks(deviceOfflineCheck)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        stopScanning()
+        //Stop service
+        App.getInstance().stopAdvertiserService()
+    }
+
 
     companion object {
         val TAG = MainActivity::class.java.simpleName

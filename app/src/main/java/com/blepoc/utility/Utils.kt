@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.blepoc.App.Companion.context
 import com.blepoc.BuildConfig
+import com.blepoc.utility.hardware.HardwareHelper
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.util.*
@@ -35,6 +36,8 @@ object Utils {
 
     var SCAN_CHECK_INTERVAL_TIME = 20 * 1000.toLong()
     var ALERT_MINUTES = 5
+
+    var DEVICE_OFFLINE_CHECK_INTERVAL_TIME = 30 * 1000L //30
 
     fun checkPermission(permission: String) =
         ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED
@@ -92,5 +95,7 @@ object Utils {
 
     val TIMESTAMP_LONG_DATE_TIME_24_HOUR = "dd/MM/yyyy HH:mm:ss"
     var simpleDateFormat = SimpleDateFormat(TIMESTAMP_LONG_DATE_TIME_24_HOUR)
+
+    fun getDeviceId() = HardwareHelper.getDeviceUUID(context)
 
 }

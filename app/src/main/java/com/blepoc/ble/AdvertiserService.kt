@@ -148,8 +148,9 @@ class AdvertiserService : Service() {
          */
         val dataBuilder = AdvertiseData.Builder()
         //dataBuilder.addServiceUuid(Service_UUID)
-        dataBuilder.addServiceData(Service_UUID, Utils.APP_NAME.toByteArray())
-        dataBuilder.setIncludeDeviceName(true)
+        val data = "${Utils.getDeviceId()}_EF"
+        dataBuilder.addServiceData(Service_UUID, data.toByteArray())
+        //dataBuilder.setIncludeDeviceName(true) // due to data limit: https://stackoverflow.com/questions/57724085/ble-android-advertising-addservicedata
 
         /* For example - this will cause advertising to fail (exceeds size limit) */
         //String failureData = "asdghkajsghalkxcjhfa;sghtalksjcfhalskfjhasldkjfhdskf";

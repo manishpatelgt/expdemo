@@ -36,7 +36,12 @@ internal class ScanResultsAdapter(
         val text_rssi: TextView = itemView.findViewById(R.id.text_rssi)
     }
 
-    private val data = mutableListOf<ScanResult>()
+    val data = mutableListOf<ScanResult>()
+
+    fun removeAt(index: Int) {
+        data.removeAt(index)
+        notifyItemRemoved(index)
+    }
 
     fun addScanResult(bleScanResult: ScanResult) {
         // Not the best way to ensure distinct devices, just for the sake of the demo.
@@ -45,12 +50,26 @@ internal class ScanResultsAdapter(
             ?.let {
                 // device already in data list => update
                 data[it.index] = bleScanResult
+                val result = bleScanResult.scanRecord.getServiceData(AdvertiserService.Service_UUID)
+                val from = result?.toString(Charsets.UTF_8).toString()
+                val deviceId = from.replace("_EF", "")
+
+                ioScope.launch {
+                    val bleEntry = bleRepository.getDevice(deviceId)
+                    if (bleEntry != null) {
+                        bleRepository.updateLastVisibleTimestamp(
+                            Utils.getCurrentTimeStamp(),
+                            deviceId
+                        )
+                    }
+                }
+
                 notifyItemChanged(it.index)
             }
             ?: run {
 
                 val result = bleScanResult.scanRecord.getServiceData(AdvertiserService.Service_UUID)
-                val from = result?.toString(Charsets.UTF_8)
+                val from = result?.toString(Charsets.UTF_8).toString()
                 Log.e(TAG, "From: $from")
 
                 val rxBleDevice = bleScanResult.bleDevice
@@ -59,17 +78,22 @@ internal class ScanResultsAdapter(
 
                 // new device => add to data list
                 with(data) {
-                    if (!name.isNullOrEmpty() && from == Utils.APP_NAME) {
+                    val isValid = from.contains("EF")
+                    if (isValid) {
+                        val deviceId = from.replace("_EF", "")
                         Log.e(TAG, "mac: $mac")
                         Log.e(TAG, "name: $name")
+                        Log.e(TAG, "deviceId: $deviceId")
                         add(bleScanResult)
                         val idt = Utils.getCurrentDateTimeString()
                         val timeStamp = Utils.getCurrentTimeStamp()
                         val bleEntry = BLEEntry(
                             mac = mac.replace(":", ""),
+                            deviceId = deviceId,
                             name = name,
                             insertDateTime = idt,
-                            timeStamp = timeStamp
+                            timeStamp = timeStamp,
+                            lastVisibleTimeStamp = timeStamp
                         )
                         ioScope.launch { bleRepository.insertDevice(bleEntry) }
                         if (data.size == 0) {
@@ -93,14 +117,19 @@ internal class ScanResultsAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(data[position]) {
 
+            val result = scanRecord.getServiceData(AdvertiserService.Service_UUID)
+            val from = result?.toString(Charsets.UTF_8).toString()
+            val deviceId = from.replace("_EF", "")
+            Log.e(TAG, "deviceId: $deviceId")
+
             val mac = bleDevice.macAddress
             val name = bleDevice.name
 
-            holder.text_name.text = String.format("%s (%s)", mac, name)
+            holder.text_name.text = String.format("%s (%s)", mac, deviceId)
             holder.itemView.setOnClickListener { onClickListener(this) }
 
             ioScope.launch {
-                val bleEntry = bleRepository.getDevice(mac.replace(":", ""))
+                val bleEntry = bleRepository.getDevice(deviceId)
                 if (bleEntry != null) {
                     Log.e(TAG, "mac: $mac")
                     Log.e(TAG, "name: $name")

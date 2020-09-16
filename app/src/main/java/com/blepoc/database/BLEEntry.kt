@@ -14,6 +14,9 @@ data class BLEEntry(
     @ColumnInfo(name = "ID")
     var id: Int = 0,
 
+    @ColumnInfo(name = "DeviceId")
+    var deviceId: String = "",
+
     @ColumnInfo(name = "Mac")
     var mac: String? = null,
 
@@ -27,7 +30,10 @@ data class BLEEntry(
     var timeStamp: Long = 0,
 
     @ColumnInfo(name = "IsAlert")
-    var isAlert: Boolean = false
+    var isAlert: Boolean = false,
+
+    @ColumnInfo(name = "LastVisibleTimeStamp")
+    var lastVisibleTimeStamp: Long = 0
 
 ) {
 }
