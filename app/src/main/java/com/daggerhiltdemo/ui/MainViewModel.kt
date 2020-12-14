@@ -11,7 +11,6 @@ import com.daggerhiltdemo.utils.NetworkHelper
 import com.daggerhiltdemo.utils.Resource
 import kotlinx.coroutines.launch
 
-
 class MainViewModel @ViewModelInject constructor(
     private val mainRepository: MainRepository,
     private val networkHelper: NetworkHelper

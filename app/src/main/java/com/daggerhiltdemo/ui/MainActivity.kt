@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.daggerhiltdemo.databinding.ActivityMainBinding
 import com.daggerhiltdemo.ui.adapters.MainAdapter
@@ -31,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setupUI() {
+        mAdapter = MainAdapter()
         // Initialize RecyclerView
         mViewBinding.postsRecyclerView.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupObserver() {
-        mainViewModel.posts.observe(this, Observer {
+        mainViewModel.posts.observe(this, {
             when (it.status) {
                 Status.SUCCESS -> {
                     it.data?.let { mAdapter.setPosts(it) }
@@ -50,6 +50,7 @@ class MainActivity : AppCompatActivity() {
                     mViewBinding.postsRecyclerView.visibility = View.GONE
                 }
                 Status.ERROR -> {
+                    println("error: ${it.message}")
                     Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
                 }
             }
