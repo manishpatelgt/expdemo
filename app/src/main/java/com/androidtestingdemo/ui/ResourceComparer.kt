@@ -1,4 +1,4 @@
-package com.androidtestingdemo.activity
+package com.androidtestingdemo.ui
 
 import android.content.Context
 
