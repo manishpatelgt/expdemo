@@ -6,6 +6,7 @@ import com.androidtestingdemo.data.local.ShoppingItem
 import com.androidtestingdemo.data.remote.responses.ImageResponse
 import com.androidtestingdemo.other.Resource
 
+/** Test Doubles **/
 class FakeShoppingRepository : ShoppingRepository {
 
     val shoppingItems = mutableListOf<ShoppingItem>()
