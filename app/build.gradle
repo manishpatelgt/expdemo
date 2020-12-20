@@ -17,7 +17,9 @@ android {
         versionName "1.0"
         buildConfigField("String", "API_KEY", API_KEY)
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        //testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        // Replace com.example.android.dagger with your class path.
+        testInstrumentationRunner "com.androidtestingdemo.HiltTestRunner"
     }
 
     buildFeatures {
@@ -36,6 +38,10 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+    packagingOptions {
+        exclude 'META-INF/AL2.0'
+        exclude 'META-INF/LGPL2.1'
     }
 }
 
@@ -140,11 +146,12 @@ dependencies {
     androidTestImplementation "com.linkedin.dexmaker:dexmaker-mockito:2.12.1"
     androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2"
     androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
-    androidTestImplementation "com.google.truth:truth:1.0.1"
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     androidTestImplementation "org.mockito:mockito-core:2.21.0"
     androidTestImplementation "com.google.truth:truth:1.1"
+    androidTestImplementation 'com.google.dagger:hilt-android-testing:2.28-alpha'
+    kaptAndroidTest 'com.google.dagger:hilt-android-compiler:2.28-alpha'
 
 //    testImplementation "com.google.truth:truth:1.1"
 //    androidTestImplementation "com.google.truth:truth:1.1"
