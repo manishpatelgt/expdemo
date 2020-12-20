@@ -7,3 +7,6 @@ https://developer.android.com/training/dependency-injection/hilt-testing
 
 Fragment Testing:
 https://developer.android.com/guide/fragments/test
+
+Testing Navigation:
+https://developer.android.com/guide/navigation/navigation-testing
