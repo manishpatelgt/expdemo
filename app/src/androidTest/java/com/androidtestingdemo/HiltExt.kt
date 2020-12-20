@@ -11,7 +11,6 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.core.internal.deps.guava.base.Preconditions
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
-
 @ExperimentalCoroutinesApi
 inline fun <reified T : Fragment> launchFragmentInHiltContainer(
     fragmentArgs: Bundle? = null,
