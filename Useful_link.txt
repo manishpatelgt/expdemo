@@ -4,3 +4,6 @@ https://github.com/philipplackner/ShoppingListTestingYT
 
 Hilt Testing:
 https://developer.android.com/training/dependency-injection/hilt-testing
+
+Fragment Testing:
+https://developer.android.com/guide/fragments/test
