@@ -1,0 +1,6 @@
+
+State Flow
+https://blog.mindorks.com/stateflow-apis-in-kotlin
+
+Flow
+https://developer.android.com/kotlin/flow
