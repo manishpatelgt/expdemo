@@ -7,4 +7,22 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="colorPrimary">#0061BF</color>
+    <color name="colorPrimaryDark">#014384</color>
+    <color name="colorOnPrimary">@android:color/white</color>
+
+    <color name="colorSurface">@android:color/white</color>
+
+    <!-- Title -->
+    <color name="colorOnPrimarySurface">#1A2025</color>
+
+    <!-- Text -->
+    <color name="colorOnSurface">#6A6D71</color>
+
+    <color name="buttongreencolor2">#0FD19F</color>
+
+    <color name="whitegrey">#FFF2F2F2</color>
+    <color name="whitesmoke">#F5F5F5</color>
+
 </resources>

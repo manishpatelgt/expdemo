@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.kotlinflowdemo.ui.fragments.main.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_mainFragment_to_weatherForecastOneShotFragment"
+            app:destination="@id/weatherForecastOneShotFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_weatherForecastDataStreamFragment"
+            app:destination="@id/weatherForecastDataStreamFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_weatherForecastDataStreamFlowFragment"
+            app:destination="@id/weatherForecastDataStreamFlowFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/weatherForecastDataStreamFragment"
+        android:name="com.kotlinflowdemo.ui.fragments.weatherforecast.datastream.WeatherForecastDataStreamFragment"
+        android:label="fragment_weather_forecast_data_stream"
+        tools:layout="@layout/fragment_weather_forecast_data_stream" />
+    <fragment
+        android:id="@+id/weatherForecastOneShotFragment"
+        android:name="com.kotlinflowdemo.ui.fragments.weatherforecast.oneshot.WeatherForecastOneShotFragment"
+        android:label="fragment_weather_forecast_one_shot"
+        tools:layout="@layout/fragment_weather_forecast_one_shot" />
+    <fragment
+        android:id="@+id/weatherForecastDataStreamFlowFragment"
+        android:name="com.kotlinflowdemo.ui.fragments.weatherforecast.datastreamflow.WeatherForecastDataStreamFlowFragment"
+        android:label="fragment_weather_forecast_data_stream_flow"
+        tools:layout="@layout/fragment_weather_forecast_data_stream_flow" />
+</navigation>
