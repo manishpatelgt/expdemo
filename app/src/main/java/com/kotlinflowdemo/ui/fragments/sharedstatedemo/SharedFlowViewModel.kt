@@ -21,7 +21,6 @@ class SharedFlowViewModel : ViewModel() {
 
     fun startTimer() {
         viewModelScope.launch {
-
             SharedTimer.timer.collect {
                 _timerSharedValue.emit(it)
             }

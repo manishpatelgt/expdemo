@@ -11,7 +11,7 @@ object SharedTimer {
     val timer = _timer.asSharedFlow()
 
     suspend fun startTimer() {
-        for (counter in 0..100) {
+        for (counter in 0..1000) {
             delay(1000)
             _timer.emit(counter)
         }
