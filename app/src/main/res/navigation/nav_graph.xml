@@ -19,6 +19,12 @@
         <action
             android:id="@+id/action_mainFragment_to_weatherForecastDataStreamFlowFragment"
             app:destination="@id/weatherForecastDataStreamFlowFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_stateFlowFragment"
+            app:destination="@id/stateFlowFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_sharedFlowFragment"
+            app:destination="@id/sharedFlowFragment" />
     </fragment>
     <fragment
         android:id="@+id/weatherForecastDataStreamFragment"
@@ -35,4 +41,14 @@
         android:name="com.kotlinflowdemo.ui.fragments.weatherforecast.datastreamflow.WeatherForecastDataStreamFlowFragment"
         android:label="fragment_weather_forecast_data_stream_flow"
         tools:layout="@layout/fragment_weather_forecast_data_stream_flow" />
+    <fragment
+        android:id="@+id/stateFlowFragment"
+        android:name="com.kotlinflowdemo.ui.fragments.stateflowdemo.StateFlowFragment"
+        android:label="fragment_state_flow"
+        tools:layout="@layout/fragment_state_flow" />
+    <fragment
+        android:id="@+id/sharedFlowFragment"
+        android:name="com.kotlinflowdemo.ui.fragments.sharedstatedemo.SharedFlowFragment"
+        android:label="fragment_shared_flow"
+        tools:layout="@layout/fragment_shared_flow" />
 </navigation>
