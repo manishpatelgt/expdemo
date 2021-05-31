@@ -32,7 +32,7 @@ class FragmentSharingDataActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityFragmentDataSharingBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        
         /** Set action bar */
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

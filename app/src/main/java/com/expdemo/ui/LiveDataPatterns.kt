@@ -32,7 +32,7 @@ class LiveDataPatterns : ViewModel() {
     val liveData1 = MutableLiveData<State>()
 
     //Solution 2 - let's make LiveData public (expose it instead of MutableLiveData)
-    //Now, from view perspective this solution looks fine, but we have a problem, because we need MutableLiveData withing ViewModel
+    //Now, from view perspective this solution looks fine, but we have a problem, because we need MutableLiveData within ViewModel
     // to put/post values to the stream (we can't post values to LiveData)
     val liveData2 = MutableLiveData<State>() as LiveData<State>
 
